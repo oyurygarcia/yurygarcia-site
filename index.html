@@ -49,8 +49,17 @@ h2{font-family:var(--hd);font-size:clamp(1.4rem,4vw,2rem);font-weight:600;line-h
 
 /* SPLIT LAYOUT: foto + texto */
 .split{display:flex;flex-direction:column;gap:0;padding:48px 0 70px;justify-content:flex-start}
-.split-photo{width:100%;height:34vh;min-height:220px;flex-shrink:0;overflow:hidden}
+.split-photo{width:100%;height:40vh;min-height:260px;flex-shrink:0;overflow:hidden}
 .split-photo img{width:100%;height:100%;object-fit:cover}
+/* Mobile: force face/shoulders visible */
+@media(max-width:879px){
+.split-photo img{object-position:center 15% !important}
+#sobre .split-photo img{object-position:center 25% !important}
+#acredito .split-photo img{object-position:center 12% !important}
+#trajetoria .split-photo img{object-position:center 20% !important}
+#lideres .split-photo img{object-position:center 15% !important}
+#redes .split-photo img{object-position:center 15% !important}
+}
 .split-body{flex:1;display:flex;align-items:center;padding:28px 24px 0}
 .split-body .pg-in{margin:0 auto}
 @media(min-width:880px){
