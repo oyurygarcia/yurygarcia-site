@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Yury Garcia | Desenvolvimento de Lideranças</title>
+<title>Yury Garcia | Mentoria Liderium · Desenvolvimento de Lideranças</title>
+<meta name="description" content="Mentoria executiva para coordenadores e gerentes que buscam o próximo passo de carreira. Yury Garcia, +12 anos liderando equipes globais.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -175,6 +176,67 @@ transition:background .2s,border-color .2s;
 footer{text-align:center;padding:18px;color:var(--text-d);font-size:.68rem;border-top:1px solid rgba(74,179,232,0.06)}
 
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;scroll-snap-type:none}}
+
+/* VÍDEO (formato vertical 9:16) */
+.vert{margin:0 auto;height:min(660px,calc(100svh - 230px));aspect-ratio:9/16;max-width:100%}
+.vert .vw{width:100%;height:100%;border-radius:14px;overflow:hidden;background:var(--navy-d);border:1px solid var(--card-b)}
+.vert iframe{width:100%;height:100%;border:none;display:block}
+.center{text-align:center}
+.center .prose{max-width:460px;margin-left:auto;margin-right:auto}
+@media(max-width:879px){.vert{height:auto;width:100%;max-width:400px}}
+/* INTRODUÇÃO À LIDERIUM: 12 páginas em texto */
+.intro{max-width:600px;margin:0 auto;text-align:left}
+.intro-slider{display:grid;background:linear-gradient(160deg,var(--navy-d),var(--navy-l));border:1px solid var(--card-b);border-radius:14px;padding:26px 26px 30px;touch-action:pan-y;min-height:320px}
+.intro-slide{grid-area:1/1;opacity:0;visibility:hidden;transition:opacity .35s ease,visibility .35s;display:flex;flex-direction:column;justify-content:center}
+.intro-slide.active{opacity:1;visibility:visible}
+.intro-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:22px}
+.intro-top .lbl{margin:0}
+.intro-num{font-family:var(--hd);font-size:.7rem;color:var(--text-d);letter-spacing:.1em}
+.intro-slide h3{font-family:var(--hd);font-size:clamp(1.25rem,3.4vw,1.6rem);font-weight:500;line-height:1.28;color:var(--text);margin:0}
+.intro-slide h3+h3{margin-top:10px}
+.intro-slide .sub{font-size:.95rem;color:var(--text-m);margin-top:6px}
+.intro-rule{width:56px;height:2px;background:linear-gradient(90deg,var(--blue),transparent);margin:14px 0 18px;border-radius:2px}
+.intro-slide p{color:var(--text-m);font-size:.95rem;line-height:1.6;margin:0}
+.intro-slide p+p{margin-top:12px}
+.intro-slide p strong{color:var(--text);font-weight:500}
+.intro-slide p.note{font-size:.85rem;color:var(--text-d)}
+.intro-cover{text-align:center;justify-content:center}
+.intro-cover .brand{font-family:var(--hd);font-size:clamp(1.5rem,4.5vw,2.1rem);font-weight:700;letter-spacing:.02em;color:var(--text)}
+.intro-cover .thesis{font-size:1.05rem;color:var(--blue);margin-top:10px;line-height:1.5}
+.intro-cover .thesis-sub{margin-top:26px;font-size:.8rem;color:var(--text-d)}
+.intro-ctrl{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:14px}
+.intro-arrow{width:48px;height:48px;border-radius:50%;background:var(--card);border:1px solid var(--card-b);color:var(--blue);font-size:1.4rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,border-color .2s;-webkit-tap-highlight-color:transparent}
+.intro-arrow:hover,.intro-arrow:active{background:var(--blue-glow);border-color:var(--blue)}
+.intro-arrow:focus-visible,.depo-arrow:focus-visible,.pg-nav button:focus-visible,.btn-l:focus-visible,.depo-dot:focus-visible,.intro-dot:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.intro-count{font-family:var(--hd);font-size:.85rem;color:var(--text-m);min-width:56px;text-align:center;font-variant-numeric:tabular-nums}
+.intro-dots{display:flex;justify-content:center;gap:5px;margin-top:10px;flex-wrap:wrap}
+.intro-dot{width:6px;height:6px;border-radius:50%;background:var(--text-d);border:none;padding:0;cursor:pointer;transition:all .3s}
+.intro-dot.active{background:var(--blue);width:16px;border-radius:3px}
+@media(max-width:480px){.intro-slider{padding:20px 18px 24px;min-height:300px}}
+/* BOTÕES */
+.btn-row{display:flex;flex-direction:column;gap:12px;align-items:center;margin-top:22px}
+.btn-l{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:14px 28px;border-radius:60px;text-decoration:none;font-size:.92rem;font-weight:500;width:100%;max-width:360px;text-align:center;transition:transform .2s}
+.btn-l:hover{transform:translateY(-2px)}
+.btn-form{background:var(--blue);color:var(--navy-d);box-shadow:0 4px 20px rgba(74,179,232,0.25)}
+@media(min-width:680px){.btn-l{width:auto;min-width:280px}}
+/* ESTRUTURA DO PROGRAMA */
+.prog-grid{display:grid;grid-template-columns:1fr;gap:10px;margin:14px 0 6px}
+.prog-card{background:var(--card);border-radius:10px;padding:16px;border:1px solid var(--card-b);border-left:3px solid var(--blue)}
+.prog-card h3{font-family:var(--hd);font-size:.98rem;color:var(--blue);margin-bottom:4px;font-weight:600}
+.prog-card p{color:var(--text-m);font-size:.83rem;margin:0}
+.prog-card p em{color:var(--text);font-style:italic}
+@media(min-width:640px){.prog-grid{grid-template-columns:1fr 1fr}}
+.prog-cta{font-family:var(--hd);font-size:1.05rem;color:var(--text);text-align:center;margin-top:18px}
+.prog-cta strong{color:#25D366;font-weight:600}
+@media(min-width:640px){.prog-card:last-child:nth-child(odd){grid-column:1/-1}}
+/* FOTOS NO LAYOUT EMPILHADO: altura pela proporção, não por 40% da tela (evita a faixa larga que corta o rosto) */
+@media(max-width:879px){.split-photo{height:auto;aspect-ratio:1/1;max-height:62vh;min-height:0}.split-photo img{height:100%}
+#sobre .split-photo img{object-position:center 28% !important}
+#acredito .split-photo img{object-position:center 42% !important}
+#trajetoria .split-photo img{object-position:center 50% !important}
+#redes .split-photo img{object-position:center 18% !important}}
+/* FOTOS NO COMPUTADOR: a imagem preenche a coluna inteira (antes ficava cortada embaixo) */
+@media(min-width:880px){.split-photo{position:relative}.split-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}}
 </style>
 </head>
 <body>
@@ -182,11 +244,10 @@ footer{text-align:center;padding:18px;color:var(--text-d);font-size:.68rem;borde
 <nav id="mainNav">
 <div class="nav-in">
 <a href="#inicio" class="nav-brand">YG</a>
+<a href="#conheca" class="nav-link">Conheça</a>
+<a href="#programa" class="nav-link">Programa</a>
 <a href="#sobre" class="nav-link">Sobre</a>
-<a href="#acredito" class="nav-link">Acredito</a>
 <a href="#trajetoria" class="nav-link">Trajetória</a>
-<a href="#visao" class="nav-link">Visão</a>
-<a href="#lideres" class="nav-link">Caminhos</a>
 <a href="#depoimentos" class="nav-link">Depoimentos</a>
 <a href="#conteudo" class="nav-link">Lives</a>
 <a href="#redes" class="nav-link">Redes</a>
@@ -204,7 +265,44 @@ footer{text-align:center;padding:18px;color:var(--text-d);font-size:.68rem;borde
 </div>
 </section>
 
-<!-- 2 SOBRE -->
+
+<!-- 2 VÍDEO -->
+<section class="pg center" style="background:var(--navy-d)" id="conheca">
+<div class="pg-in">
+<p class="lbl">Mentoria Liderium</p>
+<h2>Para coordenadores e gerentes que buscam o próximo passo de carreira</h2>
+<div class="vert"><div class="vw"><iframe src="https://www.youtube-nocookie.com/embed/RkQORhzk_LU?rel=0&modestbranding=1&playsinline=1" title="Vídeo: Mentoria Liderium para coordenadores e gerentes" allow="accelerometer;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen loading="lazy"></iframe></div></div>
+</div>
+</section>
+
+<!-- 3 INTRODUÇÃO À LIDERIUM (12 páginas em texto) + FORMULÁRIO -->
+<section class="pg center" id="introducao">
+<div class="pg-in">
+<p class="lbl">Leia em 2 minutos</p>
+<h2>Introdução à Liderium</h2>
+<div class="intro">
+<div class="intro-slider" id="introSlider" aria-roledescription="carrossel" aria-label="Introdução à Liderium, 12 páginas">
+<div class="intro-slide intro-cover active" data-p="1"><div class="brand">MENTORIA LIDERIUM</div><div class="thesis">Influência e posicionamento separam gestores de verdadeiros executivos.</div><div class="thesis-sub">@oyurygarcia</div></div>
+<div class="intro-slide" data-p="2"><div class="intro-top"><span class="lbl">Mentoria Liderium</span><span class="intro-num">02</span></div><h3>Seu impacto dentro da empresa está cada vez mais relacionado a sua capacidade de articulação</h3><div class="intro-rule"></div><p>Suas entregas dependem da capacidade de <strong>articular interesses, construir alinhamentos e influenciar decisões</strong> para além da sua gestão.</p></div>
+<div class="intro-slide" data-p="3"><div class="intro-top"><span class="lbl">Mentoria Liderium</span><span class="intro-num">03</span></div><h3>Saber executar é uma coisa.</h3><h3>Articular isso com diferentes áreas e stakeholders é outra.</h3><div class="intro-rule"></div></div>
+<div class="intro-slide" data-p="4"><div class="intro-top"><span class="lbl">Mentoria Liderium</span><span class="intro-num">04</span></div><h3>Quanto maior a complexidade do ambiente, mais a sua atuação passa a ser percebida pela forma como você navega por ele</h3><div class="sub">(e não somente pelo que você entrega)</div><div class="intro-rule"></div><p>Cada interação comunica <strong>como você pensa e se posiciona</strong>, e isso ganha relevância. Seus resultados passam a ser <strong>só uma parte do todo</strong>.</p></div>
+<div class="intro-slide" data-p="5"><div class="intro-top"><span class="lbl">Mentoria Liderium</span><span class="intro-num">05</span></div><h3>Claro que resultados importam.</h3><h3>Mas as pessoas ao seu redor conhecem apenas parte das decisões, desafios e superações por trás daquilo que você entregou.</h3><div class="intro-rule"></div><p>Por isso, a leitura que elas fazem de você e do seu trabalho <strong>nem sempre coincide com a sua</strong>.</p></div>
+<div class="intro-slide" data-p="6"><div class="intro-top"><span class="lbl">Mentoria Liderium</span><span class="intro-num">06</span></div><h3>Posicionamento também exige enxergar a própria carreira a partir dos olhos de outros</h3><div class="intro-rule"></div><p>Que <strong>percepção</strong> seus pares, stakeholders e lideranças têm sobre você?</p><p>Ela é compatível com o <strong>espaço que você deseja ocupar</strong>?</p></div>
+<div class="intro-slide" data-p="7"><div class="intro-top"><span class="lbl">Mentoria Liderium</span><span class="intro-num">07</span></div><h3>Relacionamentos, percepção e posicionamento formam um ativo que tem nome: campo de influência.</h3><div class="intro-rule"></div><p><strong>Execução</strong> é o que te trouxe para o nível de gestão. O seu <strong>campo de influência</strong> é aquilo que vai te levar para o <strong>nível executivo</strong>.</p></div>
+<div class="intro-slide" data-p="8"><div class="intro-top"><span class="lbl">Mentoria Liderium</span><span class="intro-num">08</span></div><h3>Foi a partir dessa visão sobre carreira que nasceu a Liderium.</h3><div class="intro-rule"></div><p>Um programa de <strong>mentoria executiva</strong> para coordenadores e gerentes que querem <strong>ocupar espaços maiores</strong>.</p></div>
+<div class="intro-slide" data-p="9"><div class="intro-top"><span class="lbl">Mentoria Liderium</span><span class="intro-num">09</span></div><h3>Nosso objetivo é que você seja visto e reconhecido como alguém pronto para a próxima cadeira.</h3><div class="intro-rule"></div></div>
+<div class="intro-slide" data-p="10"><div class="intro-top"><span class="lbl">Mentoria Liderium</span><span class="intro-num">10</span></div><h3>Na prática, trazemos conceitos para você implementar no seu dia a dia.</h3><div class="intro-rule"></div><p>Ferramentas para <strong>mapear relações, construir alianças, ampliar credibilidade e comunicar suas ideias</strong> com mais impacto.</p><p class="note">(Aquilo que me fez promover dezenas de líderes ao longo da minha trajetória.)</p></div>
+<div class="intro-slide" data-p="11"><div class="intro-top"><span class="lbl">Mentoria Liderium</span><span class="intro-num">11</span></div><h3>O próximo nível da sua carreira começa pela forma como você ocupa o espaço que já tem hoje.</h3><div class="intro-rule"></div><p>Se uma posição maior surgisse amanhã, você seria o <strong>candidato inevitável</strong> para ocupá-la?</p></div>
+<div class="intro-slide" data-p="12"><div class="intro-top"><span class="lbl">Mentoria Liderium</span><span class="intro-num">12</span></div><h3>Mentoria Liderium</h3><div class="intro-rule"></div><p>Construa o <strong>posicionamento</strong> de quem está <strong>pronto para atuar em nível executivo</strong>.</p><p>Para coordenadores e gerentes corporativos.</p></div>
+</div>
+</div>
+<div class="intro-ctrl"><button class="intro-arrow" id="introPrev" aria-label="Página anterior">‹</button><span class="intro-count" id="introCount" aria-live="polite">1 / 12</span><button class="intro-arrow" id="introNext" aria-label="Próxima página">›</button></div>
+<div class="intro-dots" id="introDots"></div>
+<div class="btn-row"><a class="btn-l btn-form" href="https://docs.google.com/forms/d/e/1FAIpQLSeN3eZ5X4KddyymEK4aUiBrvMx5FXkAG7es1iUcyCcQxpVtgQ/viewform" target="_blank" rel="noopener">Quero me aplicar à Mentoria Liderium</a></div>
+</div>
+</section>
+
+<!-- 4 SOBRE -->
 <section class="pg split" id="sobre">
 <div class="split-photo"><img src="img/sofa.jpg" alt="Yury Garcia" style="object-position:center 30%"></div>
 <div class="split-body"><div class="pg-in">
@@ -218,7 +316,7 @@ footer{text-align:center;padding:18px;color:var(--text-d);font-size:.68rem;borde
 
 <!-- 3 ACREDITO -->
 <section class="pg split rev" id="acredito">
-<div class="split-photo"><img src="img/pensativo.jpg" alt="Yury Garcia" style="object-position:center 18%"></div>
+<div class="split-photo"><img src="img/pensativo.jpg" alt="Yury Garcia" style="object-position:center 35%"></div>
 <div class="split-body"><div class="pg-in">
 <p class="lbl">O que eu acredito</p>
 <h2>Liderança é transformação</h2>
@@ -229,7 +327,7 @@ footer{text-align:center;padding:18px;color:var(--text-d);font-size:.68rem;borde
 
 <!-- 4 TRAJETÓRIA -->
 <section class="pg split" id="trajetoria">
-<div class="split-photo"><img src="img/laptop.jpg" alt="Yury Garcia" style="object-position:center 22%"></div>
+<div class="split-photo"><img src="img/laptop.jpg" alt="Yury Garcia" style="object-position:center 40%"></div>
 <div class="split-body"><div class="pg-in">
 <p class="lbl">Minha trajetória</p>
 <h2>De trainee a Chief of Staff Global</h2>
@@ -251,51 +349,31 @@ footer{text-align:center;padding:18px;color:var(--text-d);font-size:.68rem;borde
 </div></div>
 </section>
 
-<!-- 5 VISÃO (2 parágrafos) -->
-<section class="pg" style="background:var(--navy-d)" id="visao">
+<!-- 7 ESTRUTURA DO PROGRAMA -->
+<section class="pg" style="background:var(--navy-d)" id="programa">
 <div class="pg-in">
-<p class="lbl">O paradigma da liderança</p>
-<h2>Liderança estratégica é muito maior do que feedback e performance</h2>
-<p class="prose">Quando se fala em liderança, a maioria das pessoas pensa em duas coisas: feedback e performance. Mas eu acredito que a liderança estratégica é algo muito maior do que isso. Um líder estratégico de verdade domina a combinação de duas grandes frentes: gestão e articulação.</p>
-<div class="p-card"><h3>Gestão</h3><p>É o domínio do seu próprio território: seu time, suas entregas, seus processos, seus resultados. É o que faz a operação funcionar.</p></div>
-<div class="p-card"><h3>Articulação</h3><p>É o domínio do ambiente: stakeholders, narrativa, influência, posicionamento estratégico. É o que faz a carreira avançar.</p></div>
-<p class="prose">E é essa combinação que faz você assumir posições executivas, ser promovido, ter mais credibilidade e influenciar de maneira estratégica outros líderes e stakeholders. <strong>Liderança estratégica não é sobre entregar 120% para ser promovido.</strong> É sobre articular suas operações e projetos com as outras áreas e necessidades do negócio, de maneira intencional e estratégica.</p>
+<p class="lbl">O programa</p>
+<h2>A estrutura do Programa Liderium</h2>
+<p class="prose">A Liderium foi desenhada para coordenadores e gerentes de bom desempenho, que querem ser percebidos como prontos para o próximo nível a partir de um posicionamento executivo dentro da organização.</p>
+<p class="prose">Meu método foi desenhado para gestores ocupados, que precisam de flexibilidade mas, ao mesmo tempo, querem acompanhamento próximo e ver resultado rápido já nas dinâmicas do dia a dia.</p>
+<p class="lbl" style="margin-top:6px">O programa é composto por</p>
+<div class="prog-grid">
+<div class="prog-card"><h3>Diagnóstico profundo</h3><p>Mentalidade executiva, desafios específicos e mapa do ambiente.</p></div>
+<div class="prog-card"><h3>Sessões individuais</h3><p>Plano de ação customizado com base no diagnóstico e nos objetivos de curto, médio e longo prazo.</p></div>
+<div class="prog-card"><h3>Sessões em grupo</h3><p>Aprendizado exponencial: aqui você aprende também com as situações difíceis de outros mentorados e me vê respondendo tudo ao vivo.</p></div>
+<div class="prog-card"><h3>Método gravado</h3><p>Aulas direto ao ponto, com ferramentas de implementação no dia a dia.</p></div>
+<div class="prog-card"><h3>Acesso diário a mim</h3><p>Para apoio com questões do dia a dia e dúvidas. <em>Quantas vezes você já saiu de uma reunião querendo compartilhar com alguém?</em></p></div>
 </div>
-</section>
-
-<!-- 6 LO vs LE -->
-<section class="pg split rev" id="lideres">
-<div class="split-photo"><img src="img/mesa.jpg" alt="Yury Garcia" style="object-position:center 18%"></div>
-<div class="split-body"><div class="pg-in">
-<p class="lbl">Dois caminhos</p>
-<h2>Líder Operacional vs. Líder Estratégico</h2>
-<div class="l-cmp">
-<div class="l-box op">
-<h3>O Líder Operacional</h3>
-<p>Se esforça para bater 120% da meta todo mês e ganhar palminhas na reunião de resultado. Trabalha demais, está sempre cansado, sente que chegou num teto de crescimento e que, mesmo dando o sangue, as coisas andam devagar.</p>
+<p class="prog-cta"><strong>Quer saber mais?</strong> Preencha o formulário e entre em contato.</p>
+<div class="btn-row"><a class="btn-l btn-form" href="https://docs.google.com/forms/d/e/1FAIpQLSeN3eZ5X4KddyymEK4aUiBrvMx5FXkAG7es1iUcyCcQxpVtgQ/viewform" target="_blank" rel="noopener">Quero me aplicar à Mentoria Liderium</a></div>
 </div>
-<div class="l-box st">
-<h3>O Líder Estratégico</h3>
-<ul>
-<li>Se posiciona sobre as necessidades do negócio</li>
-<li>Lê o cenário antes de falar</li>
-<li>Constrói a narrativa do que foi feito para articular o impacto do seu trabalho</li>
-<li>Se comunica de maneira executiva</li>
-<li>Constrói alianças estratégicas que apoiam projetos, reuniões e cases de promoção</li>
-<li>Gere seu tempo de forma estratégica e atua no que realmente importa</li>
-<li>Desbloqueia fricções com facilidade e tem muita credibilidade</li>
-</ul>
-</div>
-</div>
-<p class="cta-q">Agora me conta: qual dos dois você quer ser?</p>
-</div></div>
 </section>
 
 <!-- 7 DEPOIMENTOS -->
 <section class="pg" id="depoimentos">
 <div class="pg-in" style="max-width:900px">
 <p class="lbl" style="text-align:center">Resultados reais</p>
-<h2 style="text-align:center">O que dizem quem já passou pela mentoria</h2>
+<h2 style="text-align:center">O que dizem quem já passou comigo</h2>
 <div class="depo-split">
 <div class="depo-col">
 <p class="depo-col-title">Em vídeo</p>
@@ -370,14 +448,14 @@ footer{text-align:center;padding:18px;color:var(--text-d);font-size:.68rem;borde
 <p class="lbl">Vamos conversar?</p>
 <h2>Entre em contato</h2>
 <p class="prose" style="text-align:center">Se você quer dar o próximo passo na sua carreira de liderança, me chama pra uma conversa.</p>
-<a href="https://wa.me/5511926837973?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20programa%20de%20mentoria%20do%20Yury%20Garcia" target="_blank" rel="noopener" class="wa-btn">
+<a href="https://wa.me/5511999106121?text=Eu%20vim%20direto%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20a%20Mentoria%20Liderium" target="_blank" rel="noopener" class="wa-btn">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 Fale comigo no WhatsApp
 </a>
 </div>
 </section>
 
-<a href="https://wa.me/5511926837973?text=Ol%C3%A1%2C%20vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20programa%20de%20mentoria%20do%20Yury%20Garcia" target="_blank" rel="noopener" class="wa-f" aria-label="WhatsApp">
+<a href="https://wa.me/5511999106121?text=Eu%20vim%20direto%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20a%20Mentoria%20Liderium" target="_blank" rel="noopener" class="wa-f" aria-label="WhatsApp">
 <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
@@ -387,7 +465,7 @@ Fale comigo no WhatsApp
 <button id="navDown" aria-label="Próxima seção">↓</button>
 </div>
 
-<footer>&copy; 2026 Yury Garcia</footer>
+<footer>&copy; 2026 Yury Garcia · Mentoria Liderium</footer>
 
 <script>
 // Sliders com setas prev/next + dots + swipe touch
@@ -444,6 +522,22 @@ resetTimer();
 }
 initSlider('vidSlider','vidDots',7000);
 initSlider('printSlider','printDots',4500);
+
+
+// Introdução à Liderium: setas, pontos, contador, deslizar e teclado ← →
+(function(){
+const sl=document.getElementById('introSlider');if(!sl)return;
+const slides=sl.querySelectorAll('.intro-slide'),n=slides.length,dots=document.getElementById('introDots'),cnt=document.getElementById('introCount');
+let cur=0;
+for(let i=0;i<n;i++){const d=document.createElement('button');d.className='intro-dot'+(i===0?' active':'');d.setAttribute('aria-label','Página '+(i+1));d.onclick=()=>go(i);dots.appendChild(d)}
+function go(i){slides[cur].classList.remove('active');dots.children[cur].classList.remove('active');cur=(i+n)%n;slides[cur].classList.add('active');dots.children[cur].classList.add('active');cnt.textContent=(cur+1)+' / '+n}
+document.getElementById('introPrev').onclick=()=>go(cur-1);
+document.getElementById('introNext').onclick=()=>go(cur+1);
+let tx=0,ty=0;
+sl.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY},{passive:true});
+sl.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx,dy=e.changedTouches[0].clientY-ty;if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy)){dx<0?go(cur+1):go(cur-1)}},{passive:true});
+document.addEventListener('keydown',e=>{const r=sl.getBoundingClientRect();const vis=r.top<window.innerHeight&&r.bottom>0;if(!vis)return;if(e.key==='ArrowRight'){e.preventDefault();go(cur+1)}if(e.key==='ArrowLeft'){e.preventDefault();go(cur-1)}});
+})();
 
 // Page navigation (buttons + keyboard)
 const pages=[...document.querySelectorAll('.pg')];
