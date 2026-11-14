@@ -160,21 +160,6 @@ footer a{color:var(--text-d)}
       <button class="link" type="button" data-volta="horarios">trocar o horário</button>
     </form>
 
-    <!-- 3. procurando -->
-    <div class="passo" id="p-busca"><div class="carregando">Procurando seu cadastro…</div></div>
-
-    <!-- 4. confirmação -->
-    <form class="passo conf" id="p-conf" novalidate>
-      <h3 id="conf-titulo">Confirme sua conversa</h3>
-      <p class="quando" id="conf-quando"></p>
-      <p class="onde" id="conf-onde"></p>
-      <div id="conf-nome-box"><label for="nome">Seu nome</label><input type="text" id="nome" autocomplete="name" placeholder="Seu nome"></div>
-      <div id="conf-email-box"><label for="email" id="email-rotulo">Quer receber o convite no e-mail? <span class="opcional">(opcional)</span></label><input type="email" id="email" autocomplete="email" inputmode="email" placeholder="seu@email.com"></div>
-      <p class="erro" id="erro-conf" role="alert"></p>
-      <button class="principal" type="submit" id="bt-conf">Confirmar</button>
-      <button class="link" type="button" data-volta="whats" id="conf-corrigir">não é você? corrigir</button>
-    </form>
-
     <!-- falha: ninguém fica sem saída -->
     <div class="passo" id="p-falha"><p class="carregando" style="padding:6px 0" id="falha-texto">Não consegui carregar a agenda agora. Fale com a equipe pelo WhatsApp que marcamos com você.</p></div>
 
@@ -240,7 +225,7 @@ var visitante = (function(){
 function $(id){ return document.getElementById(id); }
 
 function mostrarPasso(nome){
-  ['horarios','whats','busca','conf','falha'].forEach(function(n){ $('p-'+n).classList.toggle('ativo', n===nome); });
+  ['horarios','whats','falha'].forEach(function(n){ $('p-'+n).classList.toggle('ativo', n===nome); });
 }
 
 // texto com trechos em negrito, sem montar HTML com dado vindo de fora
@@ -311,55 +296,15 @@ $('p-whats').addEventListener('submit', function(ev){
   if (d.length >= 12 && d.indexOf('55') === 0) d = d.slice(2);
   if (d.length < 10 || d.length > 11){ $('erro-wpp').textContent = 'Confira o número, com DDD. Exemplo: (11) 99999-9999.'; return; }
   ESC.whatsapp = d;
-  mostrarPasso('busca');
-  var inicio = Date.now();
-  chamar({ acao:'buscar', whatsapp:d, visitante:visitante, site:$('site').value }).then(function(r){
-    var espera = Math.max(0, 900 - (Date.now() - inicio));   // "procurando…" aparece pelo menos um instante
-    setTimeout(function(){
-      if (!r || !r.ok){
-        if (r && r.motivo === 'dados'){ $('erro-wpp').textContent = r.mensagem; mostrarPasso('whats'); return; }
-        falhar(r && r.mensagem ? r.mensagem : null); return;
-      }
-      ESC.cadastro = r; telaConfirmacao(r);
-    }, espera);
-  }).catch(function(){ falhar(); });
-});
-
-function telaConfirmacao(c){
-  $('conf-titulo').textContent = c.encontrado && c.nome ? c.nome + ', confirme sua conversa' : 'Confirme sua conversa';
-  $('conf-quando').textContent = ESC.rotulo.charAt(0).toUpperCase() + ESC.rotulo.slice(1);
-  if (c.encontrado && c.email){
-    escrever($('conf-onde'), ['O link da reunião chega no seu WhatsApp ', {b:c.whatsapp}, ' e o convite no seu e-mail ', {b:c.email}, '.']);
-  } else {
-    escrever($('conf-onde'), ['O link da reunião chega no seu WhatsApp ', {b:c.whatsapp}, '.']);
-  }
-  $('conf-nome-box').style.display = c.encontrado ? 'none' : '';
-  $('conf-email-box').style.display = (c.encontrado && c.email) ? 'none' : '';
-  escrever($('email-rotulo'), [c.encontrado ? 'Quer receber o convite no e-mail? ' : 'Seu e-mail, para receber o convite ']);
-  var o = document.createElement('span'); o.className = 'opcional'; o.textContent = '(opcional)'; $('email-rotulo').appendChild(o);
-  $('conf-corrigir').textContent = c.encontrado ? 'não é você? corrigir' : 'corrigir o número';
-  $('erro-conf').textContent = '';
-  $('bt-conf').disabled = false; $('bt-conf').textContent = 'Confirmar';
-  mostrarPasso('conf');
-}
-
-$('p-conf').addEventListener('submit', function(ev){
-  ev.preventDefault();
-  var c = ESC.cadastro || {};
-  var corpo = { acao:'confirmar', horario:ESC.horario, whatsapp:ESC.whatsapp, visitante:visitante, site:$('site').value };
-  if (!c.encontrado){
-    corpo.nome = $('nome').value.trim();
-    if (corpo.nome.length < 2){ $('erro-conf').textContent = 'Escreva seu nome.'; $('nome').focus(); return; }
-  }
-  if (!(c.encontrado && c.email)) corpo.email = $('email').value.trim();
-  $('bt-conf').disabled = true; $('bt-conf').textContent = 'Confirmando…';
-  chamar(corpo).then(function(r){
+  // Fluxo de 13/11: confirma direto, sem buscar cadastro (os dados do formulário se juntam depois).
+  $('bt-wpp').disabled = true; $('bt-wpp').textContent = 'Confirmando…';
+  chamar({ acao:'confirmar', horario:ESC.horario, whatsapp:d, visitante:visitante, site:$('site').value }).then(function(r){
+    $('bt-wpp').disabled = false; $('bt-wpp').textContent = 'Confirmar agendamento';
     if (r && r.ok){ paginaDeObrigado(r); return; }
-    $('bt-conf').disabled = false; $('bt-conf').textContent = 'Confirmar';
     if (r && r.motivo === 'ocupado'){ montarCalendario(r.mensagem); return; }
-    if (r && (r.motivo === 'dados' || r.motivo === 'ja-agendado')){ $('erro-conf').textContent = r.mensagem; return; }
+    if (r && (r.motivo === 'dados' || r.motivo === 'ja-agendado')){ $('erro-wpp').textContent = r.mensagem; return; }
     falhar(r && r.mensagem ? r.mensagem + ' Fale com a equipe pelo WhatsApp.' : null);
-  }).catch(function(){ falhar(); });
+  }).catch(function(){ $('bt-wpp').disabled = false; $('bt-wpp').textContent = 'Confirmar agendamento'; falhar(); });
 });
 
 document.querySelectorAll('[data-volta]').forEach(function(b){
@@ -372,8 +317,7 @@ document.querySelectorAll('[data-volta]').forEach(function(b){
 function paginaDeObrigado(r){
   try { if (player && player.pauseVideo) player.pauseVideo(); } catch(e){}
   $('ob-quando').textContent = r.dia + ', às ' + r.hora;
-  if (r.email) escrever($('ob-envio'), ['Enviamos o convite para ', {b:r.email}, ' e o link da reunião vai para o seu WhatsApp ', {b:r.whatsapp}, '.']);
-  else escrever($('ob-envio'), ['O link da reunião vai para o seu WhatsApp ', {b:r.whatsapp}, '.']);
+  escrever($('ob-envio'), ['O link da reunião chega no seu ', {b:'WhatsApp'}, ' e no seu ', {b:'e-mail'}, '.']);
   document.body.classList.add('agendado');
   $('obrigado').classList.add('ativo');
   window.scrollTo(0, 0);
