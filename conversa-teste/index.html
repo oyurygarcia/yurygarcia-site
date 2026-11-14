@@ -30,12 +30,12 @@
 }
 html{-webkit-text-size-adjust:100%}
 body{background:var(--navy);color:var(--text);font-family:var(--bd);font-weight:300;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh}
-.wrap{max-width:560px;margin:0 auto;padding:28px 16px 40px}
+.wrap{max-width:560px;margin:0 auto;padding:36px 16px 40px}
 
 /* TOPO */
 .assinatura{font-family:var(--hd);font-weight:600;font-size:.85rem;letter-spacing:.04em;color:var(--blue);text-align:center;margin-bottom:22px}
-h1{font-family:var(--hd);font-weight:600;font-size:clamp(1.35rem,5.6vw,1.9rem);line-height:1.25;text-align:center;margin-bottom:12px}
-.sub{color:var(--text-m);font-size:.92rem;text-align:center;margin-bottom:22px}
+h1{font-family:var(--hd);font-weight:600;font-size:clamp(1.5rem,6.4vw,2.1rem);line-height:1.3;text-align:center;margin-bottom:20px}
+.sub{color:var(--text-m);font-size:.95rem;text-align:center;margin-bottom:30px}
 .sub strong{color:var(--text);font-weight:500}
 
 /* PLAYER */
@@ -47,11 +47,20 @@ h1{font-family:var(--hd);font-weight:600;font-size:clamp(1.35rem,5.6vw,1.9rem);l
 .tampa .btn{display:flex;align-items:center;gap:10px;background:rgba(9,21,32,.82);border:1px solid rgba(74,179,232,.35);color:var(--text);font-family:var(--hd);font-weight:500;font-size:1rem;padding:14px 22px;border-radius:999px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:opacity .25s}
 .tampa .btn svg{width:22px;height:22px;fill:var(--blue)}
 .tampa.tocando .btn{opacity:0}
-/* pausado: escurece o vídeo para cobrir título e sugestões do YouTube */
-.tampa:not(.tocando){background:rgba(9,21,32,.72)}
+/* pausado: faixa escura só no topo (esconde o título do YouTube); o resto do vídeo fica visível */
+.tampa:not(.tocando){background:linear-gradient(180deg,rgba(9,21,32,.96) 0,rgba(9,21,32,.96) 16%,rgba(9,21,32,.25) 26%,rgba(9,21,32,.25) 100%)}
 /* antes do primeiro play: capa própria, sem nada do YouTube aparecendo */
-.tampa.inicio{background:var(--navy-d) center/cover no-repeat;background-image:linear-gradient(180deg,rgba(9,21,32,.1),rgba(9,21,32,.55)),var(--capa,none)}
+.tampa.inicio{background:var(--navy-d) center/cover no-repeat;background-image:linear-gradient(180deg,rgba(9,21,32,0),rgba(9,21,32,.25)),var(--capa,none)}
+/* barra de progresso própria: anda mais rápido no começo (prática de VSL); não é clicável */
+.progresso{position:absolute;left:0;right:0;bottom:0;height:6px;background:rgba(255,255,255,.18);z-index:3;pointer-events:none}
+.progresso span{display:block;height:100%;width:0;background:#2fd06f;transition:width .5s linear}
 .aviso-som{text-align:center;color:var(--text-d);font-size:.78rem;margin-top:10px}
+.cta{display:none;width:100%;max-width:400px;margin:22px auto 0;background:#1fa855;color:#fff;border:0;border-radius:14px;padding:16px 18px;font-family:var(--hd);font-weight:700;font-size:1.15rem;letter-spacing:.02em;text-transform:uppercase;cursor:pointer;box-shadow:0 10px 28px rgba(31,168,85,.35);align-items:center;justify-content:center;gap:10px;animation:pulsa 2s ease-in-out infinite}
+.cta.visivel{display:flex}
+.cta svg{width:24px;height:24px;fill:#fff;animation:desce 1.2s ease-in-out infinite}
+@keyframes pulsa{50%{transform:scale(1.03)}}
+@keyframes desce{50%{transform:translateY(4px)}}
+@media (prefers-reduced-motion:reduce){.cta,.cta svg{animation:none}}
 
 /* AGENDA (aparece no fim da Autoridade) */
 .agenda{display:none;margin-top:34px;background:var(--card);border:1px solid var(--card-b);border-radius:16px;padding:24px 18px 20px;opacity:0;transform:translateY(12px);transition:opacity .6s,transform .6s}
@@ -66,10 +75,12 @@ h1{font-family:var(--hd);font-weight:600;font-size:clamp(1.35rem,5.6vw,1.9rem);l
 .carregando{text-align:center;color:var(--text-m);font-size:.9rem;padding:26px 0}
 .carregando::before{content:"";display:block;width:26px;height:26px;margin:0 auto 12px;border-radius:50%;border:3px solid rgba(74,179,232,.25);border-top-color:var(--blue);animation:gira 1s linear infinite}
 @keyframes gira{to{transform:rotate(360deg)}}
-.dia{margin-bottom:16px}
-.dia h3{font-family:var(--hd);font-weight:500;font-size:.95rem;color:var(--text-m);margin-bottom:8px}
-.horas{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.hora{font-family:var(--hd);font-weight:500;font-size:1rem;color:var(--text);background:rgba(74,179,232,.08);border:1px solid rgba(74,179,232,.35);border-radius:10px;min-height:48px;cursor:pointer;transition:background .2s}
+.dia{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--card-b)}
+.dia:last-of-type{border-bottom:0}
+.dia h3{flex:0 0 74px;font-family:var(--hd);font-weight:600;font-size:.95rem;line-height:1.25;color:var(--text)}
+.dia h3 small{display:block;font-weight:400;font-size:.8rem;color:var(--text-m)}
+.horas{flex:1;display:flex;flex-wrap:wrap;gap:8px}
+.hora{flex:0 0 calc((100% - 16px) / 3);font-family:var(--hd);font-weight:500;font-size:1rem;color:var(--text);background:rgba(74,179,232,.08);border:1px solid rgba(74,179,232,.35);border-radius:10px;min-height:44px;padding:0 8px;cursor:pointer;transition:background .2s}
 .hora:hover,.hora:focus-visible{background:rgba(74,179,232,.2);outline:none}
 .fuso{text-align:center;color:var(--text-d);font-size:.78rem;margin-top:4px}
 .escolhido{text-align:center;font-family:var(--hd);font-weight:500;font-size:1.05rem;margin-bottom:14px}
@@ -115,11 +126,8 @@ footer a{color:var(--text-d)}
 <body>
 <main class="wrap">
 
-  <div class="assinatura">oyurygarcia</div>
-
-  <!-- D3: texto do topo a lapidar com o Yury -->
-  <h1>Por que profissionais igualmente competentes têm trajetórias tão diferentes dentro das empresas</h1>
-  <p class="sub">Um vídeo para <strong>coordenadores e gerentes</strong> de médias e grandes empresas.</p>
+  <h1>Por que quem entrega mais nem sempre é promovido</h1>
+  <p class="sub">Para <strong>coordenadores e gerentes corporativos</strong></p>
 
   <div class="player" id="player">
     <div id="yt"></div>
@@ -129,8 +137,10 @@ footer a{color:var(--text-d)}
         <span id="rotulo">Assistir com som</span>
       </span>
     </button>
+    <div class="progresso" aria-hidden="true"><span id="barra"></span></div>
   </div>
   <p class="aviso-som">Toque no vídeo para pausar.</p>
+  <button class="cta" id="cta" type="button">Agendar reunião <svg viewBox="0 0 24 24"><path d="M11 4h2v12l5.5-5.5 1.4 1.4L12 19.8l-7.9-7.9 1.4-1.4L11 16z"/></svg></button>
 
   <section class="agenda" id="agenda" aria-live="polite">
     <h2>Agende uma conversa com a minha equipe</h2>
@@ -172,8 +182,6 @@ footer a{color:var(--text-d)}
 
     <!-- falha: ninguém fica sem saída -->
     <div class="passo" id="p-falha"><p class="carregando" style="padding:6px 0" id="falha-texto">Não consegui carregar a agenda agora. Fale com a equipe pelo WhatsApp que marcamos com você.</p></div>
-
-    <p class="depois">Na conversa, a equipe entende o seu momento de carreira, <strong>mostra como o programa funciona no dia a dia</strong> e tira todas as suas dúvidas.</p>
 
     <!-- WhatsApp só aparece se a agenda falhar; o botão normal fica na página de obrigado (um CTA por tela, Yury 11/11) -->
     <div class="zap-box" id="zap-falha" style="display:none">
@@ -282,7 +290,7 @@ function montarCalendario(aviso){
     r.horarios.forEach(function(h){ if (!dias[h.dia]){ dias[h.dia] = []; ordem.push(h.dia); } dias[h.dia].push(h); });
     ordem.forEach(function(d){
       var bloco = document.createElement('div'); bloco.className = 'dia';
-      var t = document.createElement('h3'); t.textContent = dias[d][0].diaLongo; bloco.appendChild(t);
+      var t = document.createElement('h3'); var pd = String(d).split(' '); t.textContent = pd[0]; if (pd[1]){ var sm = document.createElement('small'); sm.textContent = pd.slice(1).join(' '); t.appendChild(sm); } bloco.appendChild(t);
       var g = document.createElement('div'); g.className = 'horas';
       dias[d].forEach(function(h){
         var b = document.createElement('button'); b.type = 'button'; b.className = 'hora'; b.textContent = h.hora;
@@ -398,8 +406,11 @@ function liberarAgenda(){
   montarCalendario();
   var ag = document.getElementById('agenda');
   ag.classList.add('visivel');
+  $('cta').classList.add('visivel');
   requestAnimationFrame(function(){ requestAnimationFrame(function(){ ag.classList.add('entrou'); }); });
 }
+
+$('cta').addEventListener('click', function(){ $('agenda').scrollIntoView({behavior:'smooth', block:'start'}); });
 
 // Quem já chegou na agenda antes e voltou depois vê a agenda direto.
 if (lembrar('vsl_agenda') === '1') liberarAgenda();
@@ -446,6 +457,8 @@ setInterval(function(){
   if (t > travaTempo) travaTempo = t;
   if (player.getPlaybackRate && player.getPlaybackRate() !== 1) player.setPlaybackRate(1);
   if (t >= CONFIG.AGENDA_SEGUNDOS) liberarAgenda();
+  var dur = player.getDuration ? player.getDuration() : 0;
+  if (dur > 0) $('barra').style.width = (Math.pow(Math.min(1, t / dur), 0.6) * 100).toFixed(1) + '%';
 }, 500);
 </script>
 </body>
