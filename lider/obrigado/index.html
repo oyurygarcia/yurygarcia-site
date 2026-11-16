@@ -12,7 +12,7 @@
   PÁGINA DE OBRIGADO · Líder Inspira Líder
   Fonte: yury-workspace/areas/produto/lider-inspira-lider/pagina/obrigado/index.html
   Publicada em oyurygarcia.com.br/lider/obrigado/
-  1) confirma e chama para o grupo de avisos do WhatsApp  2) pergunta para a convidada (grava na planilha)  3) aula de presente  4) site
+  1) confirma  2) pergunta para a convidada (grava na planilha)  2b) grupo de avisos do WhatsApp (botão verde)  3) aula de presente  4) site
 -->
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -31,7 +31,7 @@ h1{font-size:clamp(1.9rem,8vw,2.6rem);font-weight:800;line-height:1.1;color:#fff
 .when{display:inline-block;font-weight:800;color:var(--hl);background:#fff;padding:3px 10px 5px;margin:14px 0 18px}
 .btn{display:block;width:100%;text-align:center;text-decoration:none;font:inherit;font-weight:800;font-size:1rem;color:#fff;background:var(--hl);border:0;border-radius:12px;padding:15px;cursor:pointer}
 .btn.sec{background:transparent;border:1.5px solid var(--card-b);color:#fff}
-.wa-note{font-size:.88rem;opacity:.75;text-align:center;margin-top:10px}
+.btn.wa{background:#25D366;color:#0d1f35}
 .btn:disabled{opacity:.6;cursor:wait}
 section{background:var(--card);border:1px solid var(--card-b);border-radius:18px;padding:22px 20px;margin-top:26px}
 section h2{font-size:1.25rem;font-weight:800;color:#fff;margin-bottom:8px;line-height:1.25}
@@ -56,8 +56,6 @@ footer a:hover{color:#fff}
   <h1>Inscrição confirmada</h1>
   <p class="lead">O convite com o link do <b>Google Meet</b> foi para o seu e-mail. Se não aparecer em alguns minutos, olhe também em Promoções ou Spam.</p>
   <div class="when">Quarta, 18/11 · 19h30</div>
-  <a class="btn" target="_blank" rel="noopener" href="https://chat.whatsapp.com/H6aKxcSebYSF3OJkLGqH73">Entrar no grupo de avisos no WhatsApp</a>
-  <p class="wa-note">Mandamos o link da sala minutos antes de começar, para você não esquecer.</p>
 
   <section>
     <h2>Qual pergunta você quer que eu faça à Carol?</h2>
@@ -68,6 +66,12 @@ footer a:hover{color:#fff}
       <button class="btn" id="bp" type="submit">Enviar pergunta</button>
       <div class="msg" id="mp" role="status"></div>
     </form>
+  </section>
+
+  <section>
+    <h2>Não perca o horário</h2>
+    <p>Mandamos o link da sala no grupo minutos antes de começar, para você não esquecer.</p>
+    <a class="btn wa" target="_blank" rel="noopener" href="https://chat.whatsapp.com/H6aKxcSebYSF3OJkLGqH73">Entrar no grupo de avisos no WhatsApp</a>
   </section>
 
   <section>
