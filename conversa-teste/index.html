@@ -50,10 +50,8 @@ h1{font-family:var(--hd);font-weight:600;font-size:clamp(1.5rem,6.4vw,2.1rem);li
 /* pausado: faixa escura só no topo (esconde o título do YouTube); o resto do vídeo fica visível */
 .tampa:not(.tocando){background:linear-gradient(180deg,rgba(9,21,32,.96) 0,rgba(9,21,32,.96) 16%,rgba(9,21,32,.25) 26%,rgba(9,21,32,.25) 100%)}
 /* antes do primeiro play: capa própria, sem nada do YouTube aparecendo */
-.tampa.inicio{background:var(--navy-d) center/cover no-repeat;background-image:linear-gradient(180deg,rgba(9,21,32,0),rgba(9,21,32,.25)),var(--capa,none)}
-/* barra de progresso própria: anda mais rápido no começo (prática de VSL); não é clicável */
-.progresso{position:absolute;left:0;right:0;bottom:0;height:6px;background:rgba(255,255,255,.18);z-index:3;pointer-events:none}
-.progresso span{display:block;height:100%;width:0;background:#2fd06f;transition:width .5s linear}
+.tampa.inicio{background:var(--navy-d) center/cover no-repeat;background-image:var(--capa,none)}
+/* barra de progresso: desde 16/11 vem dentro do vídeo (calibrada pelo Yury); a página não põe a dela */
 .aviso-som{text-align:center;color:var(--text-d);font-size:.78rem;margin-top:10px}
 .cta{display:none;width:100%;max-width:400px;margin:22px auto 0;background:#1fa855;color:#fff;border:0;border-radius:14px;padding:16px 18px;font-family:var(--hd);font-weight:700;font-size:1.15rem;letter-spacing:.02em;text-transform:uppercase;cursor:pointer;box-shadow:0 10px 28px rgba(31,168,85,.35);align-items:center;justify-content:center;gap:10px;animation:pulsa 2s ease-in-out infinite}
 .cta.visivel{display:flex}
@@ -137,7 +135,6 @@ footer a{color:var(--text-d)}
         <span id="rotulo">Assistir com som</span>
       </span>
     </button>
-    <div class="progresso" aria-hidden="true"><span id="barra"></span></div>
   </div>
   <p class="aviso-som">Toque no vídeo para pausar.</p>
   <button class="cta" id="cta" type="button">Agendar reunião <svg viewBox="0 0 24 24"><path d="M11 4h2v12l5.5-5.5 1.4 1.4L12 19.8l-7.9-7.9 1.4-1.4L11 16z"/></svg></button>
@@ -196,8 +193,8 @@ footer a{color:var(--text-d)}
 <script>
 /* ===================== CONFIG ===================== */
 var CONFIG = {
-  VIDEO_ID: "R4WUJWQg_K8",   // vídeo final (Yury, 13/11), não listado.
-  AGENDA_SEGUNDOS: 326,       // 5:26, fim da Autoridade na edição final de 13/11.
+  VIDEO_ID: "cqUcyGs3cLU",   // v4 final com camada visual (Yury, 16/11), não listado.
+  AGENDA_SEGUNDOS: 326,       // 5:26, fim da Autoridade (conferido na v4 de 16/11).
   AGENDA_API: "https://script.google.com/macros/s/AKfycby-AhIe9WRvgLwfq159hHtb8uvd_fj6D0XT9WS-tozb4Jx2GRPXelS__NElC3Sr5ymm/exec",  // app da web do script da agenda (script-agenda/); vazio = só o botão do WhatsApp
   PIXEL_ID: "",               // MARCADOR: id do pixel da Meta. Vazio = o evento Schedule não é enviado.
   WHATSAPP: "5511999106121",  // WhatsApp do CRM (CONTAS-E-ACESSOS)
@@ -211,7 +208,7 @@ var tampa = document.getElementById('tampa');
 var rotulo = document.getElementById('rotulo');
 var icone = document.getElementById('icone');
 var PLAY = '<path d="M8 5v14l11-7z"/>', PAUSE = '<path d="M7 5h4v14H7zM13 5h4v14h-4z"/>';
-tampa.style.setProperty('--capa', 'url(capa.jpg)');
+tampa.style.setProperty('--capa', 'url(capa.jpg?v=16-11)');
 
 function lembrar(chave, valor){ try{ if(valor===undefined) return localStorage.getItem(chave); localStorage.setItem(chave, valor);}catch(e){ return null; } }
 
@@ -392,8 +389,6 @@ setInterval(function(){
   if (t > travaTempo) travaTempo = t;
   if (player.getPlaybackRate && player.getPlaybackRate() !== 1) player.setPlaybackRate(1);
   if (t >= CONFIG.AGENDA_SEGUNDOS) liberarAgenda();
-  var dur = player.getDuration ? player.getDuration() : 0;
-  if (dur > 0) $('barra').style.width = (Math.pow(Math.min(1, t / dur), 0.6) * 100).toFixed(1) + '%';
 }, 500);
 </script>
 </body>
