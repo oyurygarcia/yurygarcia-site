@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Inscrição confirmada · Líder Inspira Líder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<!--
+  PÁGINA DE OBRIGADO · Líder Inspira Líder
+  Fonte: yury-workspace/areas/produto/lider-inspira-lider/pagina/obrigado/index.html
+  Publicada em oyurygarcia.com.br/lider/obrigado/
+  1) confirma e manda salvar na agenda  2) pergunta para a convidada (grava na planilha)  3) aula de presente  4) site
+-->
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--navy:#0d1f35;--blue:#4ab3e8;--hl:#1162cf;--text:#e4eaf0;--text-m:#a3b3c4;--text-d:#6c7f93;--card:rgba(19,43,69,.7);--card-b:rgba(74,179,232,.18);--err:#ff8a8a}
+body{background:var(--navy);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:600px;margin:0 auto;padding:36px 16px 48px}
+.logo{display:flex;align-items:center;gap:12px;margin-bottom:34px}
+.logo .bar{width:4px;height:44px;background:var(--blue);border-radius:2px}
+.logo .pre{font-size:.68rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--text-d)}
+.logo .name{font-size:1.45rem;font-weight:800;color:#fff;line-height:1.1}
+.logo .name i{font-weight:300;color:var(--blue);margin:0 3px}
+.check{width:56px;height:56px;border-radius:50%;background:#fff;color:var(--hl);display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:800;margin-bottom:18px}
+h1{font-size:clamp(1.9rem,8vw,2.6rem);font-weight:800;line-height:1.1;color:#fff;margin-bottom:14px}
+.lead{color:var(--text-m);margin-bottom:8px}
+.lead b{color:var(--text);font-weight:600}
+.when{display:inline-block;font-weight:800;color:var(--hl);background:#fff;padding:3px 10px 5px;margin:14px 0 18px}
+.btn{display:block;width:100%;text-align:center;text-decoration:none;font:inherit;font-weight:800;font-size:1rem;color:#fff;background:var(--hl);border:0;border-radius:12px;padding:15px;cursor:pointer}
+.btn.sec{background:transparent;border:1.5px solid var(--card-b);color:#fff}
+.btn:disabled{opacity:.6;cursor:wait}
+section{background:var(--card);border:1px solid var(--card-b);border-radius:18px;padding:22px 20px;margin-top:26px}
+section h2{font-size:1.25rem;font-weight:800;color:#fff;margin-bottom:8px;line-height:1.25}
+section p{color:var(--text-m);margin-bottom:14px}
+textarea{width:100%;font:inherit;color:var(--navy);background:#fff;border:2px solid transparent;border-radius:10px;padding:12px 14px;min-height:96px;resize:vertical;outline:none;margin-bottom:12px}
+textarea:focus{border-color:var(--blue)}
+.msg{font-size:.9rem;margin-top:10px;min-height:1.2em}
+.msg.ok{color:var(--blue)}.msg.err{color:var(--err)}
+.video{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.armadilha{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+footer{text-align:center;margin-top:34px}
+footer a{color:var(--text-m);text-decoration:none;font-size:.9rem;font-weight:600}
+footer a:hover{color:#fff}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="logo"><div class="bar"></div><div><div class="pre">Mentoria Liderium apresenta</div><div class="name">Líder<i>inspira</i>Líder</div></div></div>
+
+  <div class="check">✓</div>
+  <h1>Inscrição confirmada</h1>
+  <p class="lead">O convite com o link do <b>Google Meet</b> foi para o seu e-mail. Se não aparecer em alguns minutos, olhe também em Promoções ou Spam.</p>
+  <div class="when">Quarta, 18/11 · 19h30</div>
+  <a class="btn sec" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=L%C3%ADder%20Inspira%20L%C3%ADder%20%C2%B7%20ep.%2001%20%C2%B7%20Carolina%20Vido&dates=20261118T223000Z/20261118T233000Z&details=O%20link%20do%20Google%20Meet%20est%C3%A1%20no%20convite%20que%20chegou%20no%20seu%20e-mail.&ctz=America/Sao_Paulo">Salvar na minha agenda</a>
+
+  <section>
+    <h2>Qual pergunta você quer que eu faça à Carol?</h2>
+    <p>Escolho algumas para levar à conversa.</p>
+    <form id="fp" novalidate>
+      <textarea id="pergunta" maxlength="1000" placeholder="Escreva a sua pergunta"></textarea>
+      <div class="armadilha" aria-hidden="true"><input name="site" tabindex="-1" autocomplete="off"></div>
+      <button class="btn" id="bp" type="submit">Enviar pergunta</button>
+      <div class="msg" id="mp" role="status"></div>
+    </form>
+  </section>
+
+  <section>
+    <h2>Enquanto quarta não chega</h2>
+    <p>Uma aula minha sobre por que performance sozinha não leva à próxima cadeira.</p>
+    <div class="video"><iframe src="https://www.youtube.com/embed/NybYIuUxDCs" title="Não te falta performance, te falta posicionamento" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+  </section>
+
+  <footer><a href="https://oyurygarcia.com.br/">oyurygarcia.com.br</a></footer>
+</div>
+<script>
+var CONFIG = { API: 'https://script.google.com/macros/s/AKfycbygMW5q_AJW6fCmmVgIty5RW-7MfnqXZonz7OWWKpejVbdx-2ZnuacKJZ2QEBjkcbq3uA/exec' };
+(function(){
+  var f=document.getElementById('fp'),b=document.getElementById('bp'),m=document.getElementById('mp');
+  var email='';try{email=sessionStorage.getItem('lil_email')||'';}catch(e){}
+  f.addEventListener('submit',function(ev){
+    ev.preventDefault();m.className='msg';m.textContent='';
+    var q=document.getElementById('pergunta').value.trim();
+    if(!q){m.className='msg err';m.textContent='Escreva a sua pergunta.';return;}
+    b.disabled=true;b.textContent='Enviando…';
+    fetch(CONFIG.API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},
+      body:JSON.stringify({acao:'pergunta',email:email,pergunta:q,site:f.querySelector('[name=site]').value})})
+      .then(function(r){return r.json();})
+      .then(function(r){if(r&&r.ok){f.innerHTML='<p class="msg ok">Pergunta recebida. Obrigado!</p>';}
+        else{m.className='msg err';m.textContent=(r&&r.mensagem)||'Não deu certo. Tente de novo.';b.disabled=false;b.textContent='Enviar pergunta';}})
+      .catch(function(){m.className='msg err';m.textContent='Sem conexão. Tente de novo.';b.disabled=false;b.textContent='Enviar pergunta';});
+  });
+})();
+</script>
+</body>
+</html>

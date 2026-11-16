@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Líder Inspira Líder · Do atendimento à liderança global</title>
+<meta name="description" content="Quarta, 18/11, 19h30, ao vivo pelo Google Meet: Yury Garcia conversa com Carolina Vido sobre a trajetória do atendimento à liderança global. Inscrição gratuita.">
+<meta property="og:title" content="Líder Inspira Líder · ep. 01 · Carolina Vido">
+<meta property="og:description" content="Do atendimento à liderança global. Quarta, 18/11, 19h30, ao vivo pelo Google Meet. Inscrição gratuita.">
+<meta property="og:image" content="https://oyurygarcia.com.br/lider/capa.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<!--
+  PÁGINA DE INSCRIÇÃO · Líder Inspira Líder
+  Fonte: yury-workspace/areas/produto/lider-inspira-lider/pagina/index.html
+  Publicada em oyurygarcia.com.br/lider/ (com o sim do Yury)
+  CONFIG no fim: API = endereço do app da web do script de inscrições (script-inscricao/)
+-->
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--navy:#0d1f35;--navy-l:#132b45;--blue:#4ab3e8;--hl:#1162cf;--gold:#c9a45c;--text:#e4eaf0;--text-m:#a3b3c4;--text-d:#6c7f93;--card:rgba(19,43,69,.7);--card-b:rgba(74,179,232,.18);--err:#ff8a8a}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--navy);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;font-weight:400;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:600px;margin:0 auto;padding:36px 16px 48px}
+.logo{display:flex;align-items:center;gap:12px;margin-bottom:34px}
+.logo .bar{width:4px;height:44px;background:var(--blue);border-radius:2px}
+.logo .pre{font-size:.68rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--text-d)}
+.logo .name{font-size:1.45rem;font-weight:800;color:#fff;line-height:1.1}
+.logo .name i{font-weight:300;color:var(--blue);margin:0 3px}
+.when{display:inline-block;font-size:1rem;font-weight:800;color:var(--hl);background:#fff;padding:3px 10px 5px;margin-bottom:14px}
+h1{font-size:clamp(2rem,9vw,3rem);font-weight:800;line-height:1.08;letter-spacing:-.02em;color:#fff;margin-bottom:28px}
+h1 span{color:var(--hl);background:#fff;padding:0 8px 3px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.people{display:flex;justify-content:center;gap:28px;margin:6px 0 26px}
+.person{text-align:center}
+.person img{width:118px;height:118px;border-radius:50%;object-fit:cover;border:3px solid #fff;display:block;margin:0 auto 10px}
+.person b{font-weight:700;color:#fff;font-size:1rem}
+.story{color:var(--text-m);margin-bottom:12px}
+.story strong{color:var(--text);font-weight:600}
+.meta{list-style:none;margin:22px 0 30px;padding:16px 18px;border:1px solid var(--card-b);border-radius:14px;background:var(--card)}
+.meta li{padding:4px 0;color:var(--text)}
+.meta li b{color:#fff}
+form,.ok{background:var(--card);border:1px solid var(--card-b);border-radius:18px;padding:24px 20px}
+form h2,.ok h2{font-size:1.3rem;font-weight:800;color:#fff;margin-bottom:16px}
+label{display:block;font-size:.85rem;font-weight:600;color:var(--text);margin:14px 0 6px}
+label small{font-weight:400;color:var(--text-d)}
+input,select,textarea{width:100%;font:inherit;color:var(--navy);background:#fff;border:2px solid transparent;border-radius:10px;padding:12px 14px;outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--blue)}
+textarea{min-height:110px;resize:vertical}
+.hint{font-size:.8rem;color:var(--text-d);margin-top:6px;font-style:italic}
+.check{display:flex;gap:10px;align-items:flex-start;margin-top:18px;font-size:.85rem;color:var(--text-m)}
+.check input{width:20px;height:20px;flex:none;margin-top:2px}
+.check a{color:var(--blue)}
+.armadilha{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+button{width:100%;margin-top:22px;font:inherit;font-weight:800;font-size:1.05rem;color:#fff;background:var(--hl);border:0;border-radius:12px;padding:16px;cursor:pointer}
+button:disabled{opacity:.6;cursor:wait}
+.erro{color:var(--err);font-size:.9rem;margin-top:12px;min-height:1.2em}
+.ok{display:none;text-align:center}
+.ok p{color:var(--text-m);margin-bottom:10px}
+footer{text-align:center;margin-top:34px;font-weight:600;color:#fff}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="logo"><div class="bar"></div><div><div class="pre">Mentoria Liderium apresenta</div><div class="name">Líder<i>inspira</i>Líder</div></div></div>
+
+  <div class="when">Quarta, 18/11 · 19h30</div>
+  <h1>Do atendimento à <span>liderança global</span></h1>
+
+  <div class="people">
+    <div class="person"><img src="yury.jpg" alt="Yury Garcia"><b>Yury Garcia</b></div>
+    <div class="person"><img src="carolina.jpg" alt="Carolina Vido"><b>Carolina Vido</b></div>
+  </div>
+
+  <p class="story">Quase 10 anos na mesma empresa. Carol começou como agente de atendimento e chegou a supervisora. A virada veio quando ela mudou o jeito de entender o ambiente corporativo e passou a enxergar o negócio como os executivos enxergam.</p>
+  <p class="story">Hoje é <strong>gerente sênior em uma multinacional</strong>, à frente de projetos no Brasil, nos EUA e na América Latina. Nesta conversa, ela abre os bastidores dessa trajetória.</p>
+
+  <ul class="meta">
+    <li><b>Quando:</b> quarta-feira, 18/11, às 19h30 (horário de Brasília)</li>
+    <li><b>Onde:</b> ao vivo pelo Google Meet</li>
+    <li><b>Inscrição:</b> gratuita</li>
+  </ul>
+
+  <form id="f" novalidate>
+    <h2>Garanta sua vaga</h2>
+    <label for="nome">Nome</label>
+    <input id="nome" name="nome" autocomplete="name" required>
+    <label for="whatsapp">WhatsApp, com DDD</label>
+    <input id="whatsapp" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" placeholder="(11) 99999-9999" required>
+    <label for="email">E-mail <small>(o convite com o link do Meet chega aqui)</small></label>
+    <input id="email" name="email" type="email" autocomplete="email" required>
+    <label for="cargo">Cargo atual</label>
+    <select id="cargo" name="cargo" required>
+      <option value="">Escolha</option>
+      <option>Analista ou especialista</option>
+      <option>Coordenador(a)</option>
+      <option>Gerente</option>
+      <option>Gerente sênior ou head</option>
+      <option>Diretor(a) ou acima</option>
+      <option>Empresário(a)</option>
+      <option>Outro</option>
+    </select>
+    <label for="momento">Seu momento de carreira <small>(opcional)</small></label>
+    <textarea id="momento" name="momento" placeholder="Gostamos de estar perto de quem nos acompanha. Conte um pouco sobre o seu momento de carreira."></textarea>
+    <div class="hint">P.S.: eu leio pessoalmente todas as inscrições. · Yury</div>
+    <div class="armadilha" aria-hidden="true"><label>Site <input name="site" tabindex="-1" autocomplete="off"></label></div>
+    <label class="check"><input type="checkbox" id="aceite" required><span>Concordo com a <a href="/privacidade/" target="_blank" rel="noopener">política de privacidade</a> e em receber o convite e os lembretes deste encontro.</span></label>
+    <button id="b" type="submit">Quero participar</button>
+    <div class="erro" id="erro" role="alert"></div>
+  </form>
+
+  <div class="ok" id="ok">
+    <h2>Inscrição feita</h2>
+    <p>O convite com o link do Google Meet foi para o seu e-mail. Se não aparecer em alguns minutos, olhe também em Promoções ou Spam.</p>
+    <p>Até quarta, às 19h30.</p>
+  </div>
+
+  <footer>@oyurygarcia</footer>
+</div>
+<script>
+var CONFIG = { API: 'https://script.google.com/macros/s/AKfycbygMW5q_AJW6fCmmVgIty5RW-7MfnqXZonz7OWWKpejVbdx-2ZnuacKJZ2QEBjkcbq3uA/exec' };
+(function(){
+  var f=document.getElementById('f'),b=document.getElementById('b'),erro=document.getElementById('erro');
+  var zap=document.getElementById('whatsapp');
+  zap.addEventListener('input',function(){var d=zap.value.replace(/\D/g,'').slice(0,11);var o=d;
+    if(d.length>2)o='('+d.slice(0,2)+') '+d.slice(2);if(d.length>7)o='('+d.slice(0,2)+') '+d.slice(2,d.length-4)+'-'+d.slice(-4);zap.value=o;});
+  f.addEventListener('submit',function(ev){
+    ev.preventDefault();erro.textContent='';
+    var v=function(id){return document.getElementById(id).value.trim();};
+    if(v('nome').length<2)return falha('Conte seu nome.');
+    var d=v('whatsapp').replace(/\D/g,'');if(d.length<10)return falha('Confira o WhatsApp, com DDD.');
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v('email')))return falha('Confira o e-mail.');
+    if(!v('cargo'))return falha('Escolha o seu cargo.');
+    if(!document.getElementById('aceite').checked)return falha('Para se inscrever, marque a concordância com a política de privacidade.');
+    b.disabled=true;b.textContent='Enviando…';
+    var corpo={nome:v('nome'),whatsapp:d,email:v('email'),cargo:v('cargo'),momento:v('momento'),
+      origem:(location.search||'').slice(1,200),site:f.querySelector('[name=site]').value};
+    fetch(CONFIG.API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(corpo)})
+      .then(function(r){return r.json();})
+      .then(function(r){if(r&&r.ok){try{sessionStorage.setItem('lil_email',corpo.email);}catch(e){}location.href='obrigado/';}
+        else falha((r&&r.mensagem)||'Não deu certo. Tente de novo.');})
+      .catch(function(){falha('Sem conexão com o servidor. Tente de novo em instantes.');});
+  });
+  function falha(m){erro.textContent=m;b.disabled=false;b.textContent='Quero participar';return false;}
+})();
+</script>
+</body>
+</html>
