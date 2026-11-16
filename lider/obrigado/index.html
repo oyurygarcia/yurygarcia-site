@@ -12,7 +12,7 @@
   PÁGINA DE OBRIGADO · Líder Inspira Líder
   Fonte: yury-workspace/areas/produto/lider-inspira-lider/pagina/obrigado/index.html
   Publicada em oyurygarcia.com.br/lider/obrigado/
-  1) confirma  2) pergunta para a convidada (grava na planilha)  2b) grupo de avisos do WhatsApp (botão verde)  3) aula de presente  4) site
+  1) confirma  2) pergunta para a convidada (grava na planilha)  3) grupo de avisos do WhatsApp (botão verde)  4) site
 -->
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -40,8 +40,6 @@ textarea{width:100%;font:inherit;color:var(--navy);background:#fff;border:2px so
 textarea:focus{border-color:var(--blue)}
 .msg{font-size:.9rem;margin-top:10px;min-height:1.2em}
 .msg.ok{color:var(--blue)}.msg.err{color:var(--err)}
-.video{position:relative;padding-top:56.25%;border-radius:12px;overflow:hidden;background:#000}
-.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .armadilha{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 footer{text-align:center;margin-top:34px}
 footer a{color:var(--text-m);text-decoration:none;font-size:.9rem;font-weight:600}
@@ -59,7 +57,6 @@ footer a:hover{color:#fff}
 
   <section>
     <h2>Qual pergunta você quer que eu faça à Carol?</h2>
-    <p>Escolho algumas para levar à conversa.</p>
     <form id="fp" novalidate>
       <textarea id="pergunta" maxlength="1000" placeholder="Escreva a sua pergunta"></textarea>
       <div class="armadilha" aria-hidden="true"><input name="site" tabindex="-1" autocomplete="off"></div>
@@ -72,12 +69,6 @@ footer a:hover{color:#fff}
     <h2>Não perca o horário</h2>
     <p>Mandamos o link da sala no grupo minutos antes de começar, para você não esquecer.</p>
     <a class="btn wa" target="_blank" rel="noopener" href="https://chat.whatsapp.com/H6aKxcSebYSF3OJkLGqH73">Entrar no grupo de avisos no WhatsApp</a>
-  </section>
-
-  <section>
-    <h2>Enquanto quarta não chega</h2>
-    <p>Uma aula minha sobre por que performance sozinha não leva à próxima cadeira.</p>
-    <div class="video"><iframe src="https://www.youtube.com/embed/NybYIuUxDCs" title="Não te falta performance, te falta posicionamento" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
   </section>
 
   <footer><a href="https://oyurygarcia.com.br/">oyurygarcia.com.br</a></footer>
