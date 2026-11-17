@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>Diagnóstico de carreira · Mentoria Liderium</title>
+<meta name="description" content="Veja o que a sua carreira já consolidou e qual é o próximo degrau. Diagnóstico gratuito da Mentoria Liderium.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="quiz.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="faixa-teste" id="faixaTeste" hidden>Modo teste</div>
+
+  <!-- E0 · abertura + captura -->
+  <section class="tela" id="t-e0">
+    <div class="logo"><div class="bar"></div><div><div class="pre">Mentoria Liderium</div><div class="name">Diagnóstico de carreira</div></div></div>
+    <div class="hero-escada" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    <div class="kick" id="aKick">Gratuito · leva uns 5 minutos</div>
+    <h1 tabindex="-1" id="aTitulo">Veja o que a sua carreira <span>já consolidou</span> e qual é o próximo degrau.</h1>
+    <p class="sub" id="aSub">Entrega, visibilidade, influência e próximo nível. Você responde, e no fim vê a sua escada e o que fazer nos próximos 30 dias.</p>
+    <form id="f" novalidate>
+      <label for="nome" id="lNome">Seu primeiro nome</label><input id="nome" type="text" autocomplete="given-name">
+      <label for="email" id="lEmail">E-mail</label><input id="email" type="email" autocomplete="email" inputmode="email">
+      <label for="whatsapp" id="lZap">WhatsApp, com DDD</label><input id="whatsapp" type="tel" inputmode="numeric" autocomplete="tel" placeholder="(11) 99999-9999">
+      <div class="armadilha" aria-hidden="true"><label>Site <input name="site" id="site" type="text" tabindex="-1" autocomplete="off"></label></div>
+      <label class="check"><input type="checkbox" id="aceite"><span><span id="aceiteTxt">Quero receber o meu resultado por e-mail e conversar com a equipe Liderium pelo WhatsApp sobre a minha carreira. Os meus dados ficam só com a equipe Liderium.</span> <a href="/privacidade/" target="_blank" rel="noopener" id="aceiteLink">Política de privacidade</a></span></label>
+      <div class="erro" id="erro" role="alert"></div>
+      <button class="btn" id="bComecar" type="submit">Começar o diagnóstico</button>
+    </form>
+  </section>
+
+  <!-- P0, P0b, perguntas e provas: uma tela só -->
+  <section class="tela" id="t-q">
+    <div class="top"><button class="voltar" id="qVoltar" type="button">← Voltar</button><span class="passo" id="qPasso" aria-live="polite"></span></div>
+    <div class="prog" id="qProg" aria-hidden="true"></div>
+    <div class="prova-rot" id="qProva" hidden>Só mais uma sobre essa</div>
+    <h2 id="qTitulo" tabindex="-1"></h2>
+    <div class="alts" id="qAlts" role="radiogroup"></div>
+    <div class="rodape-q"><button class="btn" id="qContinuar" type="button" hidden>Continuar</button></div>
+  </section>
+
+  <!-- M · escolher 3 de 6 -->
+  <section class="tela" id="t-m">
+    <div class="top"><button class="voltar" id="mVoltar" type="button">← Voltar</button><span class="passo" id="mPasso" aria-live="polite"></span></div>
+    <div class="prog" id="mProg" aria-hidden="true"></div>
+    <h2 id="mTitulo" tabindex="-1"></h2>
+    <div class="contador" id="mContador"><div class="pts" aria-hidden="true"><i></i><i></i><i></i></div><small id="mCont" role="status">0 de 3 escolhidas</small></div>
+    <div class="chips" id="mChips"></div>
+    <div class="rodape-q"><button class="btn" id="mContinuar" type="button" disabled>Continuar</button></div>
+  </section>
+
+  <!-- Transição antes da mentalidade -->
+  <section class="tela" id="t-trans">
+    <div class="top"><button class="voltar" id="transVoltar" type="button">← Voltar</button><span></span></div>
+    <div class="card-msg"><h2 id="transTitulo" tabindex="-1"></h2><p id="transTexto"></p><button class="btn" id="transBotao" type="button"></button></div>
+  </section>
+
+  <!-- Calculando o resultado -->
+  <section class="tela" id="t-calc">
+    <div class="logo"><div class="bar"></div><div><div class="pre">Mentoria Liderium</div><div class="name">Diagnóstico de carreira</div></div></div>
+    <div class="card-msg"><h2 id="calcTitulo" tabindex="-1"></h2><ul class="calc-lista" id="calcLinhas"></ul></div>
+  </section>
+
+  <!-- Empresário(a) -->
+  <section class="tela" id="t-emp">
+    <div class="top"><button class="voltar" id="eVoltar" type="button">← Voltar</button><span></span></div>
+    <div class="logo"><div class="bar"></div><div><div class="pre">Mentoria Liderium</div><div class="name">Diagnóstico de carreira</div></div></div>
+    <div class="res-top"><h1 id="eTitulo" tabindex="-1"></h1></div>
+    <div class="card-msg"><p id="eCorpo" style="margin-top:0"></p></div>
+    <a class="btn" id="eCta" href="#" target="_blank" rel="noopener"></a>
+    <div class="linha-email" id="eEmail" aria-live="polite"></div>
+    <div class="assina">@oyurygarcia</div>
+  </section>
+
+  <!-- Resultado -->
+  <section class="tela" id="t-r">
+    <div class="logo"><div class="bar"></div><div><div class="pre">Mentoria Liderium</div><div class="name">Diagnóstico de carreira</div></div></div>
+    <div id="rCorpo"></div>
+  </section>
+
+  <!-- Retomar -->
+  <section class="tela" id="t-retomar">
+    <div class="logo"><div class="bar"></div><div><div class="pre">Mentoria Liderium</div><div class="name">Diagnóstico de carreira</div></div></div>
+    <div class="card-msg"><h2 id="retTitulo" tabindex="-1">Você parou no meio</h2><p id="retTexto"></p>
+      <button class="btn" id="retContinuar" type="button">Continuar</button><button class="btn sec" id="retRecomecar" type="button">Recomeçar</button></div>
+  </section>
+
+  <!-- Já fez -->
+  <section class="tela" id="t-ja">
+    <div class="logo"><div class="bar"></div><div><div class="pre">Mentoria Liderium</div><div class="name">Diagnóstico de carreira</div></div></div>
+    <div class="card-msg"><h2 id="jaTitulo" tabindex="-1">Você já concluiu o diagnóstico</h2><p id="jaTexto"></p>
+      <button class="btn" id="jaVer" type="button">Ver meu resultado</button><button class="btn sec" id="jaRefazer" type="button">Refazer</button></div>
+  </section>
+</div>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTxt"><div class="caixa"><p id="modalTxt"></p>
+  <button class="btn" id="modalOk" type="button">Continuar</button><button class="btn sec" id="modalNao" type="button">Cancelar</button></div></div>
+
+<script>
+/* Único lugar do endereço do app da web do script (script-quiz). Enquanto estiver https://script.google.com/macros/s/AKfycbyxv6qr1tKllvj2yuJXvIZgLd7FVinayJV9QFQwZJ4aXUbnmMccswB2GqAJcpVvIdrrqA/exec, o quiz funciona, mas nada é gravado nem enviado. */
+var CONFIG = { API: 'https://script.google.com/macros/s/AKfycbyxv6qr1tKllvj2yuJXvIZgLd7FVinayJV9QFQwZJ4aXUbnmMccswB2GqAJcpVvIdrrqA/exec' };
+</script>
+<script src="quiz-estrutura.js?v=2"></script>
+<script src="quiz-perguntas.js?v=2"></script>
+<script src="regua.js?v=2"></script>
+<script>
+/* Carrega os textos dos resultados e depois o quiz. Se algum arquivo falhar, pede para atualizar a página (nunca usa texto de teste). */
+(function(){
+  var MSG='<p style="padding:20px;color:#fff">Não foi possível carregar o diagnóstico. Atualize a página.</p>';
+  function falha(){document.body.insertAdjacentHTML('afterbegin',MSG);}
+  function carregar(src, ok){var s=document.createElement('script');s.src=src;s.onload=ok;s.onerror=falha;document.head.appendChild(s);}
+  carregar('quiz-resultados.js?v=2',function(){carregar('quiz.js?v=2',function(){});});
+})();
+</script>
+</body>
+</html>
