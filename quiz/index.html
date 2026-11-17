@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="quiz.css">
+<link rel="stylesheet" href="quiz.css?v=3">
 </head>
 <body>
 <div class="wrap">
@@ -62,7 +62,21 @@
   <!-- Calculando o resultado -->
   <section class="tela" id="t-calc">
     <div class="logo"><div class="bar"></div><div><div class="pre">Mentoria Liderium</div><div class="name">Diagnóstico de carreira</div></div></div>
-    <div class="card-msg"><h2 id="calcTitulo" tabindex="-1"></h2><ul class="calc-lista" id="calcLinhas"></ul></div>
+    <div class="calc">
+      <div class="varre" aria-hidden="true"></div>
+      <div class="radar" aria-hidden="true"><svg viewBox="0 0 132 132" fill="none">
+        <defs><linearGradient id="gVarre" x1="66" y1="66" x2="126" y2="66" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#5fe0ff" stop-opacity="0"/><stop offset="1" stop-color="#5fe0ff" stop-opacity=".55"/></linearGradient></defs>
+        <circle cx="66" cy="66" r="60" stroke="rgba(95,224,255,.35)"/><circle cx="66" cy="66" r="42" stroke="rgba(95,224,255,.22)"/><circle cx="66" cy="66" r="24" stroke="rgba(95,224,255,.18)"/>
+        <path d="M66 6v120M6 66h120" stroke="rgba(95,224,255,.14)"/>
+        <g class="gira"><path d="M66 66L126 66A60 60 0 0 0 108.4 23.6Z" fill="url(#gVarre)"/><path d="M66 66H126" stroke="#5fe0ff" stroke-width="1.5"/></g>
+        <circle class="no" cx="66" cy="24" r="4.5"/><circle class="no" cx="108" cy="66" r="4.5"/><circle class="no" cx="66" cy="108" r="4.5"/><circle class="no" cx="24" cy="66" r="4.5"/>
+        <circle cx="66" cy="66" r="3" fill="#fff"/>
+      </svg></div>
+      <h2 id="calcTitulo" tabindex="-1"></h2>
+      <div class="calc-msg" id="calcMsg" aria-live="polite"></div>
+      <ul class="calc-pil" id="calcPil" aria-hidden="true"></ul>
+      <div class="calc-barra" aria-hidden="true"><i id="calcBarra"></i></div>
+    </div>
   </section>
 
   <!-- Empresário(a) -->
@@ -113,7 +127,7 @@ var CONFIG = { API: 'https://script.google.com/macros/s/AKfycbyxv6qr1tKllvj2yuJX
   var MSG='<p style="padding:20px;color:#fff">Não foi possível carregar o diagnóstico. Atualize a página.</p>';
   function falha(){document.body.insertAdjacentHTML('afterbegin',MSG);}
   function carregar(src, ok){var s=document.createElement('script');s.src=src;s.onload=ok;s.onerror=falha;document.head.appendChild(s);}
-  carregar('quiz-resultados.js?v=2',function(){carregar('quiz.js?v=2',function(){});});
+  carregar('quiz-resultados.js?v=2',function(){carregar('quiz.js?v=3',function(){});});
 })();
 </script>
 </body>

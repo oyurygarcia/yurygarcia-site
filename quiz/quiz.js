@@ -82,15 +82,14 @@
     if (!pos) { div.className = 'prog vazio'; return; }
     div.className = 'prog';
     for (var i = 1; i <= pos.total; i++) {
-      var s = h('span', pos.prova ? (i <= pos.n ? 'f' : '') : (i < pos.n ? 'f' : i === pos.n ? 'c' : ''));
-      s.style.height = (30 + i * (70 / pos.total)) + '%'; div.appendChild(s);
+      div.appendChild(h('span', pos.prova ? (i < pos.n ? 'f' : i === pos.n ? 'c' : '') : (i < pos.n ? 'f' : i === pos.n ? 'c' : '')));
     }
   }
 
   /* ---------- telas ---------- */
   function mostrar(id) {
     ['t-e0', 't-q', 't-m', 't-trans', 't-calc', 't-emp', 't-r', 't-retomar', 't-ja'].forEach(function (t) { $(t).classList.toggle('on', t === id); });
-    tela = id; window.scrollTo(0, 0);
+    tela = id; document.body.setAttribute('data-tela', id); window.scrollTo(0, 0);
     var f = document.querySelector('#' + id + ' h1, #' + id + ' h2'); if (f) try { f.focus({ preventScroll: true }); } catch (e) {}
   }
   function empurrar() { try { history.pushState({ quiz: 1 }, ''); } catch (e) {} }
@@ -246,11 +245,51 @@
     enviarFim(0);
     var cl = TL.calculando;
     if (!cl) return desenharResultado(res, true);
-    $('calcTitulo').textContent = cl.titulo; var ul = $('calcLinhas'); limpa(ul);
-    (cl.linhas || []).forEach(function (t, i) { var li = h('li', null, t); ul.appendChild(li); setTimeout(function () { li.classList.add('on'); }, 150 + i * 450); });
+    telaCalculando(cl, res);
+  }
+
+  /* ---------- ícones (SVG à mão) ---------- */
+  var ICONES = {
+    entrega: '<circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.6 2.6L16 9.6"/>',
+    visibilidade: '<path d="M2.5 12s3.5-6.5 9.5-6.5S21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/>',
+    influencia: '<circle cx="12" cy="5.5" r="2.5"/><circle cx="5" cy="18" r="2.5"/><circle cx="19" cy="18" r="2.5"/><path d="M10.8 7.7L6.3 15.8M13.2 7.7l4.5 8.1M7.5 18h9"/>',
+    proximo_nivel: '<path d="M3 20h5v-5h5v-5h5"/><path d="M15 4h5v5M20 4l-6 6"/>',
+    conversa: '<path d="M20 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20l1.2-4.2A8.5 8.5 0 1 1 20 11.5z"/><path d="M8.5 11.5h7"/>'
+  };
+  function icone(id, cls) {
+    var e = h('span', cls); e.setAttribute('aria-hidden', 'true');
+    e.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' + (ICONES[id] || '') + '</svg>';
+    return e;
+  }
+  function nomePilar(id) { return (R.pilaresNomes && R.pilaresNomes[id]) || (X.rotulosPilar && X.rotulosPilar[id]) || id; }
+  /** medidor de 3 segmentos: consolidado acende 3, em construção 2, próximo passo 1 (sem número na tela) */
+  var NIVEL_SEG = { consolidado: 3, construcao: 2, proximo_passo: 1 };
+  function medidor(estado, forte) {
+    var d = h('span', 'med' + (forte ? ' forte' : '')); d.setAttribute('aria-hidden', 'true');
+    for (var i = 0; i < 3; i++) d.appendChild(h('i', i < (NIVEL_SEG[estado] || 0) ? 'on' : ''));
+    return d;
+  }
+
+  /* ---------- calculando: análise dos 4 pilares ---------- */
+  function telaCalculando(cl, res) {
+    $('calcTitulo').textContent = cl.titulo;
+    var msg = $('calcMsg'), ul = $('calcPil'), barra = $('calcBarra'), nos = document.querySelectorAll('#t-calc .radar .no');
+    limpa(ul); msg.textContent = ''; barra.style.width = '0';
+    nos.forEach(function (n) { n.classList.remove('on'); });
+    var ids = (res.pilares || []).map(function (p) { return p.id; });
+    if (!ids.length) ids = ['entrega', 'visibilidade', 'influencia', 'proximo_nivel'];
+    var lis = ids.map(function (id) {
+      var li = h('li'); li.appendChild(icone(id, 'ic')); li.appendChild(h('span', null, nomePilar(id))); li.appendChild(h('span', 'ok'));
+      var tr = h('span', 'trilho'); tr.appendChild(h('i')); li.appendChild(tr); ul.appendChild(li); return li;
+    });
+    var linhas = cl.linhas || [], PASSO = 650, INI = 250, total = INI + ids.length * PASSO + 350;
+    linhas.forEach(function (t, j) { setTimeout(function () { if (tela === 't-calc') msg.textContent = t; }, INI + j * ((ids.length * PASSO) / Math.max(1, linhas.length))); });
+    lis.forEach(function (li, i) {
+      setTimeout(function () { li.classList.add('lendo'); if (nos[i]) nos[i].classList.add('on'); }, INI + i * PASSO);
+      setTimeout(function () { li.classList.remove('lendo'); li.classList.add('feito'); barra.style.width = ((i + 1) / lis.length * 100) + '%'; }, INI + (i + 1) * PASSO - 60);
+    });
     mostrar('t-calc');
-    var n = (cl.linhas || []).length;
-    setTimeout(function () { if (tela === 't-calc') desenharResultado(res, true); }, 600 + n * 450);
+    setTimeout(function () { if (tela === 't-calc') desenharResultado(res, true); }, total);
   }
 
   function titulo(el, txt) {
@@ -263,32 +302,45 @@
     var c = $('rCorpo'); limpa(c);
     var rv = [];
     function r(el) { el.classList.add('rv'); rv.push(el); return el; }
-    function bloco(rotulo) { var b = r(h('div', 'bloco-r')); if (rotulo) b.appendChild(h('div', 'rotulo', rotulo)); c.appendChild(b); return b; }
+    var col = null;
+    function bloco(rotulo) { var b = r(h('div', 'bloco-r')); if (rotulo) b.appendChild(h('div', 'rotulo', rotulo)); (col || c).appendChild(b); return b; }
     var topo = h('div', 'res-top');
     topo.appendChild(r(h('div', 'kick', (S.primeiroNome ? S.primeiroNome + ', esta' : 'Esta') + ' é a sua escada')));
     var h1 = r(h('h1')); h1.tabIndex = -1; titulo(h1, m.titulo); topo.appendChild(h1); c.appendChild(topo);
 
-    var esc = h('div', 'escada'), mt = h('div', 'marca-teto'); mt.appendChild(h('span', null, 'Você está aqui')); esc.appendChild(mt);
-    var dgs = h('div', 'degraus'), tetoBloco = null, pulso = null;
+    // painel-síntese: a escada com o nível de cada pilar
+    var pn = r(h('div', 'painel')); pn.appendChild(h('div', 'varre'));
+    var cab = h('div', 'painel-cab'); cab.appendChild(h('b', null, 'Seus 4 pilares')); cab.appendChild(h('span', 'vivo', 'Leitura concluída')); pn.appendChild(cab);
+    var esc = h('div', 'escada'), tag = h('div', 'tag-teto'); tag.setAttribute('aria-hidden', 'true');
+    tag.appendChild(h('span', null, 'Seu próximo degrau')); tag.appendChild(h('i')); tag.appendChild(h('b', 'pulso')); esc.appendChild(tag);
+    var dgs = h('div', 'degraus'), segs = [], dgTeto = null;
     m.pilares.forEach(function (p) {
-      var d = h('div', 'dg'), b = h('div', 'bloco');
-      var cls = p.estado === 'consolidado' ? 'aceso' : p.id === m.teto ? 'teto' : 'apagado';
-      d.dataset.s = cls === 'apagado' ? '' : cls;
-      if (cls === 'teto') { if (p.estado === 'proximo_passo') d.classList.add('nivel-pp'); tetoBloco = b; pulso = h('i', 'pulso'); b.appendChild(pulso); }
-      if (cls === 'apagado') d.classList.add('apagado');
-      d.appendChild(b); d.appendChild(h('div', 'nome', p.rotulo)); d.appendChild(h('div', 'nivel', p.estadoRotulo)); dgs.appendChild(d);
+      var d = h('div', 'dg' + (p.estado === 'consolidado' ? ' cheio' : '') + (p.id === m.teto ? ' teto' : '')), pi = h('div', 'pilha');
+      for (var k = 0; k < 3; k++) { var sg = h('i', 'seg'); pi.appendChild(sg); if (k < (NIVEL_SEG[p.estado] || 0)) segs.push(sg); }
+      if (p.id === m.teto) dgTeto = d;
+      var rt = h('div', 'rot'); rt.appendChild(h('div', 'nome', p.rotulo)); rt.appendChild(h('div', 'nivel', p.estadoRotulo));
+      d.appendChild(pi); d.appendChild(rt); d.setAttribute('aria-label', p.rotulo + ': ' + p.estadoRotulo + (p.id === m.teto ? ' · seu próximo degrau' : ''));
+      dgs.appendChild(d);
     });
-    esc.appendChild(dgs); c.appendChild(esc);
+    esc.appendChild(dgs); pn.appendChild(esc);
+    var lg = h('div', 'legenda'); lg.setAttribute('aria-hidden', 'true');
+    ['proximo_passo', 'construcao', 'consolidado'].forEach(function (e) { var it = h('span'); it.appendChild(medidor(e)); it.appendChild(document.createTextNode((R.niveis && R.niveis[e]) || e)); lg.appendChild(it); });
+    pn.appendChild(lg); c.appendChild(pn);
 
-    // onde você está nos 4 pilares (texto por pilar x nível)
-    if (m.pilares.some(function (p) { return p.texto; })) {
-      var bp = bloco(m.rotulos.pilares), ul = h('ul', 'pilares-lista');
-      m.pilares.forEach(function (p) {
-        var li = h('li', p.estado === 'consolidado' ? 'aceso' : p.id === m.teto ? 'teto' : ''), t = h('b', null, p.rotulo); t.appendChild(h('em', null, p.estadoRotulo));
-        li.appendChild(t); if (p.texto) li.appendChild(h('p', null, p.texto)); ul.appendChild(li);
-      });
-      bp.appendChild(ul);
-    }
+    // um resultado por pilar: os 4 cartões
+    var bp = r(h('div', 'bloco-r pilares-b')); bp.appendChild(h('div', 'rotulo', m.rotulos.pilares)); c.appendChild(bp);
+    var grid = h('div', 'pilares-grid'), cards = [];
+    m.pilares.forEach(function (p) {
+      var teto = p.id === m.teto, pc = h('div', 'pc ' + p.estado + (teto ? ' teto' : ''));
+      if (teto) pc.appendChild(h('span', 'selo', 'Seu próximo degrau'));
+      pc.appendChild(icone(p.id, 'pc-ic')); pc.appendChild(h('h4', null, p.rotulo));
+      var nv = h('div', 'pc-niv'); nv.appendChild(medidor(p.estado, teto)); nv.appendChild(h('em', null, p.estadoRotulo)); pc.appendChild(nv);
+      if (p.texto) pc.appendChild(h('p', null, p.texto));
+      grid.appendChild(pc); cards.push(pc);
+    });
+    bp.appendChild(grid);
+    col = h('div', 'res-col'); c.appendChild(col);
+
     // onde a escada pede atenção
     var bt = bloco(m.teto ? m.rotulos.teto : ''); bt.appendChild(h('p', 'leitura', m.resumo));
     if (m.lacuna) bt.appendChild(h('p', 'leitura', m.lacuna));
@@ -335,32 +387,44 @@
     if (m.produto.convite) of.appendChild(h('p', 'convite', m.produto.convite));
     var a = h('a', 'btn claro', m.produto.rotulo); a.href = m.whatsapp; a.target = '_blank'; a.rel = 'noopener'; a.id = 'rCta';
     a.addEventListener('click', function () { ctaClique(m.produto.codigo, m.saida); });
-    of.appendChild(a); c.appendChild(of);
-    var le = h('div', 'linha-email'); le.id = 'rEmail'; le.setAttribute('aria-live', 'polite'); c.appendChild(le);
-    var rf = h('button', 'link-sec', m.rotulos.refazer); rf.type = 'button'; rf.addEventListener('click', refazer); c.appendChild(rf);
-    c.appendChild(h('div', 'assina', '@oyurygarcia'));
+    a.insertBefore(icone('conversa'), a.firstChild);
+    of.appendChild(a); col.appendChild(of);
+    var le = h('div', 'linha-email'); le.id = 'rEmail'; le.setAttribute('aria-live', 'polite'); col.appendChild(le);
+    var rf = h('button', 'link-sec', m.rotulos.refazer); rf.type = 'button'; rf.addEventListener('click', refazer); col.appendChild(rf);
+    col.appendChild(h('div', 'assina', '@oyurygarcia'));
     estadoEmail(S.emailEstado || (primeiraVez ? 'enviando' : ''));
     mostrar('t-r');
-    animar(rv, c, esc, mt, tetoBloco, pulso, !primeiraVez);
+    animar({ rv: rv, painel: pn, esc: esc, tag: tag, dgTeto: dgTeto, segs: segs, cards: cards }, !primeiraVez);
   }
 
-  function animar(rv, c, esc, mt, tetoBloco, pulso, rapido) {
-    var dg = c.querySelectorAll('.dg');
-    var ligarTeto = function () {
-      if (!tetoBloco) return;
-      mt.style.top = (tetoBloco.getBoundingClientRect().top - esc.getBoundingClientRect().top) + 'px';
-      var dgTeto = c.querySelector('.dg[data-s=teto]'); var left = dgTeto.offsetLeft - c.querySelector('.degraus').offsetLeft;
-      mt.classList.add('on'); var lim = esc.clientWidth - mt.firstChild.offsetWidth; mt.firstChild.style.left = Math.max(0, Math.min(left, lim)) + 'px'; pulso.classList.add('on');
+  var ajustarTag = null;
+  window.addEventListener('resize', function () { if (ajustarTag) ajustarTag(); });
+  function animar(o, rapido) {
+    var rv = o.rv;
+    ajustarTag = function () {
+      if (!o.dgTeto || tela !== 't-r') return;
+      var pi = o.dgTeto.querySelector('.pilha'), eb = o.esc.getBoundingClientRect(), pb = pi.getBoundingClientRect();
+      var w = o.tag.offsetWidth, hh = o.tag.offsetHeight, centro = pb.left - eb.left + pb.width / 2;
+      o.tag.style.left = Math.max(0, Math.min(centro - w / 2, eb.width - w)) + 'px';
+      o.tag.style.top = Math.max(0, pb.top - eb.top - hh - 2) + 'px';
+      var pul = o.tag.querySelector('.pulso'); pul.style.marginLeft = '0';
+      var tl = parseFloat(o.tag.style.left), off = centro - (tl + w / 2); pul.style.transform = 'translateX(' + off + 'px)'; o.tag.querySelector('i').style.transform = 'translateX(' + off + 'px)';
     };
+    var ligarTeto = function () { if (!o.dgTeto) return; ajustarTag(); o.tag.classList.add('on'); o.dgTeto.classList.add('aceso'); };
     if (rapido || (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)) {
-      rv.forEach(function (e) { e.classList.add('on'); }); dg.forEach(function (d) { var s = d.dataset.s; if (s) d.classList.add(s); });
+      rv.forEach(function (e) { e.classList.add('on'); }); o.segs.forEach(function (s) { s.classList.add('on'); }); o.cards.forEach(function (e) { e.classList.add('on'); });
       setTimeout(ligarTeto, 50); return;
     }
-    dg.forEach(function (d) { d.classList.remove('aceso', 'teto'); });
     setTimeout(function () { rv[0].classList.add('on'); rv[1].classList.add('on'); }, 150);
-    dg.forEach(function (d, i) { var s = d.dataset.s; if (s) setTimeout(function () { d.classList.add(s); }, 700 + i * 700); });
-    setTimeout(ligarTeto, 2200);
-    for (var i = 2; i < rv.length; i++) (function (e, k) { setTimeout(function () { e.classList.add('on'); }, 2600 + k * 250); })(rv[i], i - 2);
+    setTimeout(function () { rv[2].classList.add('on'); o.painel.classList.add('varrendo'); }, 450);
+    // acende segmento a segmento, pilar a pilar (de baixo para cima)
+    var t = 800, porPilar = {};
+    o.segs.forEach(function (s) { var d = s.parentNode.parentNode; var i = Array.prototype.indexOf.call(d.parentNode.children, d); porPilar[i] = (porPilar[i] || 0) + 1;
+      setTimeout(function () { s.classList.add('on'); }, t + i * 380 + (porPilar[i] - 1) * 140); });
+    setTimeout(ligarTeto, 2400);
+    setTimeout(function () { rv[3].classList.add('on'); }, 2500);
+    o.cards.forEach(function (e, i) { setTimeout(function () { e.classList.add('on'); }, 2600 + i * 140); });
+    for (var i = 4; i < rv.length; i++) (function (e, k) { setTimeout(function () { e.classList.add('on'); }, 3200 + k * 160); })(rv[i], i - 4);
   }
 
   function estadoEmail(est) {
