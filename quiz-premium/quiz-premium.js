@@ -2,6 +2,8 @@
  * Sem regra de pontos: teto e saída = regua.js (a mesma do /quiz/ no ar); percentual, gap, entrada e conferência da IA = regua-premium.js.
  * Fluxo: cadastro (+ código opcional) → cargo → (P0b) → autoavaliação → perguntas (T3.4b na T3/T4) → objetivo + campo aberto → relatório.
  * O nome é posto só por esta página; nunca vai para a IA. */
+// Consentimento por aviso ao clicar em Começar (sem caixa de marcar; Yury, 18/11/2026). Só no premium; o /quiz/ segue com a caixa.
+var CONSENT_AVISO = 'v2-aviso';
 (function () {
   var X = window.QUIZ_ESTRUTURA, P = window.QUIZ_PERGUNTAS, Rg = window.QUIZ_REGUA, R = window.QUIZ_RESULTADOS || {};
   var RP = window.QUIZ_REGUA_PREMIUM, CT = window.QUIZ_CONTEUDO || {}, TV = CT.telas || {};
@@ -674,7 +676,7 @@
   function refazer() { confirmar('Refazer o diagnóstico começa de novo. Continuar?', function () { reiniciar(); }); }
   function reiniciar() {
     apagar(); S = novo(); ver = null; clearTimeout(esperaTimer); clearInterval(frasesTimer);
-    $('aceite').checked = false; $('erro').textContent = ''; $('codigo').value = ''; $('codMsg').textContent = '';
+    $('erro').textContent = ''; $('codigo').value = ''; $('codMsg').textContent = '';
     mostrar('t-e0');
   }
 
@@ -753,12 +755,11 @@
       if (nome.length < 2) return erro.textContent = 'Conte seu nome.';
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return erro.textContent = 'Confira o e-mail.';
       if (d.length < 10 || d.length > 11) return erro.textContent = 'Confira o WhatsApp, com DDD.';
-      if (!$('aceite').checked) return erro.textContent = 'Para começar, marque a autorização para receber o resultado e o contato da equipe.';
       var codigo = normCodigo($('codigo').value);
       var seguir = function (estado) {
         validando = false; $('bComecar').disabled = false;
         S.codigo = codigo; S.codigoEstado = estado;
-        S.captura = { nome: nome, email: email, whatsapp: d, consentimento: { versao: X.consentimentoVersao, em: new Date().toISOString() } };
+        S.captura = { nome: nome, email: email, whatsapp: d, consentimento: { versao: CONSENT_AVISO, em: new Date().toISOString() } };
         S.site = $('site').value; S.msComecar = agora() - T0; S.fase = 'perguntas'; S.primeiroNome = Rg.primeiroNome(nome);
         salvar(); iniciar();
         irPara({ tipo: 'cargo', id: 'P0' }, true);
@@ -777,7 +778,7 @@
     });
   }
   function preencherCaptura() {
-    if (S.captura) { $('nome').value = S.captura.nome; $('email').value = S.captura.email; $('whatsapp').value = S.captura.whatsapp; $('aceite').checked = true; $('whatsapp').dispatchEvent(new Event('input')); $('codigo').value = S.codigo || ''; }
+    if (S.captura) { $('nome').value = S.captura.nome; $('email').value = S.captura.email; $('whatsapp').value = S.captura.whatsapp; $('whatsapp').dispatchEvent(new Event('input')); $('codigo').value = S.codigo || ''; }
   }
 
   /* ---------- retomar / já fez ---------- */
@@ -816,13 +817,12 @@
   });
   if (TESTE) $('faixaTeste').hidden = false;
   (function textosAbertura() {
-    var a = TL.abertura || {}, c = a.campos || {}, k = TL.consentimento || {};
+    var a = TL.abertura || {}, c = a.campos || {};
     if (a.titulo) $('aTitulo').textContent = a.titulo;
     if (a.subtitulo) $('aSub').textContent = a.subtitulo;
     if (a.tempo) $('aKick').textContent = 'Gratuito · ' + a.tempo.replace(/\.$/, '').replace(/^Leva/, 'leva');
     if (c.nome) $('lNome').textContent = c.nome; if (c.email) $('lEmail').textContent = c.email; if (c.whatsapp) $('lZap').textContent = c.whatsapp;
     if (a.botao) $('bComecar').textContent = a.botao;
-    if (k.texto) $('aceiteTxt').textContent = k.texto; if (k.link) $('aceiteLink').textContent = k.link;
   })();
   iniciarCaptura();
   iniciarTela();
