@@ -116,7 +116,7 @@
       { id: 1, texto: "Eu falaria dos projetos-chave em que estou atuando; se são projetos-chave, é porque são importantes para a empresa." },
       { id: 2, texto: "Eu faria a conexão entre o meu escopo e o que estou tocando de estratégico com os objetivos da área e da empresa." },
       { id: 3, texto: "Eu falaria um pouco do meu KPI mais importante e de como estamos focados em entregar o nosso melhor." }] },
-    'T3.4': { texto: "Quando você leva um resultado ou um problema para a diretoria, como costuma apresentar?", alternativas: [
+    'T3.4': { texto: "Quando você leva um resultado ou um problema para lideranças mais seniores, como costuma apresentar?", alternativas: [
       { id: 1, texto: "Levo todo o racional por trás, explico as premissas e esmiúço os detalhes, para não deixar ponta solta." },
       { id: 2, texto: "Apresento os fatos e foco principalmente nas variações, no contexto e no plano de ação." },
       { id: 3, texto: "Primeiro entendo quem é a audiência e o quanto ela sabe sobre o tema, e escolho a abordagem pelo que é relevante para ela." }] },

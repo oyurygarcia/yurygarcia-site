@@ -31,7 +31,7 @@
   var OBJETIVOS = [
     { id: 'promocao', texto: 'Ser promovido(a)' },
     { id: 'reconhecimento', texto: 'Ser reconhecido(a) pelo que já entrego' },
-    { id: 'escopo_maior', texto: 'Liderar algo maior' },
+    { id: 'consolidar', texto: 'Me consolidar na cadeira atual' },
     { id: 'mudar_empresa', texto: 'Mudar de empresa' },
     { id: 'descobrindo', texto: 'Ainda estou descobrindo' }
   ];

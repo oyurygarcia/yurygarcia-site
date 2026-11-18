@@ -1666,8 +1666,8 @@
      "texto": "Ser reconhecido(a) pelo que já entrego"
     },
     {
-     "id": "escopo_maior",
-     "texto": "Liderar algo maior"
+     "id": "consolidar",
+     "texto": "Me consolidar na cadeira atual"
     },
     {
      "id": "mudar_empresa",
@@ -1680,7 +1680,7 @@
    ]
   },
   "campo_aberto": {
-   "pergunta": "Se quiser, conte em poucas linhas o seu momento e o maior desafio que você vive hoje no trabalho.",
+   "pergunta": "Conte em poucas linhas o seu momento e o maior desafio que você vive hoje no trabalho.",
    "aviso": "Não precisa citar nomes de pessoas ou empresas.",
    "opcional": "Opcional",
    "limite": 600,
