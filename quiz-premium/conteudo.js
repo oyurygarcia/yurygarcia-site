@@ -1891,8 +1891,7 @@
       ],
       "o_que_trabalha": "Sair com clareza sobre qual movimento faz sentido agora para o que você quer construir."
      }
-    ],
-    "_status": "sem uso desde 18/11/2026: T2S2–T2S5 recebem o convite do LAP (Yury)"
+    ]
    },
    "mentoria_liderium": {
     "nome": "Mentoria Liderium",
