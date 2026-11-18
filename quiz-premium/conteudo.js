@@ -1906,14 +1906,10 @@
     "abertura": "Você já tem ações específicas que pode implementar no seu dia a dia a partir do diagnóstico. Agora, caso queira ter apoio e direcionamento específico para o seu caso, quero te fazer um convite.",
     "match_frase": "Com base nas suas respostas, acredito que você pode ter um match alto com a Mentoria Liderium, por três motivos.",
     "match_frase_sem_ia": "Com base nas suas respostas, acredito que você pode ter um match alto com a Mentoria Liderium.",
-    "acesso": "Na mentoria, você começa com uma sessão individual comigo para entender o seu cenário em detalhe. Depois, vêm encontros quinzenais em grupo reduzido e o meu WhatsApp para a situação da semana. São seis meses para aplicar, ajustar e repetir.",
-    "fecho": "Se fizer sentido para o seu momento, o botão abaixo abre uma conversa com a minha equipe. A gente olha o seu resultado junto e vê se a mentoria é o caminho certo para você.",
-    "botao_texto": "Conversar com a equipe",
-    "botao_destino": {
-     "tipo": "whatsapp_crm",
-     "numero": "5511999106121",
-     "mensagem": "Olá! Fiz o diagnóstico de carreira ({codigo}) e quero saber mais sobre a Mentoria Liderium."
-    },
+    "acesso": "Na mentoria, a gente trabalha esses pontos a partir das suas situações reais, começando por uma sessão individual comigo para um diagnóstico mais profundo e um plano de ação específico.",
+    "fecho": "Se fizer sentido para você, clique no link abaixo e agende um horário com a minha equipe.",
+    "botao_texto": "Agendar um horário",
+    "botao_destino": "https://oyurygarcia.com.br/conversa/",
     "ganchos_metodo": [
      {
       "id": "ml_visao_negocio",
