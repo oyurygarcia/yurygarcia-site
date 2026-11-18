@@ -451,8 +451,11 @@
     return o;
   }
   /** Junta régua + conteúdo fixo + (opcional) a saída da IA já conferida. ia=null -> só o texto fixo (D2/D3), completo. opts.primeiroNome personaliza. */
+  // O resumo abre com o primeiro nome (Yury, 19/11). Se a IA esquecer a marca, ela entra aqui; porNome() troca depois.
+  function comNome(p) { p = String(p || ''); if (/^\{primeiro_nome\}/.test(p) || !/^[A-ZÀ-Ú]/.test(p)) return p; return '{primeiro_nome}, ' + p.charAt(0).toLowerCase() + p.slice(1); }
   function montarRelatorio(calc, ia, opts) {
     opts = opts || {};
+    if (ia && Array.isArray(ia.resumo) && ia.resumo.length) { var cp = {}; for (var kk in ia) cp[kk] = ia[kk]; cp.resumo = [comNome(ia.resumo[0])].concat(ia.resumo.slice(1)); ia = cp; }
     if (ia) ia = porNome(ia, String(opts.primeiroNome || '').trim().split(/\s+/)[0] || '');
     var tl = C().telas || {}, com = !!ia, nomes = (C().telas || {}).pilares_nomes || {};
     var porPilar = {};

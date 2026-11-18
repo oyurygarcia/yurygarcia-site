@@ -313,7 +313,8 @@ var CONSENT_AVISO = 'v2-aviso';
     if (!ok) { if (S.iaEstado === 'esperando') falhouIa(); return; } // resposta atrasada sem relatório: a nova tentativa já está em curso
     clearTimeout(esperaTimer);
     S.ia = rel; S.iaEstado = 'ok'; salvar();
-    preencher(S.ia);
+    clearInterval(frasesTimer);
+    desenharRelatorio(calcAtual, false, false); // redesenha com a IA: forças e pilares seguem a escolha dela, não a do texto fixo
     confirmarEntrega(0); // o código só é gasto agora, com o relatório da IA na tela
   }
   // v7 (Yury, 19/11): quem tem código nunca vê o texto fixo. A página tenta de novo (3 vezes); depois, avisa que o
