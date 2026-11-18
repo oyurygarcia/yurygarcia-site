@@ -356,6 +356,7 @@
       cargo: cargo ? cargo.rotulo : '',
       saida: calc.saida,
       produto: PRODUTO_IA[calc.produto] || '',
+      produto_nome: cv.nome || '',
       pilares: pilares,
       autoavaliacao: autoav,
       gaps: gp,
@@ -365,7 +366,7 @@
       campo_aberto: o.campoAbertoLimpo || '',
       mapa_leitura: mapa,
       ganchos_metodo: (cv.ganchos_metodo || []).map(function (gm) { return { id: gm.id, liga_com: gm.liga_com || [], o_que_trabalha: gm.o_que_trabalha }; }),
-      banco_citacoes: (C().citacoes || []).map(function (c) { return { id: c.id, tema: c.tema }; })
+      banco_citacoes: (C().citacoes || []).map(function (c) { return { id: c.id, tema: c.tema, texto: c.texto, autor: c.autor }; })
     };
   }
 
