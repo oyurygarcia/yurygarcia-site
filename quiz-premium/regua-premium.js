@@ -16,8 +16,8 @@
   var NIVEL_CONTEUDO = { consolidado: 'firme', construcao: 'em_construcao', proximo_passo: 'proximo_degrau' };
   var VALOR = { A: 100, B: 50, C: 0, D: 0 };
   /* produto da estrutura -> chave do convite (convites.json) e código que a IA recebe (PROMPT-SISTEMA-v4 §1) */
-  var CONVITE_DE = { LAP: 'lap', POCKET: 'conversa', MENTORIA: 'mentoria_liderium', INDIVIDUAL: 'mentoria_individual' };
-  var PRODUTO_IA = CONVITE_DE; // ids fixos do prompt v4: lap | conversa | mentoria_liderium | mentoria_individual
+  var CONVITE_DE = { LAP: 'lap', POCKET: 'lap', MENTORIA: 'mentoria_liderium', INDIVIDUAL: 'mentoria_individual' };
+  var PRODUTO_IA = CONVITE_DE; // ids do prompt: lap | mentoria_liderium | mentoria_individual (Pocket não existe: T2S2–T2S5 recebem o LAP, Yury 18/11/2026)
   /* Palavras e marcas proibidas (PROMPT-SISTEMA-v4 §10). Achou uma -> fallback. Minúsculas; comparação sem caixa.
    * "garantir" sozinho não é promessa ("entra para garantir a entrega"): só bloqueia promessa de resultado. */
   var PROIBIDAS = ['r$', 'pocket', 'posicionamento 360', 'liderium essential', 'pilar do método', 'capital político',
@@ -496,7 +496,7 @@
     };
   }
 
-  /** Link do botão do convite: WhatsApp do CRM, mensagem de convites.json (na premium, T2S2–T2S5 não citam o Pocket). */
+  /** Link do botão do convite: página do produto (https) ou WhatsApp do CRM, conforme convites.json. */
   function linkConvite(produto, saida) {
     var bd = convite(produto).botao_destino;
     if (bd && typeof bd === 'object' && bd.numero && bd.mensagem) return 'https://wa.me/' + bd.numero + '?text=' + encodeURIComponent(bd.mensagem.replace('{codigo}', saida));

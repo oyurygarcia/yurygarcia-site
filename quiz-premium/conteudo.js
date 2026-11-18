@@ -1778,13 +1778,9 @@
     "match_frase": "Com base nas suas respostas, acredito que você pode ter um match alto com o LAP, por três motivos.",
     "match_frase_sem_ia": "Com base nas suas respostas, acredito que você pode ter um match alto com o LAP.",
     "acesso": "O LAP é o meu programa para quem está construindo a própria liderança, seja chegando à primeira equipe, seja firmando a equipe que já tem. Ele começa pelo jeito de pensar de quem lidera e pelas habilidades de relação, passa pela autoridade com a equipe e chega à rotina que faz o resultado acontecer.",
-    "fecho": "Se fizer sentido para o seu momento, o botão abaixo abre uma conversa com a minha equipe no WhatsApp. Conta o seu resultado, e a gente te explica como o LAP funciona no seu caso.",
-    "botao_texto": "Chama a equipe no WhatsApp",
-    "botao_destino": {
-     "tipo": "whatsapp_crm",
-     "numero": "5511999106121",
-     "mensagem": "Olá! Fiz o diagnóstico de carreira ({codigo}) e quero saber mais sobre o LAP."
-    },
+    "fecho": "Se fizer sentido para o seu momento, clique no link abaixo e conheça o LAP.",
+    "botao_texto": "Conhecer o LAP",
+    "botao_destino": "https://oyurygarcia.com.br/lap/",
     "ganchos_metodo": [
      {
       "id": "lap_mentalidade",
@@ -1895,7 +1891,8 @@
       ],
       "o_que_trabalha": "Sair com clareza sobre qual movimento faz sentido agora para o que você quer construir."
      }
-    ]
+    ],
+    "_status": "sem uso desde 18/11/2026: T2S2–T2S5 recebem o convite do LAP (Yury)"
    },
    "mentoria_liderium": {
     "nome": "Mentoria Liderium",
