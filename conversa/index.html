@@ -10,14 +10,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <!--
   PÁGINA DA VSL · funil VSL com agendamento automático
-  Fonte: yury-workspace/areas/funil-e-vendas/funil-vsl-agendamento/pagina/index.html
-  Publicada (quando o Yury disser sim) em oyurygarcia.com.br/conversa/
+  Fonte: escritorio/projetos/funil-vsl/pagina/index.html
+  Publicada em oyurygarcia.com.br/conversa/ desde 16/11 (/conversa-teste redireciona para cá)
 
   O que trocar antes de publicar (bloco CONFIG no fim do arquivo):
   - VIDEO_ID: código do vídeo final no YouTube (não listado)
   - AGENDA_SEGUNDOS: segundo do vídeo final em que o botão de agendar aparece
   - AGENDA_API: endereço do app da web do script da agenda (script-agenda/)
-  - PIXEL_ID: id do pixel da Meta (evento Schedule na tela de obrigado)
+  - PIXEL_ID: id do pixel da Meta (PageView ao abrir, VSL_Play, VSL_25/50/75/95 do vídeo, VSL_Agenda aos 5:01, Schedule ao agendar)
 -->
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -199,7 +199,7 @@ var CONFIG = {
   VIDEO_ID: "cqUcyGs3cLU",   // v4 final com camada visual (Yury, 16/11), não listado.
   AGENDA_SEGUNDOS: 301,       // 5:01, durante a apresentação da Liderium (Yury, 16/11).
   AGENDA_API: "https://script.google.com/macros/s/AKfycby-AhIe9WRvgLwfq159hHtb8uvd_fj6D0XT9WS-tozb4Jx2GRPXelS__NElC3Sr5ymm/exec",  // app da web do script da agenda (script-agenda/); vazio = só o botão do WhatsApp
-  PIXEL_ID: "",               // MARCADOR: id do pixel da Meta. Vazio = o evento Schedule não é enviado.
+  PIXEL_ID: "1123246773950289", // pixel "Pixel Liderium (site)", criado em 18/11 (sim do Yury). Vazio = nada vai para a Meta.
   WHATSAPP: "5511999106121",  // WhatsApp do CRM (CONTAS-E-ACESSOS)
   WHATSAPP_FRASE: "Olá! Agendei minha conversa pela página do vídeo e quero falar com a equipe."  // o robô do Kommo precisa reconhecer esta frase
 };
@@ -325,15 +325,19 @@ function paginaDeObrigado(r){
   eventoAgendou();
 }
 
-// Evento "agendou" para a Meta. MARCADOR: sem CONFIG.PIXEL_ID não envia nada.
-function eventoAgendou(){
+// Pixel da Meta (Yury, 18/11): PageView ao abrir; progresso do vídeo; botão liberado; Schedule ao agendar.
+function pixel(tipo, nome){
   if (!CONFIG.PIXEL_ID) return;
   if (!window.fbq){
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', CONFIG.PIXEL_ID);
   }
-  fbq('track', 'Schedule');
+  if (tipo) fbq(tipo, nome);
 }
+pixel('track', 'PageView');
+var marcosVideo = {};
+function marcoVideo(nome){ if (marcosVideo[nome]) return; marcosVideo[nome] = 1; pixel('trackCustom', nome); }
+function eventoAgendou(){ pixel('track', 'Schedule'); }
 
 function liberarAgenda(){
   if (agendaLiberada) return;
@@ -392,7 +396,10 @@ setInterval(function(){
   if (t > travaTempo + 1.5) { player.seekTo(travaTempo, true); return; }
   if (t > travaTempo) travaTempo = t;
   if (player.getPlaybackRate && player.getPlaybackRate() !== 1) player.setPlaybackRate(1);
-  if (t >= CONFIG.AGENDA_SEGUNDOS) liberarAgenda();
+  if (t >= CONFIG.AGENDA_SEGUNDOS) { marcoVideo('VSL_Agenda'); liberarAgenda(); }
+  if (t >= 3) marcoVideo('VSL_Play');
+  var d = player.getDuration ? player.getDuration() : 0;
+  if (d > 0) [25,50,75,95].forEach(function(p){ if (t >= d*p/100) marcoVideo('VSL_' + p); });
   $('barra-topo').style.width = progressoCalibrado(t, player.getDuration ? player.getDuration() : 0).toFixed(1) + '%';
 }, 500);
 
