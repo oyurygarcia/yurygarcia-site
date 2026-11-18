@@ -764,7 +764,7 @@ var CONSENT_AVISO = 'v2-aviso';
         salvar(); iniciar();
         irPara({ tipo: 'cargo', id: 'P0' }, true);
       };
-      if (!codigo) return seguir('');
+      if (!codigo) { $('codMsg').className = 'cod-msg erro-c'; $('codMsg').textContent = tt(CA.obrigatorio, 'Digite o seu código de acesso para começar.'); return $('codigo').focus(); }
       if (!API_OK) return seguir('nao_conferido');
       validando = true; $('bComecar').disabled = true; $('codMsg').textContent = 'Conferindo o código…';
       var feito = false, fim = setTimeout(function () { if (!feito) { feito = true; seguir('nao_conferido'); } }, 8000);

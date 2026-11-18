@@ -1646,12 +1646,13 @@
    "botao": "Começar o diagnóstico"
   },
   "codigo_acesso": {
-   "rotulo": "Tem um código de acesso?",
-   "ajuda": "Se você recebeu um código da nossa equipe, digite aqui. Ele libera o relatório completo, escrito a partir das suas respostas. Sem código, você recebe o resultado do diagnóstico do mesmo jeito.",
+   "rotulo": "Seu código de acesso",
+   "ajuda": "Digite o código que você recebeu da nossa equipe. Ele libera o seu relatório completo, escrito a partir das suas respostas.",
    "placeholder": "Ex.: K7M4QX",
    "aceito": "Código confirmado. O seu relatório completo vai ser montado ao final.",
-   "erro_invalido": "Não encontramos esse código. Vale conferir as letras e os números. Se preferir, siga sem ele: você recebe o resultado do diagnóstico normalmente.",
-   "erro_usado": "Esse código já foi usado em outro diagnóstico, e cada código vale uma vez. Você pode seguir sem ele e receber o resultado normalmente. Se achar que houve um engano, fale com a nossa equipe."
+   "erro_invalido": "Não encontramos esse código. Vale conferir as letras e os números. Se o problema continuar, fale com a nossa equipe.",
+   "erro_usado": "Esse código já foi usado em outro diagnóstico, e cada código vale uma vez. Se achar que houve um engano, fale com a nossa equipe.",
+   "obrigatorio": "Digite o seu código de acesso para começar."
   },
   "objetivo": {
    "pergunta": "Pensando nos próximos 12 meses, o que mais representa o que você quer para a sua carreira?",
