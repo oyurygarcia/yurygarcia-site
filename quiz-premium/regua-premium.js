@@ -418,6 +418,7 @@
     PROIBIDAS.forEach(function (w) { if (low.indexOf(w) >= 0) er.push('trilho:' + w); });
     f(!/(^|\n)\s*([-•*–·]|\d+[.)])\s/.test(tx), 'trilho_bullet');
     f(!/\bvocê (respondeu|marcou|escolheu)\b/i.test(tx), 'trilho_cita_resposta');
+    f((tx.match(/\{primeiro_nome\}/g) || []).length <= 2 && !/\{(?!primeiro_nome\})[a-z_]+\}/.test(tx), 'trilho_marca_nome');
     f(!/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/u.test(tx), 'trilho_emoji');
     return { ok: er.length === 0, erros: er };
   }
@@ -435,9 +436,20 @@
   }
   function subst(t, m) { return String(t || '').replace(/\{(\w+)\}/g, function (x, k) { return m[k] !== undefined ? m[k] : x; }); }
 
-  /** Junta régua + conteúdo fixo + (opcional) a saída da IA já conferida. ia=null -> só o texto fixo (D2/D3), completo. */
+  /** Troca a marca {primeiro_nome} da IA pelo primeiro nome (posto pela página; a IA nunca recebe o nome). Sem nome, tira a marca e a vírgula. */
+  function porNome(o, nome) {
+    if (typeof o === 'string') return o.replace(/\{primeiro_nome\}(,\s*)?(.)?/g, function (m, vg, prox) {
+      if (nome) return nome + (vg || '') + (prox || '');
+      return prox ? prox.toUpperCase() : '';
+    });
+    if (Array.isArray(o)) return o.map(function (x) { return porNome(x, nome); });
+    if (o && typeof o === 'object') { var r = {}; for (var k in o) r[k] = porNome(o[k], nome); return r; }
+    return o;
+  }
+  /** Junta régua + conteúdo fixo + (opcional) a saída da IA já conferida. ia=null -> só o texto fixo (D2/D3), completo. opts.primeiroNome personaliza. */
   function montarRelatorio(calc, ia, opts) {
     opts = opts || {};
+    if (ia) ia = porNome(ia, String(opts.primeiroNome || '').trim().split(/\s+/)[0] || '');
     var tl = C().telas || {}, com = !!ia, nomes = (C().telas || {}).pilares_nomes || {};
     var porPilar = {};
     if (com) {

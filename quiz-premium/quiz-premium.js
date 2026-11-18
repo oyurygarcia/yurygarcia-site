@@ -403,7 +403,7 @@
 
   function desenharRelatorio(calc, pendente, primeiraVez) {
     slots = [];
-    var vm = RP.montarRelatorio(calc, S.ia, {}), nome = S.primeiroNome, m = Rg.montarResultado(calc.res, nome);
+    var vm = RP.montarRelatorio(calc, S.ia, { primeiroNome: S.primeiroNome }), nome = S.primeiroNome, m = Rg.montarResultado(calc.res, nome);
     var c = $('rCorpo'); limpa(c);
     var rel = h('div', 'rel'); c.appendChild(rel);
     if (pendente) {
