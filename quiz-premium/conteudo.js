@@ -1854,13 +1854,9 @@
     "match_frase": "Com base nas suas respostas, acredito que vale uma conversa com a minha equipe sobre o seu próximo passo, por três motivos.",
     "match_frase_sem_ia": "Com base nas suas respostas, acredito que vale uma conversa com a minha equipe sobre o seu próximo passo.",
     "acesso": "Nessa conversa, a minha equipe olha o seu resultado com você, entende o momento da sua equipe e o que você quer construir nos próximos meses, e te diz qual é o próximo passo que faz sentido para o seu caso.",
-    "fecho": "Se fizer sentido para o seu momento, o botão abaixo abre essa conversa no WhatsApp. É só contar o seu resultado.",
-    "botao_texto": "Chama a equipe no WhatsApp",
-    "botao_destino": {
-     "tipo": "whatsapp_crm",
-     "numero": "5511999106121",
-     "mensagem": "Olá! Fiz o diagnóstico de carreira ({codigo}) e quero conversar sobre o meu próximo passo."
-    },
+    "fecho": "Se fizer sentido para você, clique no link abaixo e agende um horário com a minha equipe.",
+    "botao_texto": "Agendar um horário",
+    "botao_destino": "https://oyurygarcia.com.br/conversa/",
     "ganchos_metodo": [
      {
       "id": "conversa_leitura_resultado",
