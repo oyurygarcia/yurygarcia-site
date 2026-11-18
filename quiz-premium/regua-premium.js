@@ -387,7 +387,10 @@
     function f(c, m) { if (!c) er.push(m); }
     if (!s || typeof s !== 'object') return { ok: false, erros: ['nao_objeto'] };
     var bloco = function (x, max) { return x && PIL_OK[x.pilar] && ehTexto(x.titulo) && ehLista(x.texto, 1, max) && x.texto.every(ehTexto); };
+    f(ehTexto(s.titulo_topo) && s.titulo_topo.length <= 140 && s.titulo_topo.indexOf('{') < 0, 'titulo_topo');
     f(ehLista(s.resumo, 3, 3) && s.resumo.every(ehTexto), 'resumo');
+    var lp = {}; f(ehLista(s.leitura_pilares, 4, 4) && s.leitura_pilares.every(function (x) { var ok = x && PIL_OK[x.pilar] && ehTexto(x.texto) && !lp[x.pilar]; if (ok) lp[x.pilar] = 1; return ok; }), 'leitura_pilares');
+    f(ehTexto(s.leitura_grafico), 'leitura_grafico');
     f(ehLista(s.forcas, 1, 2) && s.forcas.every(function (x) { return bloco(x, 2); }), 'forcas');
     f(ehLista(s.melhorias, 1, 2) && s.melhorias.every(function (x) { return bloco(x, 3); }), 'melhorias');
     f(Array.isArray(s.gaps) && s.gaps.every(function (x) { return x && PIL_OK[x.pilar] && ehTexto(x.texto); }), 'gaps');
@@ -467,12 +470,13 @@
       if (daIa.length) forcas = daIa;
     }
     var grupo = function (id) { return forcas.indexOf(id) >= 0 ? 'forca' : (calc.oportunidades.indexOf(id) >= 0 ? 'oportunidade' : 'outro'); };
+    var leituraIa = {}; if (com) (ia.leitura_pilares || []).forEach(function (x) { leituraIa[x.pilar] = x.texto; });
     var pilares = calc.pilares.map(function (p) {
       var f = fixoPilar(calc.trilha, p.id), viaIa = porPilar[p.id], tf = textoFixo(calc, p.id);
       return {
         id: p.id, curto: CURTO[p.id], nome: f.nome || nomes[p.id] || E().rotulosPilar[p.id], pct: p.pct, estado: p.estado, nivel: p.nivel, teto: p.teto, grupo: grupo(p.id),
         o_que_medimos: f.o_que_medimos || '', como_funciona: f.como_funciona || [], por_que_pesa: f.por_que_pesa || '',
-        titulo: viaIa ? viaIa.titulo : null, seu_caso: viaIa ? viaIa.seu_caso : tf.paragrafos, cruzamento: null, ponte: null,
+        titulo: viaIa ? viaIa.titulo : null, seu_caso: viaIa ? viaIa.seu_caso : (com && leituraIa[CURTO[p.id]] ? [leituraIa[CURTO[p.id]]] : tf.paragrafos), cruzamento: null, ponte: null,
         ponteAlvo: null, fonte: viaIa ? 'ia' : 'fixo', subcriterios: p.subcriterios
       };
     });
@@ -503,7 +507,7 @@
     };
     var cits = com ? ia.citacoes.map(citacaoPorId).filter(Boolean) : citacoesFallback(calc);
     return {
-      ia: com, abertura_pilares: fixoTrilha(calc.trilha).abertura_pilares || '', saida: calc.saida, trilha: calc.trilha, teto: calc.teto, produto: calc.produto,
+      ia: com, titulo_ia: com ? ia.titulo_topo : '', leitura_grafico: com ? ia.leitura_grafico : '', abertura_pilares: com ? '' : (fixoTrilha(calc.trilha).abertura_pilares || ''), saida: calc.saida, trilha: calc.trilha, teto: calc.teto, produto: calc.produto,
       resumo: com ? { abertura: ia.resumo[0], paragrafos: ia.resumo.slice(1), fecho: '', traco: null } : { abertura: '', paragrafos: [], fecho: '', traco: null }, // v7: os 3 parágrafos ficam juntos no resumo
       pilares: pilares, forcas: forcas, oportunidades: calc.oportunidades, gaps: gaps, plano: plano, convite: conv, citacoes: cits
     };

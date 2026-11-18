@@ -296,3 +296,5 @@
 .aviso-dados{font-size:.8rem;color:var(--text-m);line-height:1.45;margin-top:16px}
 .aviso-dados a{color:var(--blue)}
 .r-resumo-p{font-size:1.05rem;line-height:1.65;margin-top:14px}
+.rel.r-aguarda>:not(.r-espera){display:none}
+.rel.r-aguarda .r-espera{margin:18vh auto 0;max-width:520px;text-align:center}

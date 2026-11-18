@@ -295,7 +295,7 @@ var CONSENT_AVISO = 'v2-aviso';
     catch (e) { return irPara(primeiraPendente(), false); }
     S.saida = calc.saida; S.resultado = calc.res; S.fase = 'fim'; S.concluidoEm = agora();
     var querIa = !!(S.codigo && S.codigoEstado !== 'invalido' && S.codigoEstado !== 'usado' && API_OK);
-    S.iaEstado = querIa ? 'esperando' : 'sem_ia'; S.ia = null; salvar();
+    S.iaEstado = querIa ? 'esperando' : 'sem_ia'; S.ia = null; S.iaTent = 0; salvar();
     calcAtual = calc;
     enviarPremium(0, calc);
     var cl = TL.calculando;
@@ -305,15 +305,25 @@ var CONSENT_AVISO = 'v2-aviso';
   }
   function iniciarEspera() {
     clearTimeout(esperaTimer);
-    esperaTimer = setTimeout(function () { if (S.iaEstado === 'esperando') { S.iaEstado = 'tempo'; salvar(); preencher(null); } }, ESPERA_MS);
+    esperaTimer = setTimeout(function () { if (S.iaEstado === 'esperando') falhouIa(); }, ESPERA_MS);
   }
   function chegouIa(rel) {
-    if (S.iaEstado !== 'esperando') return; // passou do tempo de espera: fica o texto fixo (e o código continua válido)
-    clearTimeout(esperaTimer);
+    if (S.iaEstado === 'ok') return;
     var ok = rel && RP.validarSaidaIA(rel, { calc: calcAtual }).ok;
-    S.ia = ok ? rel : null; S.iaEstado = ok ? 'ok' : 'sem_ia'; salvar();
+    if (!ok) { if (S.iaEstado === 'esperando') falhouIa(); return; } // resposta atrasada sem relatório: a nova tentativa já está em curso
+    clearTimeout(esperaTimer);
+    S.ia = rel; S.iaEstado = 'ok'; salvar();
     preencher(S.ia);
-    if (ok) confirmarEntrega(0); // o código só é gasto agora, com o relatório da IA na tela
+    confirmarEntrega(0); // o código só é gasto agora, com o relatório da IA na tela
+  }
+  // v7 (Yury, 19/11): quem tem código nunca vê o texto fixo. A página tenta de novo (3 vezes); depois, avisa que o
+  // relatório fica pronto neste mesmo link, e a volta da pessoa pede de novo (o script devolve o que já tiver gerado).
+  function falhouIa() {
+    clearTimeout(esperaTimer);
+    S.iaTent = (S.iaTent || 0) + 1;
+    if (S.iaTent < 3) { S.iaEstado = 'esperando'; salvar(); iniciarEspera(); enviarPremium(0, calcAtual); return; }
+    S.iaEstado = 'pendente'; salvar(); clearInterval(frasesTimer);
+    var es = $('rEspera'); if (es) { limpa(es); es.appendChild(h('span', null, tt((TV.espera || {}).atraso, 'O seu relatório está levando um pouco mais de tempo do que o normal. Ele fica pronto neste mesmo link: volte em alguns minutos e ele vai estar aqui.'))); }
   }
   function confirmarEntrega(tent) {
     if (!API_OK || !S.codigo) return;
@@ -407,7 +417,7 @@ var CONSENT_AVISO = 'v2-aviso';
     slots = [];
     var vm = RP.montarRelatorio(calc, S.ia, { primeiroNome: S.primeiroNome }), nome = S.primeiroNome, m = Rg.montarResultado(calc.res, nome);
     var c = $('rCorpo'); limpa(c);
-    var rel = h('div', 'rel'); c.appendChild(rel);
+    var rel = h('div', 'rel' + (pendente ? ' r-aguarda' : '')); c.appendChild(rel);
     if (pendente) {
       var es = h('div', 'r-espera'); es.id = 'rEspera'; es.setAttribute('role', 'status'); es.setAttribute('aria-live', 'polite');
       es.appendChild(h('span', 'r-giro')); es.appendChild(h('span', null, ((TV.espera || {}).frases || ['Montando o seu relatório.'])[0])); rel.appendChild(es);
@@ -417,6 +427,7 @@ var CONSENT_AVISO = 'v2-aviso';
     var hero = rv(h('header', 'r-hero'));
     hero.appendChild(h('div', 'r-kick', 'Relatório' + (nome ? ' de ' + nome : '') + ' · ' + dataBr(S.concluidoEm || agora())));
     var h1 = h('h1'); h1.tabIndex = -1; tituloH1(h1, m.titulo); hero.appendChild(h1);
+    slot(h1, function (el, v) { if (v.ia && v.titulo_ia) { limpa(el); el.textContent = v.titulo_ia; } else tituloH1(el, m.titulo); }, 0);
     var chips = h('div', 'r-chips'), cargo = Rg.cargoDe(S.cargo);
     var ctx = calc.res.contexto || {}, tempoTxt = { '<1': 'menos de 1 ano', '1-2': '1 a 2 anos', '3-5': '3 a 5 anos', '>5': 'mais de 5 anos' }[ctx.tempo];
     var ch1 = h('span', 'r-chip'); ch1.appendChild(h('i')); ch1.appendChild(document.createTextNode((cargo ? cargo.rotulo : '') + (tempoTxt ? ' · ' + tempoTxt + ' na cadeira' : ''))); chips.appendChild(ch1);
@@ -447,7 +458,8 @@ var CONSENT_AVISO = 'v2-aviso';
     var pn = rv(h('div', 'r-painel')); var pc = h('div', 'r-p-cab', 'Seus 4 pilares'); pc.appendChild(h('span', null, '% das respostas')); pn.appendChild(pc);
     pn.appendChild(radar(vm)); pn.appendChild(h('div', 'r-dica', 'Toque num pilar para ir à leitura dele'));
     grid.appendChild(pn); s1.appendChild(grid);
-    if (vm.abertura_pilares) s1.appendChild(rv(h('p', 'r-abertura', vm.abertura_pilares)));
+    var abP = rv(h('p', 'r-abertura', vm.abertura_pilares || '')); s1.appendChild(abP);
+    slot(abP, function (el, v) { el.hidden = !!v.ia || !el.textContent; }, 0);
     var ordem = rv(h('div', 'r-ordem'));
     vm.pilares.forEach(function (p, i) {
       var d = h('div', 'd' + (p.teto ? ' foco' : (p.estado === 'consolidado' ? '' : ' vaz'))); d.appendChild(h('span', 'num', String(i + 1)));
@@ -469,7 +481,8 @@ var CONSENT_AVISO = 'v2-aviso';
         var nn = h('div', 'r-g-nums'); var a1 = h('span', null, 'Sua nota: '); a1.appendChild(h('em', null, String(g.nota))); var a2 = h('span', null, 'Respostas: '); a2.appendChild(h('strong', null, g.pct + '%')); nn.appendChild(a1); nn.appendChild(a2); li.appendChild(nn);
         gp.appendChild(li);
       });
-      if (TV.como_lemos_isso) gp.appendChild(h('p', 'r-como-lemos', TV.como_lemos_isso));
+      var cl = h('p', 'r-como-lemos', TV.como_lemos_isso || ''); gp.appendChild(cl);
+      slot(cl, function (el, v) { el.textContent = v.ia && v.leitura_grafico ? v.leitura_grafico : (TV.como_lemos_isso || ''); el.hidden = !el.textContent; }, 0);
       s2.appendChild(gp);
       var gtx = h('div'); s2.appendChild(gtx);
       slot(gtx, function (el, v) {
@@ -610,6 +623,7 @@ var CONSENT_AVISO = 'v2-aviso';
     if (tela !== 't-r' || !calcAtual) return;
     var vm = RP.montarRelatorio(calcAtual, ia, {});
     slots.forEach(function (s) { s.fn(s.el, vm); });
+    var ra = document.querySelector('#rCorpo .rel'); if (ra) ra.classList.remove('r-aguarda');
     var es = $('rEspera'); if (es) { es.classList.add('fim'); setTimeout(function () { if (es.parentNode) es.parentNode.removeChild(es); }, REDUZ ? 0 : 500); }
     clearInterval(frasesTimer);
     observar(document.querySelectorAll('#rCorpo .r-rv:not(.on)'));
@@ -789,7 +803,10 @@ var CONSENT_AVISO = 'v2-aviso';
   /* ---------- retomar / já fez ---------- */
   function mostrarSalvo() {
     try { calcAtual = RP.calcular(trilha(), S.respostas, S.auto); } catch (e) { return reiniciar(); }
-    if (S.iaEstado === 'esperando') { S.iaEstado = 'tempo'; salvar(); }
+    if (S.codigo && S.iaEstado !== 'ok' && S.iaEstado !== 'sem_ia' && API_OK) {   // relatório da IA ainda não chegou: pede de novo
+      S.iaTent = 0; S.iaEstado = 'esperando'; salvar();
+      desenharRelatorio(calcAtual, true, false); iniciarEspera(); enviarPremium(0, calcAtual); return;
+    }
     desenharRelatorio(calcAtual, false, false);
   }
   function iniciarTela() {
