@@ -289,3 +289,6 @@
   .rel *,.rel *::before,.rel *::after,.regua,.aberto textarea{animation:none!important;transition:none!important}
   .rel .r-rv{opacity:1;transform:none}
 }
+
+/* título da força ou melhoria escrito pela IA (v6) */
+.r-tit-ia { font-size: 1.05rem; font-weight: 800; line-height: 1.35; margin: 0 0 .5rem; color: inherit; }

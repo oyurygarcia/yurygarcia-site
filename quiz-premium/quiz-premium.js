@@ -508,6 +508,7 @@
       var corpo = h('div'); ns.appendChild(corpo); inn.appendChild(ns);
       slot(corpo, function (el, v) {
         limpa(el); var q = v.pilares.filter(function (x) { return x.id === p.id; })[0];
+        if (q.titulo) el.appendChild(h('h4', 'r-tit-ia', q.titulo));
         paras(el, q.seu_caso);
         if (q.cruzamento) { var cz = h('div', 'r-cruza'); cz.appendChild(h('small', null, 'Cruzando as suas respostas')); cz.appendChild(h('p', null, q.cruzamento)); el.appendChild(cz); }
         if (q.ponte) {

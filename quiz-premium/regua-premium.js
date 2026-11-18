@@ -9,6 +9,7 @@
   function Rg() { return g.QUIZ_REGUA; }
   function P() { return g.QUIZ_PERGUNTAS || {}; }
   function C() { return g.QUIZ_CONTEUDO || {}; }
+  function M() { return g.QUIZ_MAPA_LEITURA || {}; }   // só no script (Mapa.gs): a página não precisa dele
 
   var PILARES = ['entrega', 'visibilidade', 'influencia', 'proximo_nivel'];
   var CURTO = { entrega: 'entrega', visibilidade: 'visibilidade', influencia: 'influencia', proximo_nivel: 'proximo' };
@@ -312,23 +313,21 @@
 
   /** Entrada da IA no formato oficial de ia/v4/simulados/entradas/S01–S20.json (INDICE.md): sem ids de pergunta nem de subcritério.
    *  Recebe só o que precisa; nome, e-mail e WhatsApp NUNCA são argumentos. */
-  function paragrafoPadrao(tr, p, r) {
-    var pp = fixoPilar(tr, p).por_padrao, out = [];
-    if (Array.isArray(pp)) pp.forEach(function (x) { if (x.paragrafo && x.alternativas && x.alternativas.map(Number).indexOf(Number(r[x.pergunta])) >= 0) out.push(x.paragrafo); });
-    return out.join(' ');
-  }
   function montarEntradaIA(o) {
     var calc = o.calc, tr = calc.trilha, r = o.respostas || {}, Es = E(), cargo = Rg().cargoDe(o.cargo);
-    var fila = montarFila(tr, r), perguntas = [], provas = [], mentalidade = null, contexto = {};
+    var fila = montarFila(tr, r), perguntas = [], provas = [], mentalidade = null, contexto = {}, mapa = [];
+    function leitura(q, alt, base) { var d = (M()[q] || {})[String(alt)]; if (!d) return; var it = {}; for (var k in base) it[k] = base[k]; for (var c in d) it[c] = d[c]; mapa.push(it); }
     fila.forEach(function (q) {
       var e = Es.perguntas[q] || { papel: 'pontua' };
       if (!respondida(r, q)) return;
       if (e.papel === 'mentalidade') {
+        (r[q] || []).forEach(function (id) { leitura(q, id, { frase: textoAlt(q, id) }); });
         var marcadas = (r[q] || []).map(function (id) { var fr = e.frases[id]; return { frase: textoAlt(q, id), tipo: fr.polo === 'E' ? 'a_favor' : 'contra', pilar: CURTO[Rg().pilarDe(tr, fr.liga)] || null }; });
         if (!mentalidade) mentalidade = { pergunta: textoPergunta(q), marcadas: [] };
         mentalidade.marcadas = mentalidade.marcadas.concat(marcadas);
         return;
       }
+      leitura(q, r[q], { pergunta: textoPergunta(q), resposta: textoAlt(q, r[q]) });
       if (e.papel === 'contexto') {
         contexto[{ tempo: 'tempo_na_cadeira', resultados: 'resultados', operacao: 'operacao' }[e.chave] || e.chave] = { pergunta: textoPergunta(q), resposta: textoAlt(q, r[q]) };
         return;
@@ -342,16 +341,14 @@
       }
       perguntas.push({ pilar: CURTO[pl] || null, pergunta: textoPergunta(q), alternativa: textoAlt(q, r[q]) });
     });
-    var conteudoFixo = {}, cv = convite(calc.produto), ab = fixoTrilha(tr).abertura_pilares;
-    if (ab) conteudoFixo.abertura_pilares = ab;
-    PILARES.forEach(function (p) {
-      var f = fixoPilar(tr, p), it = { nome: f.nome || E().rotulosPilar[p], como_funciona: f.como_funciona || [], por_que_pesa: f.por_que_pesa || '' };
-      if (f.fora_do_territorio_do_produto) it.fora_do_territorio_do_produto = true;
-      var pp = paragrafoPadrao(tr, p, r); if (pp) it.paragrafo_padrao = pp;
-      conteudoFixo[CURTO[p]] = it;
-    });
+    var cv = convite(calc.produto);
+    if (o.objetivo) leitura('objetivo', o.objetivo, { objetivo: rotuloObjetivo(o.objetivo) });
     var pilares = {}, autoav = {}, gp = {};
-    calc.pilares.forEach(function (p) { pilares[CURTO[p.id]] = { nome: fixoPilar(tr, p.id).nome || E().rotulosPilar[p.id], percentual: p.pct, nivel: p.nivel, subcriterios: p.subcriterios.filter(function (s) { return s.valor !== null; }).map(function (s) { return { nome: s.nome, valor: s.valor }; }) }; });
+    calc.pilares.forEach(function (p) {
+      var f = fixoPilar(tr, p.id);
+      pilares[CURTO[p.id]] = { nome: f.nome || E().rotulosPilar[p.id], percentual: p.pct, nivel: p.nivel, subcriterios: p.subcriterios.filter(function (s) { return s.valor !== null; }).map(function (s) { return { nome: s.nome, valor: s.valor }; }) };
+      if (f.fora_do_territorio_do_produto) pilares[CURTO[p.id]].fora_do_territorio_do_produto = true;
+    });
     for (var a in calc.auto) autoav[CURTO[a]] = calc.auto[a];
     calc.gaps.forEach(function (x) { gp[CURTO[x.pilar]] = { valor: x.gap, leitura: x.tipo }; });
     return {
@@ -366,7 +363,7 @@
       contexto: contexto,
       objetivo: rotuloObjetivo(o.objetivo),
       campo_aberto: o.campoAbertoLimpo || '',
-      conteudo_fixo: conteudoFixo,
+      mapa_leitura: mapa,
       ganchos_metodo: (cv.ganchos_metodo || []).map(function (gm) { return { id: gm.id, liga_com: gm.liga_com || [], o_que_trabalha: gm.o_que_trabalha }; }),
       banco_citacoes: (C().citacoes || []).map(function (c) { return { id: c.id, tema: c.tema }; })
     };
@@ -388,14 +385,13 @@
     var er = [], calc = ctx && ctx.calc;
     function f(c, m) { if (!c) er.push(m); }
     if (!s || typeof s !== 'object') return { ok: false, erros: ['nao_objeto'] };
-    f(s.resumo && ehTexto(s.resumo.abertura) && ehTexto(s.resumo.fecho), 'resumo');
-    f(s.traco && ehTexto(s.traco.nome) && ehTexto(s.traco.explicacao), 'traco');
-    f(ehLista(s.forcas, 0, 2) && s.forcas.every(function (x) { return x && PIL_OK[x.pilar] && ehLista(x.seu_caso, 1, 4) && x.seu_caso.every(ehTexto); }), 'forcas');
-    f(ehLista(s.oportunidades, 1, 2) && s.oportunidades.every(function (x) { return x && PIL_OK[x.pilar] && ehLista(x.seu_caso, 1, 4) && x.seu_caso.every(ehTexto); }), 'oportunidades');
-    f(Array.isArray(s.gaps) && s.gaps.every(function (x) { return x && PIL_OK[x.pilar] && ehLista(x.texto, 1, 3) && x.texto.every(ehTexto); }), 'gaps');
-    f(ehLista(s.plano, 2, 3) && s.plano.every(function (x) { return x && ehTexto(x.quando) && ehTexto(x.titulo) && ehTexto(x.como_fazer) && ehTexto(x.sinal); }), 'plano');
-    f(s.convite && ehLista(s.convite.motivos, 3, 3) && s.convite.motivos.every(ehTexto) && ehLista(s.convite.dores, 2, 3) &&
-      s.convite.dores.every(function (d) { return d && ehTexto(d.dor) && ehTexto(d.o_que_trabalha); }), 'convite');
+    var bloco = function (x, max) { return x && PIL_OK[x.pilar] && ehTexto(x.titulo) && ehLista(x.texto, 1, max) && x.texto.every(ehTexto); };
+    f(ehLista(s.resumo, 2, 2) && s.resumo.every(ehTexto), 'resumo');
+    f(ehLista(s.forcas, 1, 2) && s.forcas.every(function (x) { return bloco(x, 2); }), 'forcas');
+    f(ehLista(s.melhorias, 1, 2) && s.melhorias.every(function (x) { return bloco(x, 3); }), 'melhorias');
+    f(Array.isArray(s.gaps) && s.gaps.every(function (x) { return x && PIL_OK[x.pilar] && ehTexto(x.texto); }), 'gaps');
+    f(ehLista(s.plano, 3, 3) && s.plano.every(function (x) { return x && ehTexto(x.titulo) && ehTexto(x.texto); }), 'plano');
+    f(ehTexto(s.convite_motivo) && /^Pelas suas respostas, acredito que /.test(s.convite_motivo), 'convite');
     var ids = {}; (C().citacoes || []).forEach(function (c) { ids[c.id] = 1; });
     f(ehLista(s.citacoes, 3, 3) && s.citacoes.every(function (c) { return ids[c]; }) && s.citacoes[0] !== s.citacoes[1] && s.citacoes[1] !== s.citacoes[2] && s.citacoes[0] !== s.citacoes[2], 'citacoes');
     f(s.campo_aberto && typeof s.campo_aberto.usado === 'boolean' && MARC_OK[s.campo_aberto.marcacao], 'campo_aberto');
@@ -403,21 +399,25 @@
       var grandes = {}; calc.gaps.forEach(function (x) { if (x.tipo !== 'alinhado') grandes[CURTO[x.pilar]] = 1; });
       f(s.gaps.every(function (x) { return grandes[x.pilar]; }), 'gaps_fora_do_limite');
     }
-    if (calc && Array.isArray(s.forcas)) {
-      var firmes = {}; calc.pilares.forEach(function (p) { if (p.estado === 'consolidado') firmes[CURTO[p.id]] = 1; });
-      f(s.forcas.every(function (x) { return firmes[x.pilar]; }), 'forca_nao_firme');
-      f(s.forcas.length < 2 || s.forcas[0].pilar !== s.forcas[1].pilar, 'forca_repetida');
-    }
-    // oportunidades: a primeira é a da régua (o pilar da saída) e nenhuma cai fora das que a régua aponta
-    if (calc && Array.isArray(s.oportunidades) && s.oportunidades.length) {
+    // forças: de pilar firme quando há algum firme (sem nenhum, a força sai do que está mais de pé); nunca um pilar que é melhoria
+    if (calc && Array.isArray(s.forcas) && Array.isArray(s.melhorias)) {
+      var firmes = {}, temFirme = false; calc.pilares.forEach(function (p) { if (p.estado === 'consolidado') { firmes[CURTO[p.id]] = 1; temFirme = true; } });
       var ops = calc.oportunidades.map(function (id) { return CURTO[id]; });
-      f(s.oportunidades[0].pilar === ops[0], 'oportunidade_principal');
-      f(s.oportunidades.every(function (x) { return ops.indexOf(x.pilar) >= 0; }) && (s.oportunidades.length < 2 || s.oportunidades[0].pilar !== s.oportunidades[1].pilar), 'oportunidade_fora_da_regra');
+      f(!temFirme || s.forcas.every(function (x) { return firmes[x.pilar]; }), 'forca_nao_firme');
+      var mel = s.melhorias.map(function (x) { return x && x.pilar; });
+      f(s.forcas.every(function (x) { return mel.indexOf(x.pilar) < 0 && (!temFirme || ops.indexOf(x.pilar) < 0); }), 'forca_e_melhoria');
+      f(s.forcas.length < 2 || s.forcas[0].pilar !== s.forcas[1].pilar, 'forca_repetida');
+      // melhorias: a primeira é a da régua (o pilar da saída) e nenhuma cai fora das que a régua aponta
+      if (s.melhorias.length) {
+        f(s.melhorias[0].pilar === ops[0], 'oportunidade_principal');
+        f(s.melhorias.every(function (x) { return ops.indexOf(x.pilar) >= 0; }) && (s.melhorias.length < 2 || s.melhorias[0].pilar !== s.melhorias[1].pilar), 'oportunidade_fora_da_regra');
+      }
     }
     // trilho: palavras proibidas e listas dentro de string
     var tx = textosDe(s, []).join('\n'), low = tx.toLowerCase();
     PROIBIDAS.forEach(function (w) { if (low.indexOf(w) >= 0) er.push('trilho:' + w); });
     f(!/(^|\n)\s*([-•*–·]|\d+[.)])\s/.test(tx), 'trilho_bullet');
+    f(!/\bvocê (respondeu|marcou|escolheu)\b/i.test(tx), 'trilho_cita_resposta');
     f(!/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/u.test(tx), 'trilho_emoji');
     return { ok: er.length === 0, erros: er };
   }
@@ -441,30 +441,30 @@
     var tl = C().telas || {}, com = !!ia, nomes = (C().telas || {}).pilares_nomes || {};
     var porPilar = {};
     if (com) {
-      (ia.forcas || []).forEach(function (x) { porPilar[LONGO[x.pilar]] = { seu_caso: x.seu_caso, cruzamento: x.cruzamento || null, ponte: null }; });
-      (ia.oportunidades || []).forEach(function (x) { porPilar[LONGO[x.pilar]] = { seu_caso: x.seu_caso, cruzamento: x.cruzamento || null, ponte: x.ponte || null }; });
+      (ia.forcas || []).concat(ia.melhorias || []).forEach(function (x) { porPilar[LONGO[x.pilar]] = { titulo: x.titulo, seu_caso: x.texto }; });
     }
-    // forças mostradas: com IA, as que ela escolheu entre os pilares firmes (DECISOES §3: a ligação com a oportunidade e com o campo aberto
+    // forças mostradas: com IA, as que ela escolheu (pilares firmes; sem nenhum firme, o mais de pé que não é melhoria) (DECISOES §3: a ligação com a oportunidade e com o campo aberto
     // é leitura dela), na ordem dela; sem IA, ou se ela não trouxe nenhuma, as da régua (maior percentual, depois a ordem da escada)
     var forcas = calc.forcas;
     if (com) {
       var daIa = (ia.forcas || []).map(function (x) { return LONGO[x.pilar]; }).filter(function (id, i, a) {
-        return a.indexOf(id) === i && calc.oportunidades.indexOf(id) < 0 && calc.pilares.some(function (p) { return p.id === id && p.estado === 'consolidado'; });
+        var mel = (ia.melhorias || []).map(function (x) { return LONGO[x.pilar]; }), temFirme = calc.pilares.some(function (p) { return p.estado === 'consolidado'; });
+        return a.indexOf(id) === i && mel.indexOf(id) < 0 && (!temFirme || (calc.oportunidades.indexOf(id) < 0 && calc.pilares.some(function (p) { return p.id === id && p.estado === 'consolidado'; })));
       });
       if (daIa.length) forcas = daIa;
     }
-    var grupo = function (id) { return calc.oportunidades.indexOf(id) >= 0 ? 'oportunidade' : (forcas.indexOf(id) >= 0 ? 'forca' : 'outro'); };
+    var grupo = function (id) { return forcas.indexOf(id) >= 0 ? 'forca' : (calc.oportunidades.indexOf(id) >= 0 ? 'oportunidade' : 'outro'); };
     var pilares = calc.pilares.map(function (p) {
       var f = fixoPilar(calc.trilha, p.id), viaIa = porPilar[p.id], tf = textoFixo(calc, p.id);
       return {
         id: p.id, curto: CURTO[p.id], nome: f.nome || nomes[p.id] || E().rotulosPilar[p.id], pct: p.pct, estado: p.estado, nivel: p.nivel, teto: p.teto, grupo: grupo(p.id),
         o_que_medimos: f.o_que_medimos || '', como_funciona: f.como_funciona || [], por_que_pesa: f.por_que_pesa || '',
-        seu_caso: viaIa ? viaIa.seu_caso : tf.paragrafos, cruzamento: viaIa ? viaIa.cruzamento : null, ponte: viaIa ? viaIa.ponte : null,
+        titulo: viaIa ? viaIa.titulo : null, seu_caso: viaIa ? viaIa.seu_caso : tf.paragrafos, cruzamento: null, ponte: null,
         ponteAlvo: null, fonte: viaIa ? 'ia' : 'fixo', subcriterios: p.subcriterios
       };
     });
     pilares.forEach(function (p) { if (p.ponte) { var i = calc.oportunidades.indexOf(p.id); p.ponteAlvo = calc.oportunidades[i + 1] || (calc.oportunidades[0] !== p.id ? calc.oportunidades[0] : null); } });
-    var gtx = {}; if (com) (ia.gaps || []).forEach(function (x) { gtx[LONGO[x.pilar]] = x.texto; });
+    var gtx = {}; if (com) (ia.gaps || []).forEach(function (x) { gtx[LONGO[x.pilar]] = [x.texto]; });
     var gs = (tl.gap_sem_ia || {});
     var gaps = calc.gaps.map(function (x) {
       var nm = pilares.filter(function (p) { return p.id === x.pilar; })[0].nome;
@@ -473,7 +473,7 @@
     });
     // plano: IA, ou as ações-base das oportunidades (2 da principal + 1 da segunda)
     var plano;
-    if (com) plano = ia.plano.map(function (a) { return { quando: a.quando, titulo: a.titulo, como_fazer: a.como_fazer, frase_pronta: a.frase_pronta || null, sinal: a.sinal }; });
+    if (com) plano = ia.plano.map(function (a) { return { quando: null, titulo: a.titulo, como_fazer: a.texto, frase_pronta: null, sinal: null }; });
     else {
       plano = []; var quando = tl.plano_quando || ['Semana 1', 'Semana 2', 'Semanas 3 e 4'];
       calc.oportunidades.forEach(function (id, k) {
@@ -484,14 +484,14 @@
     }
     var cv = convite(calc.produto);
     var conv = {
-      chave: CONVITE_DE[calc.produto], nome: cv.nome || '', abertura: cv.abertura || '', match: com ? (cv.match_frase || '') : (cv.match_frase_sem_ia || cv.match_frase || ''),
-      motivos: com ? ia.convite.motivos : [], dores: com ? ia.convite.dores : [], acesso: cv.acesso || '', fecho: cv.fecho || '',
+      chave: CONVITE_DE[calc.produto], nome: cv.nome || '', abertura: cv.abertura || '', match: com ? ia.convite_motivo : (cv.match_frase_sem_ia || cv.match_frase || ''),
+      motivos: [], dores: [], acesso: cv.acesso || '', fecho: cv.fecho || '',
       botao: cv.botao_texto || 'Chama a equipe no WhatsApp', link: linkConvite(calc.produto, calc.saida)
     };
     var cits = com ? ia.citacoes.map(citacaoPorId).filter(Boolean) : citacoesFallback(calc);
     return {
       ia: com, abertura_pilares: fixoTrilha(calc.trilha).abertura_pilares || '', saida: calc.saida, trilha: calc.trilha, teto: calc.teto, produto: calc.produto,
-      resumo: com ? { abertura: ia.resumo.abertura, fecho: ia.resumo.fecho, traco: ia.traco } : { abertura: '', fecho: '', traco: null },
+      resumo: com ? { abertura: ia.resumo[0], fecho: ia.resumo[1], traco: null } : { abertura: '', fecho: '', traco: null },
       pilares: pilares, forcas: forcas, oportunidades: calc.oportunidades, gaps: gaps, plano: plano, convite: conv, citacoes: cits
     };
   }
