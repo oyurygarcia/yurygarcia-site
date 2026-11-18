@@ -439,6 +439,7 @@ var CONSENT_AVISO = 'v2-aviso';
       limpa(el);
       if (v.ia) {
         el.appendChild(h('p', 'r-lead', v.resumo.abertura));
+        (v.resumo.paragrafos || []).forEach(function (t) { el.appendChild(h('p', 'r-resumo-p', t)); });
         if (v.resumo.traco) { var nt = h('div', 'r-nome-traco'); nt.appendChild(h('small', null, 'Um traço seu')); nt.appendChild(h('div', null, v.resumo.traco.nome)); el.appendChild(nt); el.appendChild(h('p', null, v.resumo.traco.explicacao)); }
       } else el.appendChild(h('p', 'r-lead', m.resumo));
     }, 4);
@@ -494,15 +495,16 @@ var CONSENT_AVISO = 'v2-aviso';
     function artigo(p) {
       var a = rv(h('article', 'r-pilar' + (p.teto ? ' teto' : ''))); a.id = 'dd-' + p.id;
       var hd = h('div', 'r-p-head'); hd.appendChild(anel(p));
-      var mm = h('span', 'r-p-meio'); mm.appendChild(h('span', 'r-p-est', p.nome + ' · ' + (p.teto ? 'seu próximo degrau' : nivelRot(p.nivel)))); mm.appendChild(h('h3', null, primeiraParte(p.o_que_medimos) || p.nome)); hd.appendChild(mm); a.appendChild(hd);
+      var mm = h('span', 'r-p-meio'); mm.appendChild(h('span', 'r-p-est', p.nome + ' · ' + (p.teto ? 'seu próximo degrau' : nivelRot(p.nivel)))); var h3m = h('h3', null, primeiraParte(p.o_que_medimos) || p.nome); mm.appendChild(h3m); hd.appendChild(mm); a.appendChild(hd);
       var inn = h('div', 'r-p-in');
+      var cf = null, bt = null, ab = null;
       if (p.como_funciona.length) {
-        var cf = h('div', 'r-cf'); var ro = h('div', 'r-rotulo'); ro.appendChild(icone('luz', 'ic')); ro.appendChild(document.createTextNode('Como funciona')); cf.appendChild(ro);
+        cf = h('div', 'r-cf'); var ro = h('div', 'r-rotulo'); ro.appendChild(icone('luz', 'ic')); ro.appendChild(document.createTextNode('Como funciona')); cf.appendChild(ro);
         paras(cf, p.como_funciona); inn.appendChild(cf);
       }
       if (p.por_que_pesa) {
-        var bt = h('button', 'r-evid'); bt.type = 'button'; bt.setAttribute('aria-expanded', 'false'); bt.appendChild(h('span', 'mais', '+')); bt.appendChild(document.createTextNode('Por que isso pesa?'));
-        var ab = h('div', 'r-abre'), d1 = h('div'), dn = h('div', 'dentro'); dn.appendChild(h('p', null, p.por_que_pesa)); d1.appendChild(dn); ab.appendChild(d1); ab.id = 'pq-' + p.id; bt.setAttribute('aria-controls', ab.id);
+        bt = h('button', 'r-evid'); bt.type = 'button'; bt.setAttribute('aria-expanded', 'false'); bt.appendChild(h('span', 'mais', '+')); bt.appendChild(document.createTextNode('Por que isso pesa?'));
+        ab = h('div', 'r-abre'); var d1 = h('div'), dn = h('div', 'dentro'); dn.appendChild(h('p', null, p.por_que_pesa)); d1.appendChild(dn); ab.appendChild(d1); ab.id = 'pq-' + p.id; bt.setAttribute('aria-controls', ab.id);
         bt.addEventListener('click', function () { var o = bt.getAttribute('aria-expanded') !== 'true'; bt.setAttribute('aria-expanded', o ? 'true' : 'false'); ab.classList.toggle('on', o); });
         inn.appendChild(bt); inn.appendChild(ab);
       }
@@ -510,7 +512,10 @@ var CONSENT_AVISO = 'v2-aviso';
       var corpo = h('div'); ns.appendChild(corpo); inn.appendChild(ns);
       slot(corpo, function (el, v) {
         limpa(el); var q = v.pilares.filter(function (x) { return x.id === p.id; })[0];
-        if (q.titulo) el.appendChild(h('h4', 'r-tit-ia', q.titulo));
+        // v7 (Yury, 19/11): com a IA, a explicação vem dentro do caso; os blocos fixos de aula somem
+        [cf, bt, ab, r2].forEach(function (x) { if (x) x.hidden = !!v.ia; });
+        if (v.ia && q.titulo) { h3m.textContent = q.titulo; } else h3m.textContent = primeiraParte(p.o_que_medimos) || p.nome;
+        if (q.titulo && !v.ia) el.appendChild(h('h4', 'r-tit-ia', q.titulo));
         paras(el, q.seu_caso);
         if (q.cruzamento) { var cz = h('div', 'r-cruza'); cz.appendChild(h('small', null, 'Cruzando as suas respostas')); cz.appendChild(h('p', null, q.cruzamento)); el.appendChild(cz); }
         if (q.ponte) {

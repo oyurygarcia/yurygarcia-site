@@ -387,7 +387,7 @@
     function f(c, m) { if (!c) er.push(m); }
     if (!s || typeof s !== 'object') return { ok: false, erros: ['nao_objeto'] };
     var bloco = function (x, max) { return x && PIL_OK[x.pilar] && ehTexto(x.titulo) && ehLista(x.texto, 1, max) && x.texto.every(ehTexto); };
-    f(ehLista(s.resumo, 2, 2) && s.resumo.every(ehTexto), 'resumo');
+    f(ehLista(s.resumo, 3, 3) && s.resumo.every(ehTexto), 'resumo');
     f(ehLista(s.forcas, 1, 2) && s.forcas.every(function (x) { return bloco(x, 2); }), 'forcas');
     f(ehLista(s.melhorias, 1, 2) && s.melhorias.every(function (x) { return bloco(x, 3); }), 'melhorias');
     f(Array.isArray(s.gaps) && s.gaps.every(function (x) { return x && PIL_OK[x.pilar] && ehTexto(x.texto); }), 'gaps');
@@ -504,7 +504,7 @@
     var cits = com ? ia.citacoes.map(citacaoPorId).filter(Boolean) : citacoesFallback(calc);
     return {
       ia: com, abertura_pilares: fixoTrilha(calc.trilha).abertura_pilares || '', saida: calc.saida, trilha: calc.trilha, teto: calc.teto, produto: calc.produto,
-      resumo: com ? { abertura: ia.resumo[0], fecho: ia.resumo[1], traco: null } : { abertura: '', fecho: '', traco: null },
+      resumo: com ? { abertura: ia.resumo[0], paragrafos: ia.resumo.slice(1), fecho: '', traco: null } : { abertura: '', paragrafos: [], fecho: '', traco: null }, // v7: os 3 parágrafos ficam juntos no resumo
       pilares: pilares, forcas: forcas, oportunidades: calc.oportunidades, gaps: gaps, plano: plano, convite: conv, citacoes: cits
     };
   }
