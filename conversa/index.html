@@ -203,6 +203,13 @@ var CONFIG = {
   WHATSAPP: "5511999106121",  // WhatsApp do CRM (CONTAS-E-ACESSOS)
   WHATSAPP_FRASE: "Olá! Agendei minha conversa pela página do vídeo e quero falar com a equipe."  // o robô do Kommo precisa reconhecer esta frase
 };
+// Visita interna (Yury, 19/11): quem abre com ?interno=1 (o time, pelo material de treinamento) não conta no pixel.
+// Fica lembrado neste aparelho, para as próximas visitas também não contarem.
+(function(){
+  var interno = /[?&]interno=1(&|$)/.test(location.search);
+  try { if (interno) localStorage.setItem('vsl_interno', '1'); else interno = localStorage.getItem('vsl_interno') === '1'; } catch(e){}
+  if (interno) CONFIG.PIXEL_ID = "";
+})();
 document.getElementById('zap').href = document.getElementById('zap2').href = 'https://wa.me/' + CONFIG.WHATSAPP + '?text=' + encodeURIComponent(CONFIG.WHATSAPP_FRASE);
 /* ================================================== */
 

@@ -143,7 +143,7 @@ ul.reg li{margin:6px 0;font-size:15px}
 
 <h3 style="margin-top:26px">Links para você ter à mão</h3>
   <div class="card links">
-    <a href="https://oyurygarcia.com.br/conversa/" target="_blank" rel="noopener"><span><b>Página da VSL</b><small>O que o lead do funil de VSL vê. Pode assistir, só não confirme um agendamento.</small></span><i>abrir</i></a>
+    <a href="https://oyurygarcia.com.br/conversa/?interno=1" target="_blank" rel="noopener"><span><b>Página da VSL</b><small>O que o lead do funil de VSL vê. Pode assistir, só não confirme um agendamento.</small></span><i>abrir</i></a>
     <a href="https://oyurygarcia.com.br/quiz-premium/" target="_blank" rel="noopener"><span><b>Diagnóstico de carreira</b><small>Pede código de acesso. Quer fazer o seu? Me peça um.</small></span><i>abrir</i></a>
     <a href="https://oyurygarcia.com.br/lider/" target="_blank" rel="noopener"><span><b>Líder Inspira Líder</b><small>Página de inscrição do quadro.</small></span><i>abrir</i></a>
     <a href="https://oyurygarcia.com.br/lap/" target="_blank" rel="noopener"><span><b>Página do LAP</b><small>É o link que você manda para quem não é perfil da Mentoria.</small></span><i>abrir</i></a>
@@ -228,8 +228,8 @@ ul.reg li{margin:6px 0;font-size:15px}
     <p style="margin:0">Uma mensagem própria para esse momento, com um áudio meu, está sendo preparada. Quando ficar pronta, entra aqui e substitui a abordagem acima.</p>
   </div>
   <div class="card">
-    <span class="rot aberto">em definição</span><h3>Feriado</h3>
-    <p style="margin:6px 0 0">A página não conhece feriado e oferece horário normalmente. Na véspera, a gente combina: você bloqueia a agenda ou atende.</p>
+    <span class="rot novo">feriado</span><h3>Feriado não tem horário</h3>
+    <p style="margin:6px 0 0">A página pula o feriado, como pula sábado e domingo, e oferece os dois dias úteis seguintes. No feriado de sexta, 20/11, o lead vê segunda e terça.</p>
   </div>
 </section>
 
@@ -349,10 +349,7 @@ var SITS = [
    c:0, r:"Gerente sênior, head e diretoria recebem no diagnóstico o convite da mentoria individual, que é conversa direta com o Yury."},
   {q:"Aparece um cartão novo na coluna \"1 · Lead do formulário\" do Funil VSL, sem reunião marcada.",
    o:["Espero ele agendar sozinho","Abordo no mesmo dia e, se topar, mando a página da VSL para ele assistir e marcar","Movo para \"Faltou\""],
-   c:1, r:"Quem preencheu e não agendou é seu para abordar, como um lead de formulário. O caminho preferido é levá-lo de volta à página, porque o vídeo prepara a reunião. Se fizer mais sentido, marque direto e avise o Yury."},
-  {q:"Amanhã é feriado e a página da VSL está oferecendo 7h, 8h e 19h.",
-   o:["Não faço nada, feriado não tem reunião","Combino com o Yury hoje: bloqueio a agenda ou atendo"],
-   c:1, r:"A página não conhece feriado. Se ninguém bloquear, o lead agenda e fica esperando."}
+   c:1, r:"Quem preencheu e não agendou é seu para abordar, como um lead de formulário. O caminho preferido é levá-lo de volta à página, porque o vídeo prepara a reunião. Se fizer mais sentido, marque direto e avise o Yury."}
 ];
 
 var FAQ = [
@@ -380,6 +377,7 @@ var CHK = [
 ];
 
 var LOG = [
+  ["19/11/2026","Feriado deixou de ter horário na agenda: a página pula para os dois dias úteis seguintes."],
   ["19/11/2026","Primeira versão desta página. Entraram: funil de VSL, diagnóstico de carreira, Líder Inspira Líder, página do LAP e área de alunos nova."]
 ];
 /* ===== fim do conteúdo editável ===== */
