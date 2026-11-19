@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Liderium · O que mudou no negócio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0d1f35;--navy2:#13294400;--card:#132a45;--line:#24405f;--azul:#4ab3e8;--ouro:#f0c040;--txt:#e8eef5;--mut:#9fb3c8;--ok:#58c98b;--warn:#f0a040}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--navy);color:var(--txt);font-family:"Plus Jakarta Sans",system-ui,sans-serif;font-size:16px;line-height:1.55;-webkit-text-size-adjust:100%}
+h1,h2,h3{font-family:Outfit,system-ui,sans-serif;line-height:1.2;margin:0}
+button{font:inherit;color:inherit;cursor:pointer}
+.wrap{max-width:720px;margin:0 auto;padding:0 16px 96px}
+header{padding:28px 0 8px}
+.selo{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--azul);font-weight:700}
+h1{font-size:28px;margin-top:8px}
+.sub{color:var(--mut);font-size:14px;margin-top:8px}
+nav{position:sticky;top:0;z-index:5;background:rgba(13,31,53,.96);backdrop-filter:blur(6px);margin:0 -16px;padding:10px 16px;border-bottom:1px solid var(--line)}
+.tabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;border:1px solid var(--line);background:transparent;border-radius:999px;padding:7px 12px;font-size:13px;font-weight:600;color:var(--mut);white-space:nowrap}
+.tab[aria-selected=true]{background:var(--azul);border-color:var(--azul);color:#06223a}
+.tab.visto:not([aria-selected=true])::after{content:" ✓";color:var(--ok)}
+.barra{height:3px;background:var(--line);border-radius:3px;margin-top:10px;overflow:hidden}
+.barra i{display:block;height:100%;background:var(--ouro);width:0;transition:width .3s}
+section{display:none;padding-top:24px}
+section.on{display:block}
+h2{font-size:23px}
+.fala{border-left:3px solid var(--ouro);padding:2px 0 2px 14px;margin:16px 0;color:var(--txt)}
+.fala small{display:block;color:var(--mut);margin-top:6px;font-size:13px}
+p{margin:12px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin:12px 0}
+.card h3{font-size:17px}
+.rot{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border-radius:6px;padding:2px 8px;margin-bottom:8px}
+.rot.novo{background:rgba(240,192,64,.16);color:var(--ouro)}
+.rot.igual{background:rgba(159,179,200,.16);color:var(--mut)}
+.rot.aberto{background:rgba(240,160,64,.16);color:var(--warn)}
+.era,.fica,.voce{padding:10px 12px;border-radius:10px;margin-top:8px;font-size:15px}
+.era{background:rgba(159,179,200,.08);color:var(--mut)}
+.fica{background:rgba(74,179,232,.10)}
+.voce{background:rgba(88,201,139,.10)}
+.era b,.fica b,.voce b{display:block;font-size:11px;letter-spacing:.07em;text-transform:uppercase;margin-bottom:2px}
+.era b{color:var(--mut)}.fica b{color:var(--azul)}.voce b{color:var(--ok)}
+/* mapa */
+.mapa{display:grid;gap:8px;margin-top:14px}
+.porta{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.porta[aria-expanded=true]{border-color:var(--azul)}
+.porta .n{font-family:Outfit;font-weight:700;color:var(--azul);width:22px}
+.porta .t{flex:1;font-weight:600}
+.porta .d{font-size:12px;color:var(--mut);text-align:right;max-width:42%}
+.det{display:none;padding:4px 14px 12px 46px;font-size:15px;color:var(--txt)}
+.det.on{display:block}
+.det .linha{color:var(--mut);font-size:14px;margin-top:6px}
+.seta{color:var(--mut);font-size:13px;margin:14px 0 4px;text-transform:uppercase;letter-spacing:.07em;font-weight:700}
+.dest{display:grid;grid-template-columns:1fr;gap:8px}
+.dest div{border:1px dashed var(--line);border-radius:12px;padding:10px 14px;font-size:14px}
+.dest b{color:var(--ouro);font-family:Outfit;font-size:15px;display:block}
+/* passos */
+ol.passos{list-style:none;padding:0;margin:14px 0;counter-reset:p}
+ol.passos li{counter-increment:p;position:relative;padding:0 0 14px 40px}
+ol.passos li::before{content:counter(p);position:absolute;left:0;top:0;width:26px;height:26px;border-radius:50%;background:var(--card);border:1px solid var(--line);font-family:Outfit;font-weight:700;font-size:13px;display:grid;place-items:center;color:var(--azul)}
+ol.passos li.eu::before{background:var(--ok);border-color:var(--ok);color:#06223a}
+ol.passos li:not(:last-child)::after{content:"";position:absolute;left:12.5px;top:28px;bottom:2px;width:1px;background:var(--line)}
+ol.passos small{display:block;color:var(--mut);font-size:13px}
+table{width:100%;border-collapse:collapse;font-size:14px;margin-top:8px}
+th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--mut);font-size:11px;letter-spacing:.07em;text-transform:uppercase}
+/* situacoes */
+.sit{margin:14px 0}
+.sit .q{font-weight:600}
+.ops{display:grid;gap:8px;margin-top:10px}
+.op{text-align:left;background:transparent;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:15px}
+.op.certa{border-color:var(--ok);background:rgba(88,201,139,.10)}
+.op.errada{border-color:#d86a6a;background:rgba(216,106,106,.08)}
+.resp{display:none;margin-top:10px;font-size:14.5px;padding:10px 12px;border-radius:10px;background:rgba(74,179,232,.08)}
+.resp.on{display:block}
+.placar{color:var(--mut);font-size:14px}
+/* faq e checklist */
+details{border-bottom:1px solid var(--line);padding:12px 0}
+summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--azul);font-family:Outfit;font-size:20px;line-height:1}
+details[open] summary::after{content:"–"}
+details p{color:var(--txt);font-size:15px;margin:8px 0 0}
+.chk{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--line)}
+.chk input{width:22px;height:22px;accent-color:var(--ok);flex:0 0 auto;margin-top:2px}
+.log{font-size:14px;color:var(--mut)}
+.log b{color:var(--txt)}
+.pe{position:fixed;left:0;right:0;bottom:0;background:rgba(13,31,53,.97);border-top:1px solid var(--line);padding:10px 16px}
+.pe div{max-width:720px;margin:0 auto;display:flex;gap:10px}
+.pe button{flex:1;border-radius:10px;padding:12px;font-weight:700;border:1px solid var(--line);background:transparent}
+.pe button.prox{background:var(--azul);border-color:var(--azul);color:#06223a}
+.pe button:disabled{opacity:.35}
+a{color:var(--azul)}
+.links a{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);text-decoration:none;color:var(--txt)}
+.links a:last-child{border-bottom:0;padding-bottom:0}
+.links a b{display:block;font-family:Outfit;font-size:16px}
+.links a small{display:block;color:var(--mut);font-size:13px}
+.links a i{font-style:normal;color:var(--azul);font-size:13px;font-weight:700;white-space:nowrap}
+.telas{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin:12px -16px 0;padding:0 16px 8px}
+.telas figure{flex:0 0 68%;max-width:260px;margin:0;scroll-snap-align:center}
+.telas img{width:100%;display:block;border-radius:12px;border:1px solid var(--line);aspect-ratio:652/1000;object-fit:cover;object-position:top;background:#0d1f35}
+.telas figcaption{font-size:13.5px;color:var(--mut);margin-top:8px}
+.telas figcaption b{color:var(--txt);display:block}
+ul.reg{margin:8px 0 0;padding-left:18px}
+ul.reg li{margin:6px 0;font-size:15px}
+@media(min-width:640px){h1{font-size:34px}.dest{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="selo">Liderium · material interno do time</div>
+  <h1>O que mudou no negócio e o que muda no seu dia</h1>
+  <div class="sub">Atualizado em <span id="atualizado"></span> · leitura de uns 8 minutos · fica como referência: cada mudança nova entra aqui</div>
+</header>
+
+<nav>
+  <div class="tabs" role="tablist" id="tabs"></div>
+  <div class="barra"><i id="barra"></i></div>
+</nav>
+
+<!-- 1 -->
+<section data-t="Visão geral">
+  <h2>O que está acontecendo</h2>
+  <div class="fala">Marcio, até a semana passada a gente tinha uma porta de entrada só: anúncio, formulário e você ligando. Nesta semana eu abri mais portas e montei uma escada de produtos. Quero que você enxergue o desenho inteiro, porque daqui para frente vai chegar gente em você por caminhos diferentes, e cada caminho pede uma conversa diferente.</div>
+  <p>Em uma frase: <b>mais portas de entrada, e um produto certo para cada cargo.</b></p>
+  <div class="card">
+    <span class="rot novo">o porquê</span>
+    <p style="margin:0">De 31/08 a 04/10, 41 leads de São Paulo preencheram o formulário e não chamaram no WhatsApp. Nenhum agendou reunião. Ao mesmo tempo, de cada duas reuniões realizadas em SP, uma virava venda. O problema estava em levar o lead até a reunião, e foi aí que mexemos.</p>
+  </div>
+  <p>O que entrou no ar de 16 a 19/11:</p>
+  <div class="card"><span class="rot novo">novo</span><h3>Funil de VSL</h3><p style="margin:6px 0 0">VSL é o vídeo de vendas. O lead assiste a um vídeo meu e marca a reunião sozinho. É o que mais muda o seu dia.</p></div>
+  <div class="card"><span class="rot novo">novo</span><h3>Diagnóstico de carreira</h3><p style="margin:6px 0 0">Um quiz que lê o momento da pessoa e convida para o produto certo conforme o cargo.</p></div>
+  <div class="card"><span class="rot novo">novo</span><h3>Líder Inspira Líder</h3><p style="margin:6px 0 0">Entrevista ao vivo com um líder convidado, aberta ao público. Quem se inscreve vira lead aquecido.</p></div>
+  <div class="card"><span class="rot novo">novo</span><h3>LAP à venda e área de alunos nova</h3><p style="margin:6px 0 0">O LAP ganhou página de vendas com compra direta, e as aulas estão indo para uma área de alunos nossa.</p></div>
+  <div class="card"><span class="rot igual">segue igual</span><h3>Funil principal</h3><p style="margin:6px 0 0">Anúncio, formulário, WhatsApp e as suas ligações. Nada mudou no processo nem nas mensagens.</p></div>
+
+<h3 style="margin-top:26px">Links para você ter à mão</h3>
+  <div class="card links">
+    <a href="https://oyurygarcia.com.br/conversa/" target="_blank" rel="noopener"><span><b>Página da VSL</b><small>O que o lead do funil de VSL vê. Pode assistir, só não confirme um agendamento.</small></span><i>abrir</i></a>
+    <a href="https://oyurygarcia.com.br/quiz-premium/" target="_blank" rel="noopener"><span><b>Diagnóstico de carreira</b><small>Pede código de acesso. Quer fazer o seu? Me peça um.</small></span><i>abrir</i></a>
+    <a href="https://oyurygarcia.com.br/lider/" target="_blank" rel="noopener"><span><b>Líder Inspira Líder</b><small>Página de inscrição do quadro.</small></span><i>abrir</i></a>
+    <a href="https://oyurygarcia.com.br/lap/" target="_blank" rel="noopener"><span><b>Página do LAP</b><small>É o link que você manda para quem não é perfil da Mentoria.</small></span><i>abrir</i></a>
+    <a href="https://yury-garcia.memberkit.com.br/" target="_blank" rel="noopener"><span><b>Área de alunos</b><small>Você já tem acesso aos dois cursos, Mentoria Liderium e LAP. O e-mail de acesso chegou na sua caixa da empresa.</small></span><i>abrir</i></a>
+    <a href="https://oyurygarcia.com.br/" target="_blank" rel="noopener"><span><b>Site</b><small>Segue igual.</small></span><i>abrir</i></a>
+  </div>
+</section>
+
+<!-- 2 -->
+<section data-t="Mapa dos funis">
+  <h2>O mapa: por onde as pessoas chegam</h2>
+  <div class="fala">Você não precisa saber como cada peça funciona por dentro. Precisa saber de onde a pessoa veio, porque isso diz o quanto ela já me conhece.</div>
+  <p class="sub">Toque em cada porta para abrir.</p>
+  <div class="mapa" id="mapa"></div>
+  <div class="seta">Para onde cada porta leva</div>
+  <div class="dest">
+    <div><b>Mentoria Liderium</b>Coordenação e gerência. Passa por reunião com você.</div>
+    <div><b>LAP</b>Analista e quem está começando a liderar. Compra direto na página, sem reunião.</div>
+    <div><b>Mentoria individual</b>Gerente sênior, head, diretoria. Conversa comigo.</div>
+  </div>
+</section>
+
+<!-- 3 -->
+<section data-t="Funil de VSL">
+  <h2>O funil de VSL e o seu papel</h2>
+  <div class="fala">A ligação fria para convencer alguém a marcar reunião era a parte mais difícil do seu trabalho. O vídeo passa a fazer isso. O lead chega na reunião sabendo quem eu sou, o que é a Liderium e tendo escolhido o horário.</div>
+  <div class="era"><b>Como era</b>O lead preenchia o formulário e esperava. Você ligava para apresentar a Liderium e marcar a reunião.</div>
+  <div class="fica"><b>Como fica</b>O lead preenche o formulário, cai numa página, assiste a um vídeo de 8 minutos e escolhe o horário na hora. Recebe o convite por e-mail e dois lembretes automáticos no WhatsApp.</div>
+  <div class="voce"><b>O que você faz</b>Confirma por ligação e conduz a reunião de 1 hora.</div>
+
+  <h3 style="margin-top:24px">O que o lead vê</h3>
+  <p class="sub">Arraste para o lado. São as telas reais, no celular.</p>
+  <div class="telas">
+    <figure><img src="img/1-video.jpg" alt="Página com o vídeo" loading="lazy"><figcaption><b>1. O vídeo</b>Ele chega do formulário e assiste. Não dá para pular nem acelerar.</figcaption></figure>
+    <figure><img src="img/2-horarios.jpg" alt="Botão de agendar e horários" loading="lazy"><figcaption><b>2. Os horários</b>Aos 5 minutos aparece o botão, com dois dias e até três horários em cada.</figcaption></figure>
+    <figure><img src="img/3-whatsapp.jpg" alt="Campo do WhatsApp" loading="lazy"><figcaption><b>3. O WhatsApp</b>Ele escolhe o horário e digita só o número. Nome e e-mail vêm do formulário.</figcaption></figure>
+    <figure><img src="img/4-marcado.jpg" alt="Tela de conversa marcada" loading="lazy"><figcaption><b>4. Marcado</b>Recebe o convite por e-mail. Se tocar no botão, chama no WhatsApp pedindo o link.</figcaption></figure>
+  </div>
+
+  <h3 style="margin-top:24px">A lógica do agendamento</h3>
+  <div class="card">
+    <ul class="reg">
+      <li><b>Poucos horários, de propósito.</b> Só hoje e o próximo dia útil. Quem marcava para muito longe faltava.</li>
+      <li><b>Hoje:</b> 17h, 18h e 19h30. <b>Próximo dia útil:</b> 7h, 8h e 19h. De segunda a sexta.</li>
+      <li><b>Antecedência mínima de 3 horas.</b> Às 15h, o das 17h já não aparece.</li>
+      <li><b>Só aparece horário em que você ou eu estamos livres.</b> Se os dois estão ocupados, o horário some da página.</li>
+      <li><b>Você é sempre a primeira opção para conduzir.</b> Se estiver ocupado, sou eu.</li>
+      <li><b>Um WhatsApp, um agendamento.</b> O mesmo número não marca duas vezes.</li>
+      <li><b>Reunião de 1 hora</b>, pelo Meet, com o link já no convite e no cartão.</li>
+    </ul>
+  </div>
+
+  <h3 style="margin-top:24px">O caminho, passo a passo</h3>
+  <ol class="passos">
+    <li>Vê o anúncio em vídeo no Instagram<small>Campanha própria, só São Paulo, rodando em paralelo ao funil principal.</small></li>
+    <li>Preenche o formulário e toca em "Agendar"</li>
+    <li>Assiste ao vídeo na página<small>O botão de agendar só aparece depois de 5 minutos de vídeo.</small></li>
+    <li>Escolhe o horário<small>Sempre dois dias de opção. Hoje: 17h, 18h e 19h30. Próximo dia útil: 7h, 8h e 19h.</small></li>
+    <li>O cartão aparece sozinho no Kommo, no funil "Funil VSL", coluna "2 · Agendou"<small>Já vem com data, hora, link do Meet e quem conduz.</small></li>
+    <li class="eu"><b>Você recebe o convite na sua agenda</b><small>Eu entro como opcional. Se você estiver ocupado naquele horário, quem conduz sou eu.</small></li>
+    <li>O lead recebe lembrete 4 horas e 1 hora antes<small>Automático, pelo WhatsApp.</small></li>
+    <li class="eu"><b>Você liga para confirmar</b><small>Ligação curta. O lead não foi avisado dela, então é só confirmar a presença, sem reapresentar a Liderium.</small></li>
+    <li class="eu"><b>Você conduz a reunião de 1 hora pelo Meet</b></li>
+    <li class="eu"><b>Você move o cartão</b><small>Para "3 · Reunião realizada" ou "4 · Faltou".</small></li>
+  </ol>
+
+  <div class="card">
+    <span class="rot novo">atenção</span><h3>Sua agenda agora decide os horários</h3>
+    <p style="margin:6px 0 0">A página só oferece um horário se você ou eu estivermos livres. Ela olha a sua agenda do Google: evento seu ou convite <b>aceito</b> conta como ocupado. Convite que você não respondeu conta como livre. Então mantenha a agenda em dia e, se não vai poder, bloqueie o horário.</p>
+  </div>
+  <h3 style="margin-top:24px">Quando o lead não agenda</h3>
+  <p>Vai acontecer: a pessoa preenche o formulário e não chega a marcar. O primeiro lead do funil fez isso e nem abriu a página. Esse cartão fica parado na coluna "1 · Lead do formulário", e é aí que você entra.</p>
+  <div class="voce"><b>O que você faz</b>
+    <ul class="reg">
+      <li>Aborda no mesmo dia pelo WhatsApp, como você já faz com um lead de formulário.</li>
+      <li>Se ele topar conversar, manda a página da VSL para ele assistir e marcar: oyurygarcia.com.br/conversa</li>
+      <li>Se sentir que é melhor marcar direto, marca e me avisa.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <span class="rot aberto">em definição</span>
+    <p style="margin:0">Uma mensagem própria para esse momento, com um áudio meu, está sendo preparada. Quando ficar pronta, entra aqui e substitui a abordagem acima.</p>
+  </div>
+  <div class="card">
+    <span class="rot aberto">em definição</span><h3>Feriado</h3>
+    <p style="margin:6px 0 0">A página não conhece feriado e oferece horário normalmente. Na véspera, a gente combina: você bloqueia a agenda ou atende.</p>
+  </div>
+</section>
+
+<!-- 4 -->
+<section data-t="Diagnóstico">
+  <h2>O diagnóstico de carreira</h2>
+  <div class="fala">Nem todo mundo que chega até mim é perfil da Mentoria. O diagnóstico resolve isso: a pessoa responde, recebe uma leitura do momento dela e um convite para o produto que faz sentido para o cargo. Ninguém fica sem próximo passo.</div>
+  <div class="era"><b>Como era</b>Um arquivo que eu mandava e analisava com o ChatGPT, um a um, pelo WhatsApp.</div>
+  <div class="fica"><b>Como fica</b>Um quiz no site, de até 8 minutos, com perguntas diferentes conforme o cargo. No fim, um relatório personalizado e um convite.</div>
+  <h3 style="margin-top:22px">Quem recebe qual convite</h3>
+  <table>
+    <tr><th>Cargo</th><th>Convite</th><th>Chega em você?</th></tr>
+    <tr><td>Analista, especialista e supervisor no início</td><td>Conhecer o LAP</td><td>Não. Compra direto.</td></tr>
+    <tr><td>Supervisor mais avançado</td><td>Conversa com a equipe</td><td><b>Sim</b>, pela página da VSL</td></tr>
+    <tr><td>Coordenação e gerência</td><td>Mentoria Liderium</td><td><b>Sim</b>, pela página da VSL</td></tr>
+    <tr><td>Gerente sênior, head, diretoria</td><td>Mentoria individual</td><td>Chama no WhatsApp. Passa para mim.</td></tr>
+    <tr><td>Empresário</td><td>Mentoria Empresarial</td><td>Tela própria. Passa para mim.</td></tr>
+  </table>
+  <div class="card">
+    <span class="rot novo">o que isso muda para você</span>
+    <p style="margin:6px 0 0">Quem vem do diagnóstico e agenda cai no mesmo funil de VSL, com o mesmo cartão e os mesmos lembretes. A diferença é que essa pessoa já leu um relatório sobre a própria carreira. Vale abrir a reunião perguntando o que chamou a atenção dela ali.</p>
+  </div>
+  <div class="card">
+    <span class="rot aberto">fase de teste</span>
+    <p style="margin:0">O relatório completo hoje só abre com código de acesso. Os primeiros códigos foram para os inscritos do Líder Inspira Líder. As respostas do quiz ficam numa planilha minha e ainda não entram no Kommo.</p>
+  </div>
+</section>
+
+<!-- 5 -->
+<section data-t="Líder Inspira Líder">
+  <h2>Líder Inspira Líder</h2>
+  <div class="fala">É um quadro em que eu entrevisto líderes que foram longe. Para o mentorado é bônus. Para quem está de fora é um jeito de me conhecer sem anúncio e sem pressão de venda.</div>
+  <div class="fica"><b>Como funciona</b>A pessoa se inscreve numa página, recebe o convite com o link do Meet, um e-mail de boas-vindas e entra num grupo de avisos no WhatsApp. No dia, recebe o lembrete. Depois do episódio, recebe o diagnóstico de carreira com um código.</div>
+  <div class="card">
+    <span class="rot novo">primeiro episódio</span>
+    <p style="margin:0">Aconteceu na quarta, 18/11, com a Carolina Vido: "Do atendimento à liderança global". Os inscritos receberam o diagnóstico de carreira na mesma noite.</p>
+  </div>
+  <div class="voce"><b>O que você faz</b>Por enquanto, nada de abordagem ativa. Os inscritos ficam numa planilha, fora do Kommo. Se algum deles agendar pelo diagnóstico, chega em você pelo funil de VSL, e você já sabe que é alguém que me viu ao vivo.</div>
+  <div class="card">
+    <span class="rot aberto">em definição</span>
+    <p style="margin:0">O que fazemos depois do evento com quem assistiu e com quem faltou, e quando os inscritos passam a entrar no Kommo.</p>
+  </div>
+</section>
+
+<!-- 6 -->
+<section data-t="LAP e área de alunos">
+  <h2>LAP à venda e a área de alunos nova</h2>
+  <div class="fala">Eu estou saindo da Eduzz e levando as aulas para uma área nossa, com a nossa cara. E o LAP, que estava parado, virou produto de entrada: quem ainda não é perfil da Mentoria tem o que comprar.</div>
+  <div class="era"><b>Como era</b>Aulas na Eduzz. O LAP não tinha página nem forma de comprar sozinho.</div>
+  <div class="fica"><b>Como fica</b>Área de alunos nova no MemberKit com dois cursos: Mentoria Liderium e LAP. O LAP tem página de vendas, e quem paga recebe o acesso sozinho por e-mail, na hora, por 1 ano.</div>
+  <div class="card">
+    <span class="rot novo">LAP em números</span>
+    <p style="margin:0">Formação em gestão e liderança. Na Black Friday, R$ 197. Página: <a href="https://oyurygarcia.com.br/lap/">oyurygarcia.com.br/lap</a>. O primeiro módulo abre na compra e os seguintes entram nas semanas seguintes.</p>
+  </div>
+  <div class="voce"><b>O que você faz</b>Quando o lead não é perfil da Mentoria (analista, supervisor no começo), você tem para onde mandar: o link do LAP. Não precisa de reunião.</div>
+  <div class="card">
+    <span class="rot aberto">ainda não mudou</span>
+    <p style="margin:0">Os mentorados atuais continuam assistindo pela Eduzz. A mudança deles para a área nova vem depois, e eu aviso antes. Para quem fecha a Mentoria agora, o acesso segue como você já faz.</p>
+  </div>
+</section>
+
+<!-- 7 -->
+<section data-t="Situações">
+  <h2>Situações do dia a dia</h2>
+  <p class="sub">Escolha o que você faria. A resposta aparece na hora.</p>
+  <div id="sits"></div>
+  <p class="placar" id="placar"></p>
+</section>
+
+<!-- 8 -->
+<section data-t="Dúvidas">
+  <h2>Perguntas que você pode ter</h2>
+  <div id="faq"></div>
+</section>
+
+<!-- 9 -->
+<section data-t="Fechamento">
+  <h2>A partir de hoje</h2>
+  <p class="sub">Marque o que já está valendo no seu dia. Fica salvo neste aparelho.</p>
+  <div id="chk"></div>
+  <h3 style="margin-top:28px">Registro de mudanças</h3>
+  <p class="sub">Toda mudança nova entra aqui em cima, com a data.</p>
+  <div class="log" id="log"></div>
+</section>
+</div>
+
+<div class="pe"><div>
+  <button id="ant">Voltar</button>
+  <button id="prox" class="prox">Continuar</button>
+</div></div>
+
+<script>
+/* ===== CONTEÚDO EDITÁVEL: para atualizar a página, mexa só aqui e nos blocos de texto acima ===== */
+var ATUALIZADO = "19/11/2026";
+
+var PORTAS = [
+  {t:"Funil principal", d:"segue igual", x:"Anúncio no Instagram, formulário, o lead chama no WhatsApp e você liga para marcar a reunião.", l:"Chega em você no Kommo, como sempre. É o funil com mais verba."},
+  {t:"Funil de VSL", d:"novo · 18/11", x:"Anúncio, formulário, vídeo de 8 minutos e agenda. O lead marca sozinho.", l:"Chega em você já agendado, num funil separado no Kommo."},
+  {t:"Diagnóstico de carreira", d:"novo · em teste", x:"Quiz no site que lê o momento da pessoa e convida conforme o cargo.", l:"Coordenação e gerência seguem para a página da VSL e agendam com você."},
+  {t:"Líder Inspira Líder", d:"novo · 18/11", x:"Entrevista ao vivo, aberta ao público, com inscrição.", l:"Os inscritos recebem o diagnóstico. Quem agenda, chega em você."},
+  {t:"Página do LAP", d:"novo · 18/11", x:"Página de vendas com compra direta e acesso automático.", l:"Não passa por você. É para onde você manda quem não é perfil da Mentoria."},
+  {t:"Site", d:"segue igual", x:"Formulário de aplicação e botão do WhatsApp no oyurygarcia.com.br.", l:"Continua como hoje."}
+];
+
+var SITS = [
+  {q:"Chegou na sua agenda o convite de uma reunião do funil de VSL, num horário em que você não pode.",
+   o:["Deixo o convite sem responder e vejo no dia","Recuso o convite e aviso o Yury, que entra no meu lugar","Ligo para o lead e remarco para outro dia"],
+   c:1, r:"O Yury está como opcional em todo convite justamente para cobrir. Para não acontecer de novo, deixe bloqueado na sua agenda o horário em que não atende: a página só oferece horário livre."},
+  {q:"Um lead agendou pelo vídeo para hoje às 19h30. Na ligação de confirmação, o que você faz?",
+   o:["Apresento a Liderium de novo, para garantir","Confirmo a presença em uma ligação curta","Não ligo, os lembretes automáticos bastam"],
+   c:1, r:"Ele já assistiu ao vídeo e escolheu o horário. A ligação serve para ele sentir que tem alguém do outro lado e aparecer. A conversa de verdade fica para a reunião."},
+  {q:"Na reunião você percebe que a pessoa é analista, sem equipe, e não é perfil da Mentoria.",
+   o:["Encerro dizendo que não temos nada para ela","Tento vender a Mentoria mesmo assim","Indico o LAP e mando o link da página"],
+   c:2, r:"O LAP existe para isso. Custa R$ 197 na Black Friday, a compra é direta e o acesso chega sozinho por e-mail."},
+  {q:"Um diretor chama no WhatsApp dizendo que fez o diagnóstico de carreira.",
+   o:["Passo para o Yury: é perfil de mentoria individual","Mando o link da VSL para ele agendar","Mando o link do LAP"],
+   c:0, r:"Gerente sênior, head e diretoria recebem no diagnóstico o convite da mentoria individual, que é conversa direta com o Yury."},
+  {q:"Aparece um cartão novo na coluna \"1 · Lead do formulário\" do Funil VSL, sem reunião marcada.",
+   o:["Espero ele agendar sozinho","Abordo no mesmo dia e, se topar, mando a página da VSL para ele assistir e marcar","Movo para \"Faltou\""],
+   c:1, r:"Quem preencheu e não agendou é seu para abordar, como um lead de formulário. O caminho preferido é levá-lo de volta à página, porque o vídeo prepara a reunião. Se fizer mais sentido, marque direto e avise o Yury."},
+  {q:"Amanhã é feriado e a página da VSL está oferecendo 7h, 8h e 19h.",
+   o:["Não faço nada, feriado não tem reunião","Combino com o Yury hoje: bloqueio a agenda ou atendo"],
+   c:1, r:"A página não conhece feriado. Se ninguém bloquear, o lead agenda e fica esperando."}
+];
+
+var FAQ = [
+  ["O funil principal acabou?","Não. Ele segue igual, com a maior parte da verba. O funil de VSL roda em paralelo, com verba própria, para a gente comparar os dois pelo custo de cada reunião realizada."],
+  ["O que é VSL?","É a sigla em inglês para vídeo de vendas. Aqui é o vídeo de 8 minutos em que o Yury se apresenta, explica a Liderium e convida para a conversa."],
+  ["Como eu sei de qual funil veio o lead?","Pelo funil do Kommo. Quem veio pela VSL ou pelo diagnóstico está no \"Funil VSL\". Quem veio pelo caminho de sempre está no \"Pré-venda e venda Liderium\"."],
+  ["O lead sabe que a reunião é comigo?","Ele sabe que é uma conversa com a equipe do Yury. O convite chega com o nome do Yury por enquanto, e isso muda quando a agenda passar para a sua conta."],
+  ["E se o lead quiser remarcar?","O convite traz um link para o WhatsApp do CRM. Ele chama por lá e você remarca na conversa."],
+  ["Por que tem horário às 7h e às 8h?","São horários que executivo consegue antes do expediente. Se você não atende de manhã, deixe bloqueado na sua agenda e eu conduzo."],
+  ["Os lembretes de 4 h e 1 h sou eu que mando?","Não, saem sozinhos. Vale olhar, nos primeiros leads, se chegaram mesmo. Se notar que não chegou, me avise."],
+  ["Quem faz o diagnóstico entra no Kommo?","Só se agendar pela página da VSL. As respostas do quiz ficam numa planilha separada."],
+  ["Posso oferecer o LAP para quem é perfil da Mentoria?","Não é a ideia. Coordenação e gerência seguem para a Mentoria Liderium. O LAP é para quem ainda não chegou lá."],
+  ["O mentorado novo recebe acesso onde?","Por enquanto, como você já faz hoje. A área nova está pronta para o LAP; a Mentoria muda depois e eu aviso antes."],
+  ["Onde vejo a próxima mudança?","Nesta página. O registro de mudanças fica no fim, com a data de cada uma."]
+];
+
+var CHK = [
+  "Minha agenda do Google está em dia, com os horários em que não atendo bloqueados",
+  "Achei o \"Funil VSL\" no Kommo e sei o que significa cada uma das 4 colunas",
+  "Sei que a ligação para quem agendou pela VSL é só de confirmação",
+  "Todo dia olho a coluna \"1 · Lead do formulário\" do Funil VSL e abordo quem não agendou",
+  "Depois de cada reunião, movo o cartão para \"Reunião realizada\" ou \"Faltou\"",
+  "Tenho o link do LAP salvo para mandar a quem não é perfil da Mentoria",
+  "Sei para quem passo gerente sênior, head, diretoria e empresário: para o Yury"
+];
+
+var LOG = [
+  ["19/11/2026","Primeira versão desta página. Entraram: funil de VSL, diagnóstico de carreira, Líder Inspira Líder, página do LAP e área de alunos nova."]
+];
+/* ===== fim do conteúdo editável ===== */
+
+function $(s,r){return (r||document).querySelector(s)}
+function el(t,c,h){var e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e}
+function guarda(k,v){try{if(v===undefined)return JSON.parse(localStorage.getItem(k)||"null");localStorage.setItem(k,JSON.stringify(v))}catch(e){return null}}
+
+$("#atualizado").textContent=ATUALIZADO;
+
+/* mapa */
+PORTAS.forEach(function(p,i){
+  var b=el("button","porta",'<span class="n">'+(i+1)+'</span><span class="t">'+p.t+'</span><span class="d">'+p.d+'</span>');
+  b.setAttribute("aria-expanded","false");
+  var d=el("div","det",p.x+'<div class="linha">'+p.l+'</div>');
+  b.onclick=function(){var on=d.classList.toggle("on");b.setAttribute("aria-expanded",on)};
+  $("#mapa").appendChild(b);$("#mapa").appendChild(d);
+});
+
+/* situações */
+var feitas=0,certas=0;
+SITS.forEach(function(s,i){
+  var c=el("div","card sit",'<div class="q">'+(i+1)+'. '+s.q+'</div>');
+  var ops=el("div","ops"),resp=el("div","resp",s.r),ja=false;
+  s.o.forEach(function(t,j){
+    var b=el("button","op",t);
+    b.onclick=function(){
+      if(!ja){ja=true;feitas++;if(j===s.c)certas++;
+        $("#placar").textContent=feitas+" de "+SITS.length+" respondidas · "+certas+" de primeira";}
+      b.classList.add(j===s.c?"certa":"errada");
+      if(j!==s.c)ops.children[s.c].classList.add("certa");
+      resp.classList.add("on");
+    };
+    ops.appendChild(b);
+  });
+  c.appendChild(ops);c.appendChild(resp);$("#sits").appendChild(c);
+});
+
+/* faq */
+FAQ.forEach(function(f){var d=el("details",null,"<summary>"+f[0]+"</summary><p>"+f[1]+"</p>");$("#faq").appendChild(d)});
+
+/* checklist */
+var marc=guarda("treino-chk")||{};
+CHK.forEach(function(t,i){
+  var l=el("label","chk",'<input type="checkbox"><span>'+t+'</span>');
+  var c=$("input",l);c.checked=!!marc[i];
+  c.onchange=function(){marc[i]=c.checked;guarda("treino-chk",marc)};
+  $("#chk").appendChild(l);
+});
+LOG.forEach(function(l){$("#log").appendChild(el("p",null,"<b>"+l[0]+"</b> · "+l[1]))});
+
+/* navegação */
+var secs=[].slice.call(document.querySelectorAll("section")),atual=0,vistos={};
+secs.forEach(function(s,i){
+  var b=el("button","tab",s.dataset.t);b.setAttribute("role","tab");
+  b.onclick=function(){ir(i)};$("#tabs").appendChild(b);
+});
+function ir(i){
+  atual=Math.max(0,Math.min(secs.length-1,i));vistos[atual]=1;
+  secs.forEach(function(s,j){s.classList.toggle("on",j===atual)});
+  [].forEach.call($("#tabs").children,function(b,j){
+    b.setAttribute("aria-selected",j===atual);if(vistos[j])b.classList.add("visto");
+    if(j===atual&&b.scrollIntoView)b.scrollIntoView({inline:"center",block:"nearest"});
+  });
+  $("#barra").style.width=(Object.keys(vistos).length/secs.length*100)+"%";
+  $("#ant").disabled=atual===0;
+  $("#prox").disabled=atual===secs.length-1;
+  $("#prox").textContent=atual===secs.length-1?"Fim":"Continuar";
+  window.scrollTo(0,0);
+}
+$("#ant").onclick=function(){ir(atual-1)};
+$("#prox").onclick=function(){ir(atual+1)};
+ir(0);
+</script>
+</body>
+</html>
