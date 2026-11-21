@@ -143,7 +143,7 @@ footer a{color:var(--text-d)}
   <p class="aviso-som">Toque no vídeo para pausar.</p>
   <button class="cta" id="cta" type="button">Agendar reunião <svg viewBox="0 0 24 24"><path d="M11 4h2v12l5.5-5.5 1.4 1.4L12 19.8l-7.9-7.9 1.4-1.4L11 16z"/></svg></button>
 
-  <section class="agenda" id="agenda" aria-live="polite">
+  <section class="agenda" id="agenda" aria-live="polite" data-clarity-mask="true">
     <!-- aviso só aparece quando há recado (ex.: horário acabou de ser ocupado) -->
     <p class="apoio" id="apoio" hidden></p>
 
@@ -175,7 +175,7 @@ footer a{color:var(--text-d)}
   </section>
 
   <!-- PÁGINA DE OBRIGADO (troca a página inteira depois de confirmar) -->
-  <section class="obrigado" id="obrigado" aria-live="polite">
+  <section class="obrigado" id="obrigado" aria-live="polite" data-clarity-mask="true">
     <div class="ok"><svg viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg></div>
     <h1>Sua conversa está marcada</h1>
     <p class="quando" id="ob-quando"></p>
@@ -199,6 +199,7 @@ var CONFIG = {
   VIDEO_ID: "cqUcyGs3cLU",   // v4 final com camada visual (Yury, 16/11), não listado.
   AGENDA_SEGUNDOS: 301,       // 5:01, durante a apresentação da Liderium (Yury, 16/11).
   AGENDA_API: "https://script.google.com/macros/s/AKfycby-AhIe9WRvgLwfq159hHtb8uvd_fj6D0XT9WS-tozb4Jx2GRPXelS__NElC3Sr5ymm/exec",  // app da web do script da agenda (script-agenda/); vazio = só o botão do WhatsApp
+  CLARITY_ID: "zh6r6iubqs", // Microsoft Clarity "VSL Liderium" (Yury, 21/11): tempo na página, cliques e gravações; o que se digita fica escondido. Vazio = desligado.
   PIXEL_ID: "1123246773950289", // pixel "Pixel Liderium (site)", criado em 18/11 (sim do Yury). Vazio = nada vai para a Meta.
   WHATSAPP: "5511999106121",  // WhatsApp do CRM (CONTAS-E-ACESSOS)
   WHATSAPP_FRASE: "Olá! Agendei minha conversa pela página do vídeo e quero falar com a equipe."  // o robô do Kommo precisa reconhecer esta frase
@@ -208,8 +209,31 @@ var CONFIG = {
 (function(){
   var interno = /[?&]interno=1(&|$)/.test(location.search);
   try { if (interno) localStorage.setItem('vsl_interno', '1'); else interno = localStorage.getItem('vsl_interno') === '1'; } catch(e){}
-  if (interno) CONFIG.PIXEL_ID = "";
+  if (interno) { CONFIG.PIXEL_ID = ""; CONFIG.CLARITY_ID = ""; }
 })();
+// Origem da visita (Yury, 21/11): guarda a primeira origem conhecida deste aparelho (utm do link ou site de onde veio).
+// Vai junto em todo evento do pixel, no Clarity e no agendamento (vira nota no cartão do Kommo). Nunca leva dado pessoal.
+var ORIGEM = (function(){
+  var q = new URLSearchParams(location.search), o = {};
+  ['utm_source','utm_medium','utm_campaign','utm_content'].forEach(function(k){
+    var v = (q.get(k) || '').replace(/[^\w\-\. ]/g, '').slice(0, 40); if (v) o[k] = v;
+  });
+  if (!o.utm_source && !o.utm_medium) {
+    var ref = ''; try { ref = document.referrer ? new URL(document.referrer).hostname : ''; } catch(e){}
+    if (ref && ref !== location.hostname) o.utm_source = ref.replace(/^www\./, '').slice(0, 40);
+  }
+  o.origem = o.utm_medium === 'formulario' ? 'formulario-meta' : (o.utm_source ? [o.utm_source, o.utm_medium].filter(Boolean).join('/') : 'direto');
+  try {
+    var salvo = JSON.parse(localStorage.getItem('vsl_origem') || 'null');
+    if (salvo && salvo.origem && (o.origem === 'direto' || salvo.origem !== 'direto')) return salvo;
+    localStorage.setItem('vsl_origem', JSON.stringify(o));
+  } catch(e){}
+  return o;
+})();
+if (CONFIG.CLARITY_ID) {
+  (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", CONFIG.CLARITY_ID);
+  clarity('set', 'origem', ORIGEM.origem);
+}
 document.getElementById('zap').href = document.getElementById('zap2').href = 'https://wa.me/' + CONFIG.WHATSAPP + '?text=' + encodeURIComponent(CONFIG.WHATSAPP_FRASE);
 /* ================================================== */
 
@@ -305,7 +329,7 @@ $('p-whats').addEventListener('submit', function(ev){
   ESC.whatsapp = d;
   // Fluxo de 13/11: confirma direto, sem buscar cadastro (os dados do formulário se juntam depois).
   $('bt-wpp').disabled = true; $('bt-wpp').textContent = 'Confirmando…';
-  chamar({ acao:'confirmar', horario:ESC.horario, whatsapp:d, visitante:visitante, site:$('site').value }).then(function(r){
+  chamar({ acao:'confirmar', horario:ESC.horario, whatsapp:d, visitante:visitante, site:$('site').value, origem:ORIGEM.origem, campanha:ORIGEM.utm_campaign || '' }).then(function(r){
     $('bt-wpp').disabled = false; $('bt-wpp').textContent = 'Confirmar agendamento';
     if (r && r.ok){ paginaDeObrigado(r); return; }
     if (r && r.motivo === 'ocupado'){ montarCalendario(r.mensagem); return; }
@@ -339,12 +363,12 @@ function pixel(tipo, nome){
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', CONFIG.PIXEL_ID);
   }
-  if (tipo) fbq(tipo, nome);
+  if (tipo) fbq(tipo, nome, ORIGEM);
 }
 pixel('track', 'PageView');
 var marcosVideo = {};
-function marcoVideo(nome){ if (marcosVideo[nome]) return; marcosVideo[nome] = 1; pixel('trackCustom', nome); }
-function eventoAgendou(){ pixel('track', 'Schedule'); }
+function marcoVideo(nome){ if (marcosVideo[nome]) return; marcosVideo[nome] = 1; pixel('trackCustom', nome); if (window.clarity) clarity('event', nome); }
+function eventoAgendou(){ pixel('track', 'Schedule'); if (window.clarity) clarity('event', 'Agendou'); }
 
 function liberarAgenda(){
   if (agendaLiberada) return;
