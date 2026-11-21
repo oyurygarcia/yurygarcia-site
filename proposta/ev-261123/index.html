@@ -10,7 +10,7 @@
 <meta property="og:title" content="Proposta para Everton"><meta property="og:description" content="Proposta preparada por Yury Garcia para Everton. Válida até 26/11/2026, 23h59.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
 <style>
 :root{
   --night:#383838; --cream:#F5EFE6; --ink:#383838; --ink-2:#464646; --paper:#F5EFE6; --paper-2:#EBE3D7; --white:#FFFDF9;
@@ -567,6 +567,107 @@ body.viu-preco .bp-preco{display:inline}
 .rail .btn,.barra .btn{color:#FFFFFF}
 .sobre-grid{grid-template-columns:1fr!important}
 
+/* === marca: início === */
+/* Proposta (página dossiê) na identidade visual do Yury.
+   Dono das regras: escritorio/marca/IDENTIDADE-VISUAL.md (§2, §3, §5 e tokens do §7).
+   Uso: escritorio/scripts/proposta-na-marca.py injeta este arquivo por cima do CSS do gerador do kit.
+   O kit (ferabot-kit/) não é editado. */
+:root,:root:not([data-theme="light"]){
+  --navy:#0d1f35; --navy-d:#091520; --navy-l:#132b45;
+  --card:rgba(19,43,69,.66); --line-m:rgba(74,179,232,.2);
+  --blue:#4ab3e8; --hl:#1162cf;
+  --green:#25d366;
+  --text:#e4eaf0; --text-m:#a3b3c4; --text-d:#7d92a8;
+  --font:'Plus Jakarta Sans',system-ui,-apple-system,sans-serif;
+  --r-sm:8px; --r-md:12px; --r-lg:16px; --r-pill:999px;
+
+  /* variáveis do modelo do kit, apontadas para a marca */
+  --night:var(--navy-d); --cream:#fff; --ink:var(--text); --ink-2:var(--text);
+  --paper:var(--navy); --paper-2:var(--navy-l); --white:var(--card);
+  --mute:var(--text-m); --mute-2:var(--text-m); --line:var(--line-m); --line-2:var(--line-m);
+  --acc:var(--blue); --acc-2:var(--blue); --acc-soft:rgba(74,179,232,.12); --acc-base:var(--blue);
+  --serif:var(--font); --mono:var(--font);
+}
+.capa,.inv,.fim3,.diag{--acc:var(--blue);--acc-2:var(--blue)}
+
+body,.v3{background:var(--navy);color:var(--text);font-family:var(--font);font-weight:400;line-height:1.65}
+.v3 h1,.v3 h2,.v3 h3{font-family:var(--font);color:#fff;letter-spacing:-.015em;line-height:1.12}
+.v3 h1{font-weight:800}
+.v3 h2{font-weight:700}
+.v3 h3{font-weight:700}
+.v3 h1 .hl,.v3 h2 .hl{color:var(--blue);font-style:normal;background:none}
+.v3 p,.v3 li,.v3 dd{color:var(--text)}
+.v3 .lead,.capa .sub,.fim3 .lead,.muda3,.fase p,.passo p,.peq,.alt3,.nota3{color:var(--text-m)}
+.alt3 b{color:#fff}
+
+/* seções: fundo alternado em vez de papel claro */
+.capa{background:var(--navy-d)}
+.band{background:var(--navy);border-color:var(--line-m)}
+.band:nth-of-type(even){background:var(--navy-l)}
+.inv,.fim3{background:var(--navy-d)}
+
+/* rótulos: caixa alta, azul */
+.meta dt,.sh .n,.sh .l,.tag,.mnum,.fase .f,.rid,.tb-n,.sum dt,.cue{font-family:var(--font);font-weight:700;color:var(--blue);letter-spacing:.14em;text-transform:uppercase}
+.meta dd,.sum dd{font-family:var(--font);color:var(--text);letter-spacing:.04em}
+.capa .cue{color:var(--text-m)}
+.capa-art *{stroke:rgba(74,179,232,.16)}
+
+/* falas do lead */
+.q{border-color:var(--line-m)}
+.q blockquote{font-family:var(--font);font-weight:400;color:#fff;line-height:1.35;letter-spacing:-.005em}
+
+/* cards: transparência e borda fina, sem sombra */
+.ad>div,.dmx,.mod,.passo,.quem .col,.sobre .item,.gloss,.escopo,.sum,.emc,.gar,.curva{background:var(--card);border-color:var(--line-m);box-shadow:none}
+.ad .depois3,.dmx.dois{border-color:rgba(74,179,232,.45)}
+.fase b,.cn b,.rcli{font-family:var(--font);font-weight:700;color:#fff}
+.sobre .item b{color:#fff}
+a{color:var(--blue)}
+
+/* numeração e marcadores sobre azul levam texto navy */
+.depois .passo::before,.num{background:var(--blue);color:var(--navy);font-weight:800}
+
+/* percurso */
+.curva .base{stroke:var(--line-m)}
+.curva .linha{stroke:var(--blue)}
+.curva circle{fill:var(--navy-l);stroke:var(--blue)}
+.curva circle.meta{fill:var(--blue)}
+.curva text{fill:#fff;font-family:var(--font)}
+.curva .pt circle.meta + text{fill:var(--navy)}
+.curva .alvo,.curva figcaption{fill:var(--text-d);color:var(--text-d)}
+
+/* diagramas das entregas */
+.diag,.ent-card .foto.diag{background:var(--navy-d);border-radius:var(--r-md)}
+.diag text{font-family:var(--font);fill:#fff}
+.diag .mut{fill:var(--text-m)}
+.diag .nd{fill:var(--navy-l);stroke:rgba(74,179,232,.35);animation-name:ndOnMarca}
+@keyframes ndOnMarca{0%,4%{fill:#132b45;stroke:rgba(74,179,232,.35)}8%,22%{fill:#1b5f8a;stroke:#4ab3e8}30%,100%{fill:#132b45;stroke:rgba(74,179,232,.35)}}
+.diag .ar{stroke:var(--text-d)}
+.diag .trend{stroke:#fff}
+.diag .cap{fill:var(--navy-l);animation-name:capOnMarca}
+@keyframes capOnMarca{0%,4%{fill:#132b45}12%,76%{fill:#4ab3e8}92%,100%{fill:#132b45}}
+
+/* preço: o verde aparece uma vez como linha de decisão */
+.price3 strong{font-family:var(--font);font-weight:800;color:var(--green);letter-spacing:-.02em}
+.price3 small{color:var(--text-m)}
+
+/* botão de ação: pílula verde com texto navy, peso 700 */
+.btn,.btn:not(.ghost),.rail .btn,.barra .btn,.capa .btn:not(.ghost),.inv .btn:not(.ghost),.fim3 .btn:not(.ghost){background:var(--green);color:var(--navy);font-family:var(--font);font-weight:700;border-radius:var(--r-pill);box-shadow:none}
+.btn:hover{background:var(--green);filter:brightness(1.06)}
+
+/* barras fixas e menu lateral */
+.topbar,.barra{background:var(--navy-d);border-color:var(--line-m);color:var(--text)}
+.barra b,.tb-l{color:#fff}
+.barra span{color:var(--text-m)}
+.tb-v,[data-restam]{font-family:var(--font);color:var(--text-d)}
+.rail{background:var(--navy-d);border-color:var(--line-m)}
+.rail nav a{color:var(--text-m)}
+.rail nav a span{color:var(--text-d);font-family:var(--font)}
+.rail nav a.on,.rail nav a:hover{color:#fff}
+.rval{color:var(--text-d)}
+.prog{background:var(--blue)}
+summary{color:#fff}
+
+/* === marca: fim === */
 </style>
 <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -591,7 +692,7 @@ body.viu-preco .bp-preco{display:inline}
       <dt>Válida até</dt><dd>26/11/2026, 23h59 · <span data-restam></span></dd>
     </dl>
     <div class="capa-txt">
-      <h1>Everton, este é o plano para fazer a diretoria e o mercado enxergarem o preparo que você já tem.</h1>
+      <h1>Everton, este é o plano para fazer a diretoria e o mercado enxergarem <span class="hl">o preparo que você já tem</span>.</h1>
       <p class="sub">Montado a partir do que você me contou. A gente faz junto, uma parte de cada vez.</p>
     </div>
     <a class="cue" href="#s1">Role para ler a proposta ↓</a>
