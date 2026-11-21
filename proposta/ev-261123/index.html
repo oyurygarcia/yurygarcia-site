@@ -667,6 +667,17 @@ a{color:var(--blue)}
 .prog{background:var(--blue)}
 summary{color:#fff}
 
+/* investimento com âncora: valor por etapa, valor cheio e pacote com a parcela em destaque */
+.ancora{background:var(--card);border:1px solid var(--line-m);border-radius:var(--r-lg);padding:24px;margin:0 0 20px}
+.ancora .etapas{list-style:none;margin:14px 0 0;padding:0}
+.ancora .etapas li{display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px solid var(--line-m);color:var(--text-m);font-size:.95rem}
+.ancora .etapas li::before{content:none}
+.ancora .etapas b{color:var(--text);font-weight:600;white-space:nowrap}
+.ancora .cheio{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 16px;margin:16px 0 0;color:var(--text-m)}
+.ancora .cheio b{color:#fff;font-weight:700;font-size:1.35rem;white-space:nowrap}
+.ancora .cheio small{flex-basis:100%;text-align:right;color:var(--text-d);font-size:.82rem}
+.price3 strong{white-space:nowrap}
+
 /* === marca: fim === */
 </style>
 <script>document.documentElement.classList.add('js')</script>
@@ -715,16 +726,16 @@ summary{color:#fff}
     <div class="ad rv">
       <div class="antes"><span class="tag">Hoje</span><h3>16 anos de entrega e resultado na mão, sem saber se quem decide enxerga esse preparo</h3></div>
       <div class="depois3"><span class="tag">Com o plano montado</span><h3>Fazer a diretoria e o mercado enxergarem o preparo que você já tem</h3>
-        <ul><li>Mentalidade</li><li>Posicionamento</li><li>Análise de cenário</li><li>Construção da narrativa</li><li>Criação de oportunidades</li></ul></div>
+        <ul><li>Você sabe, pessoa por pessoa, como a diretoria e o fundo enxergam você</li><li>Seus resultados passam a ser contados como resultados de negócio</li><li>Quando a venda da empresa acontecer, o seu movimento já está pronto</li><li>O mercado conhece a sua história com a China, e você escolhe com calma</li><li>Você levanta a mão na hora certa, com o seu nome já na mesa</li></ul></div>
     </div></div></section>
 <section class="band" id="s2" data-sec data-n="02" data-l="O plano"><div class="sec"><div class="sh"><span class="n">02</span><span class="l">O plano</span></div><div class="dmundos rv"><div class="dmx um"><h3>Hoje</h3><ul><li>Resultado de negócio contado como projeto de compras</li><li>Planejamento no seu escopo, fora do seu título</li><li>Sem medida de como a diretoria e o fundo veem você</li></ul></div><div class="dmx dois"><h3>Com o plano</h3><ul><li>Uma narrativa de negócio, dita em dois minutos</li><li>Um mapa de quem decide e da sua credibilidade com cada um</li><li>Um movimento pronto para cada cenário da venda da empresa</li></ul></div></div><h2>Cinco pilares, desenhados para o seu momento.</h2>
     <p class="lead">Você domina a gestão há muito tempo. O programa trabalha a outra metade da liderança, a articulação: como a diretoria, o fundo e o mercado leem o que você fez.</p>
     <div class="mods">
       <article class="mod rv">
         <div class="mtxt">
-          <div class="mh"><span class="mnum">Entrega 01</span></div>
+          <div class="mh"><span class="mnum">Pilar 01</span></div>
           <h3>Mentalidade: pensar a partir da cadeira de quem dirige</h3>
-          <p class="muda3">Em cada situação, a primeira pergunta passa a ser como você sai dela com mais credibilidade. Resolver o problema vem logo em seguida.</p>
+          <p class="muda3">Quem decide a próxima cadeira observa como você pensa, muito antes de olhar o que você entrega. Quando a sua primeira pergunta em cada situação passa a ser como sair dela com mais credibilidade, a diretoria começa a tratar você como par. É daqui que todo o resto parte.</p>
           <details class="escopo"><summary>O que está incluso</summary><ul><li><strong>Diagnóstico profundo</strong> na primeira sessão: cenário, organograma, resultados e percepções.</li><li><strong>Pontos cegos</strong> o que hoje pesa contra a sua imagem sem você perceber.</li><li><strong>Ferramentas de leitura</strong> interesses e gatilhos de cada pessoa antes de apresentar uma solução.</li></ul></details>
           
         </div>
@@ -732,9 +743,9 @@ summary{color:#fff}
       </article>
       <article class="mod rv">
         <div class="mtxt">
-          <div class="mh"><span class="mnum">Entrega 02</span></div>
+          <div class="mh"><span class="mnum">Pilar 02</span></div>
           <h3>Posicionamento: medir como você é visto e agir onde importa</h3>
-          <p class="muda3">Você deixa de supor e passa a saber como diretoria, presidência e fundo percebem você. É a resposta para a pergunta que você me fez.</p>
+          <p class="muda3">Você me disse que não consegue medir se quem está do outro lado vê você como você acredita. Aqui a suposição acaba. Você passa a saber, pessoa por pessoa, como diretoria, presidência e fundo percebem você, e age exatamente onde existe distância.</p>
           <details class="escopo"><summary>O que está incluso</summary><ul><li><strong>Mapa do ambiente</strong> as pessoas que pesam na sua carreira e o nível de credibilidade com cada uma.</li><li><strong>Teste no dia a dia</strong> a gente confere a leitura nas suas interações reais.</li><li><strong>Ação por pessoa</strong> o que levar, para quem e em que momento.</li></ul></details>
           
         </div>
@@ -742,9 +753,9 @@ summary{color:#fff}
       </article>
       <article class="mod rv">
         <div class="mtxt">
-          <div class="mh"><span class="mnum">Entrega 03</span></div>
+          <div class="mh"><span class="mnum">Pilar 03</span></div>
           <h3>Análise de cenário: a venda da empresa e o mercado</h3>
-          <p class="muda3">Você chega antes. Quando a venda acontecer, o seu movimento já está desenhado. Em paralelo, você sabe quem no mercado precisa do que você construiu com a China.</p>
+          <p class="muda3">A venda da empresa vai mexer nas cadeiras, e quem chega com o movimento pronto escolhe em vez de reagir. Você passa a ler o que vem antes de acontecer, dentro da empresa e no mercado, onde pouca gente construiu o que você construiu com a China.</p>
           <details class="escopo"><summary>O que está incluso</summary><ul><li><strong>Cenários da venda</strong> quem decide em cada um e qual é o seu movimento antes de ela acontecer.</li><li><strong>Leitura do mercado</strong> empresas e posições em que a sua experiência pesa mais.</li><li><strong>Duas frentes</strong> dentro da empresa e fora dela, sem pressa e sem abrir mão de nenhuma.</li></ul></details>
           
         </div>
@@ -752,9 +763,9 @@ summary{color:#fff}
       </article>
       <article class="mod rv">
         <div class="mtxt">
-          <div class="mh"><span class="mnum">Entrega 04</span></div>
+          <div class="mh"><span class="mnum">Pilar 04</span></div>
           <h3>Construção da narrativa: de compras para negócio</h3>
-          <p class="muda3">A sua história sai de gerente de compras e importação e passa a ser a de quem levou os importados a mais de 40% do faturamento e gerou resultado financeiro.</p>
+          <p class="muda3">Os seus resultados mais fortes são de negócio e hoje são contados como projetos de compras. Quando a sua história passa a ser a de quem levou os importados a mais de 40% do faturamento e gerou resultado financeiro, cada conversa com um diretor, um conselho ou um headhunter trabalha a seu favor.</p>
           <details class="escopo"><summary>O que está incluso</summary><ul><li><strong>Narrativa falada</strong> a sua trajetória em dois minutos, para um diretor, um conselho ou um headhunter.</li><li><strong>Currículo e LinkedIn</strong> com o escopo que você tem hoje, incluindo planejamento.</li><li><strong>Resultados em linguagem de negócio</strong> os projetos financeiros e tributários contados pelo impacto na empresa.</li></ul></details>
           
         </div>
@@ -762,9 +773,9 @@ summary{color:#fff}
       </article>
       <article class="mod rv">
         <div class="mtxt">
-          <div class="mh"><span class="mnum">Entrega 05</span></div>
+          <div class="mh"><span class="mnum">Pilar 05</span></div>
           <h3>Criação de oportunidades sistêmicas: dentro e fora</h3>
-          <p class="muda3">Você cria as ocasiões em que o seu valor aparece, em qualquer cenário, em vez de esperar que elas surjam.</p>
+          <p class="muda3">Resultado que ninguém vê não muda carreira. Você passa a criar as ocasiões em que o seu valor aparece, dentro e fora da empresa, e o seu nome chega à mesa antes de a vaga existir.</p>
           <details class="escopo"><summary>O que está incluso</summary><ul><li><strong>Levantar a mão</strong> na hora e do jeito certos, dentro da empresa.</li><li><strong>Plano de mercado</strong> empresas e posições de interesse, testadas com calma.</li><li><strong>Frente Brasil e China</strong> a avenida de ponte entre empresas brasileiras e a China, ao lado da carreira executiva.</li><li><strong>Meu networking</strong> aberto para você ao longo do processo.</li></ul></details>
           
         </div>
@@ -773,7 +784,7 @@ summary{color:#fff}
     </div>
     <details class="gloss"><summary>Palavras que eu uso aqui, em português claro</summary><dl><dt>Articulação</dt><dd>O domínio do ambiente: como você influencia quem decide e como os seus resultados são lidos.</dd><dt>Capital político</dt><dd>O saldo de confiança e credibilidade que você tem com as pessoas que decidem.</dd><dt>Termômetro</dt><dd>O começo de cada sessão: o que aconteceu na quinzena e o que precisa de ajuda agora.</dd><dt>Caixa de ferramentas</dt><dd>O material que eu preparo para cada sessão, com a tarefa para você aplicar.</dd></dl></details></div></section>
 <section class="band" id="s3" data-sec data-n="03" data-l="O percurso"><div class="sec"><div class="sh"><span class="n">03</span><span class="l">O percurso</span></div><h2>Oito sessões, quatro meses.</h2>
-    <p class="lead">Uma coisa de cada vez, na ordem em que cada parte destrava a próxima.</p>
+    <p class="lead">Toda sessão tem três tempos: o termômetro da quinzena, a caixa de ferramentas que eu preparo para você e a tarefa para aplicar no dia a dia. Entre uma sessão e outra, a gente segue pelo WhatsApp.</p>
     <figure class="curva rv" aria-label="Curva do percurso até o objetivo">
       <svg viewBox="0 0 600 220" role="img" aria-label="5 fases em sequência até o objetivo combinado">
         <path class="base" d="M30 200 H570"/>
@@ -783,12 +794,15 @@ summary{color:#fff}
       </svg>
       <figcaption>Ilustração do percurso, sem datas nem projeção de resultado.</figcaption>
     </figure>
-    <ol class="fases"><li class="fase rv"><span class="f">FASE 01</span><div><b>Diagnóstico profundo</b><p>Sessão 1. Cenário, organograma, resultados e como cada pessoa importante percebe você.</p></div></li><li class="fase rv"><span class="f">FASE 02</span><div><b>Pontos cegos e primeira caixa de ferramentas</b><p>Sessão 2. Devolutiva do diagnóstico, plano de curto prazo e a mentalidade de quem dirige.</p></div></li><li class="fase rv"><span class="f">FASE 03</span><div><b>Posicionamento e leitura de cenário</b><p>Sessões 3 e 4. O mapa do ambiente e os cenários da venda da empresa.</p></div></li><li class="fase rv"><span class="f">FASE 04</span><div><b>Narrativa</b><p>Sessões 5 e 6. A sua trajetória em versão de diretoria, falada e escrita.</p></div></li><li class="fase rv"><span class="f">FASE 05</span><div><b>Oportunidades, dentro e fora</b><p>Sessões 7 e 8. O movimento na empresa, o plano de mercado e a frente Brasil e China. Se o seu cenário mudar no caminho, a gente troca a ordem.</p></div></li></ol></div></section>
+    <ol class="fases"><li class="fase rv"><span class="f">FASE 01</span><div><b>Diagnóstico profundo</b><p>Sessão 1, com 1 hora. Eu conduzo uma conversa estruturada sobre o seu cenário: o organograma, os seus resultados, as pessoas que pesam na sua carreira e como cada uma percebe você. Você não prepara nada antes. Você sai com o retrato do ponto de partida e a primeira tarefa da quinzena.</p></div></li><li class="fase rv"><span class="f">FASE 02</span><div><b>Pontos cegos e primeira caixa de ferramentas</b><p>Sessão 2. Eu trago a devolutiva do diagnóstico por escrito: o que joga a seu favor, o que pesa contra a sua imagem sem você perceber e o plano de curto prazo. Aqui entra a mentalidade de quem dirige e a primeira ferramenta para usar já na semana seguinte.</p></div></li><li class="fase rv"><span class="f">FASE 03</span><div><b>Posicionamento e leitura de cenário</b><p>Sessões 3 e 4. A gente monta o mapa do ambiente, com o nível de credibilidade que você tem com cada pessoa e a ação para cada relação. Depois desenha os cenários da venda da empresa e o seu movimento em cada um. Entre as sessões você testa a leitura nas interações reais e me conta pelo WhatsApp.</p></div></li><li class="fase rv"><span class="f">FASE 04</span><div><b>Narrativa</b><p>Sessões 5 e 6. A gente reescreve a sua trajetória em linguagem de negócio. Você treina a versão falada em dois minutos comigo, até ela sair natural, e a gente ajusta o currículo e o LinkedIn para o escopo que você tem hoje. Você sai com a narrativa pronta para usar com um diretor, um conselho ou um headhunter.</p></div></li><li class="fase rv"><span class="f">FASE 05</span><div><b>Oportunidades, dentro e fora</b><p>Sessões 7 e 8. A gente define quando e como você levanta a mão dentro da empresa, monta o plano de mercado com as empresas e posições de interesse e desenha a frente Brasil e China. Eu abro o meu networking onde ele ajuda. Se o seu cenário mudar no caminho, a gente troca a ordem.</p></div></li></ol></div></section>
 <section class="band inv" id="investimento" data-sec data-n="04" data-l="Investimento"><div class="sec"><div class="sh"><span class="n">04</span><span class="l">Investimento</span></div><h2>O investimento para fazer tudo isso junto.</h2>
     
-    <div class="price3 rv"><span class="tag">Pacote completo</span>
-      <strong data-count="11900">R$ 11.900</strong><small>à vista</small></div>
-    <p class="alt3">ou <b>12× R$ 1.400</b> (total de R$ 16.800). À vista você paga R$ 4.900 a menos.</p>
+    <div class="ancora rv"><span class="tag">Valor por etapa</span>
+      <ul class="etapas"><li><span>Fase 01 · Diagnóstico profundo</span><b>R$ 2.470</b></li><li><span>Fase 02 · Pontos cegos e primeira caixa de ferramentas</span><b>R$ 2.500</b></li><li><span>Fase 03 · Posicionamento e leitura de cenário</span><b>R$ 3.500</b></li><li><span>Fase 04 · Narrativa</span><b>R$ 3.500</b></li><li><span>Fase 05 · Oportunidades, dentro e fora</span><b>R$ 3.500</b></li></ul>
+      <p class="cheio"><span>Valor do programa</span><b>R$ 15.470</b><small>ou 12× R$ 1.550 · válido até 03/12/2026</small></p></div>
+    <div class="price3 rv"><span class="tag">Pacote completo · fechando até 26/11/2026</span>
+      <strong>12× 1.197</strong><small>ou 11.900 à vista</small></div>
+    <p class="alt3">Fechando até 26/11 você economiza <b>4.236</b>. Pagando à vista, economiza mais <b>2.464</b>.</p>
     <p class="nota3">Esta mentoria não é recolocação: eu não vou ao mercado por você. Eu preparo o seu posicionamento e abro o meu networking. Também não é curso gravado, e não é promessa de cargo. O que eu entrego é o posicionamento que leva até ele.</p>
     
     </div></section>
@@ -801,13 +815,13 @@ summary{color:#fff}
       <div class="col"><h3>Você faz</h3><ul><li>Aplicar a tarefa da quinzena no dia a dia, com as pessoas reais</li><li>Me contar pelo WhatsApp o que funcionou e o que travou</li><li>Trazer o que acontecer na empresa e no mercado</li></ul></div>
     </div></div></div></section>
 <section class="band" id="s6" data-sec data-n="06" data-l="Quem assina"><div class="sec"><div class="sh"><span class="n">06</span><span class="l">Quem assina</span></div><h2>Eu sou Yury Garcia.</h2>
-    <div class="sobre"><div class="sobre-grid"><div><div class="faixa"><div class="item"><b>Atuo com posicionamento de carreira para líderes que já entregam e querem ocupar espaços maiores.</b>Meu trabalho aqui: Mentoria Individual.</div><div class="item"><b>Mais de 12 anos em liderança corporativa e mais de 1.000 pessoas lideradas.</b></div><div class="item"><b>Passei por Riachuelo, Uber e 99. Fui Chief of Staff Global da 99 e da DiDi, no dia a dia com a liderança chinesa do grupo.</b></div><div class="item"><b>Participei de painéis de promoção e vi de dentro como essas decisões são tomadas.</b></div><div class="item"><b>Ian foi promovido a gerente sênior trabalhando narrativa, comunicação estratégica e posicionamento. Dan saiu de uma carreira parada para gerente em uma multinacional.</b></div><div class="item"><b>Me acompanhe no Instagram.</b><a href="https://instagram.com/oyurygarcia" target="_blank" rel="noopener">@oyurygarcia</a></div><div class="item"><b>Conheça mais do meu trabalho.</b><a href="https://oyurygarcia.com.br" target="_blank" rel="noopener">https://oyurygarcia.com.br</a></div></div></div></div></div></div></section>
+    <div class="sobre"><div class="sobre-grid"><div><div class="faixa"><div class="item"><b>Atuo com posicionamento de carreira para líderes que já entregam e querem ocupar espaços maiores.</b>Meu trabalho aqui: Mentoria Individual.</div><div class="item"><b>Mais de 12 anos em liderança corporativa e mais de 1.000 pessoas lideradas.</b></div><div class="item"><b>Passei por Riachuelo, Uber e 99. Fui Chief of Staff Global da 99 e da DiDi, no dia a dia com a liderança chinesa do grupo.</b></div><div class="item"><b>Participei de painéis de promoção e vi de dentro como essas decisões são tomadas.</b></div><div class="item"><b>Me acompanhe no Instagram.</b><a href="https://instagram.com/oyurygarcia" target="_blank" rel="noopener">@oyurygarcia</a></div><div class="item"><b>Conheça mais do meu trabalho.</b><a href="https://oyurygarcia.com.br" target="_blank" rel="noopener">https://oyurygarcia.com.br</a></div></div></div></div></div></div></section>
 <section class="band fim3 final" id="aceite" data-sec data-n="07" data-l="Aceite">
   <div class="sec">
     <div class="sh"><span class="n">07</span><span class="l">Aceite</span></div>
     <h2>Faz sentido para o seu momento?</h2>
     <p class="lead">Se sim, clica em “Vamos começar” e a gente dá o primeiro passo juntos.</p>
-    <dl class="sum"><div><dt>Proposta nº</dt><dd>EV-261123</dd></div><div><dt>Cliente</dt><dd>Everton</dd></div><div><dt>Pacote</dt><dd>Mentalidade · Posicionamento · Análise de cenário · Construção da narrativa · Criação de oportunidades</dd></div><div><dt>Investimento</dt><dd>R$ 11.900 à vista ou 12× R$ 1.400</dd></div><div><dt>Validade</dt><dd>26/11/2026, 23h59</dd></div></dl>
+    <dl class="sum"><div><dt>Proposta nº</dt><dd>EV-261123</dd></div><div><dt>Cliente</dt><dd>Everton</dd></div><div><dt>Pacote</dt><dd>Mentalidade · Posicionamento · Análise de cenário · Construção da narrativa · Criação de oportunidades</dd></div><div><dt>Investimento</dt><dd>12× 1.197 ou 11.900 à vista</dd></div><div><dt>Validade</dt><dd>26/11/2026, 23h59</dd></div></dl>
     <div class="cta"><a class="btn grande js-comecar" href="https://wa.me/5511999106121?text=Ol%C3%A1%2C%20vi%20a%20proposta%20e%20quero%20come%C3%A7ar." rel="noopener">Vamos começar</a></div>
     <p class="peq">Proposta válida até 26/11/2026, 23h59 (<span data-restam></span>). Prefere conversar antes? <a href="https://wa.me/5511999106121?text=Ol%C3%A1%2C%20li%20a%20proposta%20e%20tenho%20uma%20d%C3%BAvida." data-wa>Me chama no WhatsApp</a>.</p>
   </div>
