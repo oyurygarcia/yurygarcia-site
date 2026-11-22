@@ -217,7 +217,7 @@ var CONFIG = {
   try { if (interno) localStorage.setItem('vsl_interno', '1'); else interno = localStorage.getItem('vsl_interno') === '1'; } catch(e){}
   if (interno) { CONFIG.PIXEL_ID = ""; CONFIG.CLARITY_ID = ""; }
 })();
-// Origem da visita (Yury, 21/11): guarda a primeira origem conhecida deste aparelho (utm do link ou site de onde veio).
+// Origem da visita (Yury, 21/11): vale a origem do link desta visita (utm ou site de onde veio); sem nenhuma, vale a última guardada no aparelho.
 // Vai junto em todo evento do pixel, no Clarity e no agendamento (vira nota no cartão do Kommo). Nunca leva dado pessoal.
 var ORIGEM = (function(){
   var q = new URLSearchParams(location.search), o = {};
@@ -231,7 +231,7 @@ var ORIGEM = (function(){
   o.origem = o.utm_medium === 'formulario' ? 'formulario-meta' : (o.utm_source ? [o.utm_source, o.utm_medium].filter(Boolean).join('/') : 'direto');
   try {
     var salvo = JSON.parse(localStorage.getItem('vsl_origem') || 'null');
-    if (salvo && salvo.origem && (o.origem === 'direto' || salvo.origem !== 'direto')) return salvo;
+    if (o.origem === 'direto' && salvo && salvo.origem) return salvo;
     localStorage.setItem('vsl_origem', JSON.stringify(o));
   } catch(e){}
   return o;
