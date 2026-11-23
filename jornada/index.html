@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="referrer" content="no-referrer">
+<title>Sua jornada · Mentoria Liderium</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0d1f35; --navy-d:#091520; --navy-l:#132b45;
+  --card:rgba(19,43,69,.66); --line:rgba(74,179,232,.2);
+  --blue:#4ab3e8; --hl:#1162cf;
+  --green:#25d366;
+  --text:#e4eaf0; --text-m:#a3b3c4; --text-d:#7d92a8; --white:#fff;
+  --font:'Plus Jakarta Sans',system-ui,-apple-system,sans-serif;
+  --r-sm:8px; --r-md:12px; --r-lg:16px; --r-pill:999px;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--navy-d);color:var(--text);font-family:var(--font);font-weight:400;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:680px;margin:0 auto;padding:28px 16px 80px}
+.brand{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:28px;font-size:13px;color:var(--text-d)}
+.brand b{letter-spacing:.3em;font-weight:700;color:var(--text-m)}
+.brand span{display:flex;gap:14px;align-items:center}
+.brand a{color:var(--blue);text-decoration:none;cursor:pointer}
+#salvo{font-size:12px;color:var(--text-d)}
+#salvo.erro{color:#ff8a8a}
+.label{color:var(--blue);font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin:0 0 10px}
+h1{color:var(--white);font-size:30px;font-weight:800;line-height:1.12;letter-spacing:-.015em;margin:0 0 6px}
+h2{color:var(--white);font-size:21px;font-weight:700;line-height:1.25;margin:0 0 8px}
+h3{color:var(--white);font-size:16px;font-weight:700;margin:0 0 4px}
+h1 em,h2 em{font-style:normal;color:var(--blue)}
+p{margin:0 0 14px}
+.muted{color:var(--text-m)}
+.small{font-size:13.5px;color:var(--text-d)}
+.rule{width:50px;height:3px;border-radius:3px;background:linear-gradient(90deg,var(--blue),transparent);margin:14px 0 18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:20px;margin:0 0 16px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:var(--r-pill);font:inherit;font-weight:700;font-size:15.5px;padding:13px 24px;cursor:pointer;border:1px solid transparent;text-decoration:none;min-height:48px}
+.btn-go{background:var(--green);color:var(--navy)}
+.btn-ghost{background:transparent;color:var(--text);border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--blue)}
+.btn[disabled]{opacity:.4;cursor:not-allowed}
+.row{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.bar{height:6px;background:rgba(74,179,232,.14);border-radius:6px;overflow:hidden;margin:14px 0 6px}
+.bar i{display:block;height:100%;background:var(--blue);border-radius:6px;transition:width .4s}
+.pill{display:inline-block;border:1px solid var(--line);border-radius:var(--r-pill);padding:3px 11px;font-size:12.5px;color:var(--text-m)}
+.steps{list-style:none;margin:0;padding:0}
+.steps li{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--line)}
+.steps li:last-child{border-bottom:0}
+.num{flex:0 0 34px;height:34px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--text-d)}
+.done .num{background:var(--blue);border-color:var(--blue);color:var(--navy)}
+.now .num{border-color:var(--blue);color:var(--blue)}
+.steps .t{flex:1;min-width:0}
+.steps .t b{display:block;color:var(--white);font-weight:600}
+.locked .t b{color:var(--text-d)}
+.steps .t span{font-size:13.5px;color:var(--text-d)}
+button.link{background:none;border:0;font:inherit;font-size:13.5px;color:var(--blue);cursor:pointer;padding:0;white-space:nowrap;align-self:center}
+label.f{display:block;margin:0 0 18px}
+label.f>span,.f>.q{display:block;font-weight:600;color:var(--white);font-size:14.5px;margin-bottom:6px}
+.f small{display:block;color:var(--text-d);font-size:13px;margin:-2px 0 8px;line-height:1.5}
+input[type=text],input[type=email],textarea,select{width:100%;background:var(--navy-d);border:1px solid var(--line);border-radius:var(--r-sm);color:var(--text);font:inherit;font-size:16px;padding:11px 12px}
+textarea{min-height:96px;resize:vertical}
+input:focus,textarea:focus,select:focus,button:focus-visible,a:focus-visible{outline:2px solid var(--blue);outline-offset:1px}
+.checks label{display:flex;gap:10px;align-items:flex-start;padding:7px 0;font-size:15px;line-height:1.45}
+.checks input{margin-top:4px;flex:0 0 auto}
+.alt{display:flex;gap:12px;width:100%;text-align:left;background:var(--navy-d);border:1px solid var(--line);border-radius:var(--r-md);color:var(--text);font:inherit;font-size:15px;line-height:1.5;padding:14px;margin:0 0 10px;cursor:pointer}
+.alt:hover{border-color:var(--blue)}
+.alt.sel{border-color:var(--blue);background:rgba(74,179,232,.12)}
+.alt b{color:var(--blue);flex:0 0 18px}
+.prin{padding:16px 0;border-bottom:1px solid var(--line)}
+.prin:last-child{border-bottom:0}
+.prin .h{display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap}
+.dots{display:flex;gap:5px;margin:8px 0}
+.dots i{width:28px;height:6px;border-radius:6px;background:rgba(74,179,232,.16)}
+.dots i.on{background:var(--blue)}
+.prin p{font-size:14.5px;color:var(--text-m);margin:0}
+.prin p em{font-style:normal;color:var(--text)}
+.leitura p{font-weight:300;font-size:16px;line-height:1.7}
+.leitura p strong{font-weight:700;color:var(--white)}
+.tbl{overflow-x:auto;margin:0 -4px 12px}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:14px}
+th{font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:6px;border-bottom:1px solid var(--line);vertical-align:top}
+td input,td select,td textarea{font-size:15px;padding:8px}
+td.ro{color:var(--text-m);padding-top:14px}
+td .x{background:none;border:0;color:var(--text-d);cursor:pointer;font-size:18px;padding:8px}
+.sub{display:flex;gap:8px;margin:0 0 18px}
+.sub span{flex:1;height:4px;border-radius:4px;background:rgba(74,179,232,.16)}
+.sub span.on{background:var(--blue)}
+.note{border-left:3px solid var(--blue);padding:2px 0 2px 12px;color:var(--text-m);font-size:14px;margin:0 0 16px}
+.erro{color:#ff8a8a;font-size:14px}
+.pulso{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--blue);margin-right:8px;animation:p 1.2s infinite}
+@keyframes p{50%{opacity:.25}}
+@media(max-width:480px){h1{font-size:26px}.btn{width:100%}.card{padding:16px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand"><b>LIDERIUM</b><span><i id="salvo"></i><a id="home" hidden>Minha jornada</a></span></div>
+  <main id="app"><p class="muted"><span class="pulso"></span>Abrindo a sua jornada</p></main>
+</div>
+
+<script src="jornada-config.js"></script>
+<script src="jornada-dados.js"></script>
+<script>
+/* ───────── Jornada de entrada · Mentoria Liderium (v0) ─────────
+   A página não guarda regra de pontuação: as respostas do diagnóstico vão como letras e o resultado vem do servidor. */
+const API=window.JORNADA_API||'';
+const PERG=JORNADA_DADOS.perguntas, PRINC=JORNADA_DADOS.principios, DESC=JORNADA_DADOS.descricoes;
+const AREA='https://yury-garcia.memberkit.com.br/299468-mentoria-liderium/';
+const AULAS={a01:'5766659-introducao-ao-metodo',a11:'5766660-mentalidade',a21:'5766661-introducao-ao-posicionamento',a22:'5766662-relacionamento-e-aliancas',a23:'5766663-piramide-da-autoridade',a24:'5766664-performance-percepcao-e-credibilidade',a25:'5766665-negociacao-e-a-arte-do-posicionamento',a26:'5766666-conclusao-conectando-as-pecas'};
+
+const CLASSES=['Líder direto','Liderado direto','Par direto','Stakeholder','Líder sênior','Outro relevante'];
+const GRAUS=['1º grau','2º grau','3º grau'];
+const ESTAGIOS=['1 - Conhecimento','2 - Ponte','3 - Confiança','4 - Relacionamento','5 - Aliança'];
+const AUTORIDADE=['1 - Comunica conhecimento','2 - Acreditam habilidades','3 - Reconhecem habilidades','4 - Seguem a partir','5 - Seguem apesar'];
+const ESCALA=['Baixa','Baixa-média','Média','Média-alta','Alta'];
+
+const STEPS=[
+ {id:'a01', tipo:'aula', titulo:'Aula · Introdução ao método', min:15, desc:'A lógica do método e a trilha da mentoria.'},
+ {id:'form', tipo:'form', titulo:'Formulário de boas-vindas', min:10, desc:'Para eu chegar na sua sessão já conhecendo o seu contexto.'},
+ {id:'a11', tipo:'aula', titulo:'Aula · Os 7 princípios da liderança estratégica', min:21, desc:'A base de mentalidade que sustenta todo o método.'},
+ {id:'diag', tipo:'diag', titulo:'Diagnóstico de mentalidade', min:15, desc:'21 situações reais de liderança e o seu perfil nos 7 princípios.'},
+ {id:'a21', tipo:'aula', mapa:'jogadores', titulo:'Aula 2.1 · Introdução ao posicionamento', min:17, mapaMin:10, desc:'Capital político e o tabuleiro em que você joga.'},
+ {id:'a22', tipo:'aula', mapa:'relacao', titulo:'Aula 2.2 · Relacionamento e alianças', min:27, mapaMin:8, desc:'A pirâmide do conhecer e construir.'},
+ {id:'a23', tipo:'aula', mapa:'autoridade', titulo:'Aula 2.3 · Pirâmide da autoridade', min:6, mapaMin:5, desc:'Os 5 níveis de autoridade.'},
+ {id:'a24', tipo:'aula', mapa:'percepcao', titulo:'Aula 2.4 · Performance, percepção e credibilidade', min:10, mapaMin:10, desc:'Como o seu resultado é percebido.'},
+ {id:'a25', tipo:'aula', mapa:'negociacao', titulo:'Aula 2.5 · Negociação', min:21, mapaMin:10, desc:'O método T-PIAF aplicado a um caso seu.'},
+ {id:'a26', tipo:'aula', mapa:'revisao', titulo:'Aula 2.6 · Conectando as peças', min:2, mapaMin:5, desc:'Onde estão as suas maiores oportunidades.'},
+ {id:'agenda', tipo:'agenda', titulo:'Sua sessão individual', min:1, desc:'Abre quando o seu Mapa do ambiente estiver concluído.'}
+];
+const MAPA_TXT={
+ jogadores:{t:'Liste os jogadores do seu tabuleiro', p:'Quem são as pessoas que mais pesam no seu ambiente hoje? Comece pelo seu líder direto e siga pelos pares, liderados e stakeholders.'},
+ relacao:{t:'Avalie a relação com cada pessoa', p:'Para cada pessoa do seu mapa, marque o grau de relação e em que estágio da pirâmide vocês estão.'},
+ autoridade:{t:'Marque o seu nível de autoridade com cada pessoa', p:'Em que degrau da pirâmide da autoridade você está hoje, na visão de cada uma?'},
+ percepcao:{t:'Percepção, credibilidade e plano de ação', p:'Como cada pessoa percebe a sua performance, qual é o seu nível de credibilidade com ela e o que você vai fazer a respeito.'},
+ negociacao:{t:'Uma negociação real, pelo T-PIAF', p:'Adicione um caso real passado em que você teve que negociar algo e desmonte nas cinco partes do método.'},
+ revisao:{t:'Revise o seu Mapa do ambiente', p:'Olhe o mapa inteiro e ajuste o que quiser. Ao concluir, o próximo passo é a sua sessão individual.'}
+};
+/* Perguntas do formulário de boas-vindas, com o texto do formulário original do Yury. */
+const FORM=[
+ ['cidade','Cidade e estado de residência','text','Exemplo: Campinas, SP'],
+ ['sobre','Me conta mais sobre você','area','Esse campo é livre para escrever o que quiser, mas capriche, isso vai me ajudar a te conhecer melhor. Você mora com quem? Quais são seus hobbies? O que você adora sobre a sua vida? Como tem se sentido ultimamente?'],
+ ['anos','Há quantos anos você está na empresa atual?','select',['Menos de 1 ano','1','2','3','4','5+']],
+ ['lider','Quanto tempo de experiência você possui em posições de liderança?','select',['Ainda não possuo experiência em posições de liderança','1','2','3','4+']],
+ ['desafios','Hoje quais são os seus maiores desafios dentro do seu ambiente de trabalho?','area'],
+ ['interesse','O que fez você se interessar pelo Programa Liderium?','area'],
+ ['sono','Quando se trata do ambiente de trabalho, o que tira seu sono à noite?','area'],
+ ['sucesso','Que elementos são cruciais para você considerar esse programa um sucesso?','area'],
+ ['objetivos','Qual ou quais são os seus objetivos de carreira para o próximo semestre? Pode marcar quantas caixas quiser','checks',['Não estou indo tão bem, gostaria de aumentar minha performance','Performo bem, mas gostaria de aumentar minha credibilidade e reputação','Estou assumindo uma nova posição mais estratégica, gostaria de me consolidar com sucesso na nova posição','Estou em busca de uma promoção, sinto que estou perto','Estou em busca de uma promoção, sinto que ainda não estou tão perto','Trabalho muito e com frequência me sinto sobrecarregado(a), gostaria de atuar de maneira mais estratégica a fim de reduzir a sobrecarga constante','Quero navegar melhor e influenciar pares e líderes com mais assertividade a fim de facilitar minha vida no dia a dia']],
+ ['objetivos_outro','Outro objetivo (opcional)','text'],
+ ['positivas','Quais são suas características positivas mais marcantes no ambiente de trabalho?','area','Sem falsa modéstia: me conta aquilo em que você é bom mesmo.'],
+ ['corredores','Se eu fosse um colaborador novo na sua empresa e perguntasse pelos corredores sobre você, o que as pessoas falariam de maneira geral?','area','Liste os pontos positivos e os pontos negativos que as pessoas falariam sobre você. Independente de ser verdade: aqui estamos coletando a percepção.'],
+ ['mais','Há algo mais que você gostaria que eu soubesse e eu não perguntei?','area','Essa é a hora.']
+];
+
+let K=null, NOME='', S=blank(), RES=null, LEIT={situacao:'nenhuma'}, sujo=false, timer=null, salvando=false, poll=null;
+function blank(){return {done:{},aula:{},form:{},diag:{answers:[],q:0,started:false},mapa:{pessoas:[],neg:{}},view:{name:'home'}}}
+const $=s=>document.querySelector(s);
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const app=$('#app');
+function guardar(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+function pegar(k){try{return localStorage.getItem(k)}catch(e){return null}}
+
+/* ───────── servidor ───────── */
+async function api(c){
+  const r=await fetch(API,{method:'POST',headers:{'content-type':'text/plain;charset=utf-8'},body:JSON.stringify(c),redirect:'follow'});
+  return r.json();
+}
+function marca(txt,erro){const el=$('#salvo');el.textContent=txt;el.className=erro?'erro':''}
+function save(){sujo=true;marca('salvando');clearTimeout(timer);timer=setTimeout(enviar,1200)}
+async function enviar(){
+  if(!sujo||salvando||!K)return;
+  salvando=true;sujo=false;
+  try{
+    const r=await api({acao:'salvar',k:K,estado:S});
+    if(r.ok)marca('salvo');
+    else if(r.erro==='tamanho'){marca('texto grande demais',true);alert(r.mensagem)}
+    else if(r.erro==='acesso'){marca('',false);return vSemLink(r.mensagem)}
+    else{sujo=true;marca('não salvou, tentando de novo',true)}
+  }catch(e){sujo=true;marca('sem conexão, tentando de novo',true)}
+  salvando=false;
+  if(sujo){clearTimeout(timer);timer=setTimeout(enviar,4000)}
+}
+addEventListener('pagehide',()=>{if(sujo&&K){try{fetch(API,{method:'POST',keepalive:true,headers:{'content-type':'text/plain;charset=utf-8'},body:JSON.stringify({acao:'salvar',k:K,estado:S})})}catch(e){}}});
+
+async function iniciar(){
+  const m=/[#&]k=([0-9a-f]{64})/.exec(location.hash||'');
+  if(m){K=m[1];guardar('jornada-k',K);try{history.replaceState(null,'',location.pathname)}catch(e){}}
+  else K=pegar('jornada-k');
+  if(!K||!/^[0-9a-f]{64}$/.test(K))return vSemLink();
+  if(!API)return vFalha('A página ainda não está ligada ao servidor.');
+  try{
+    const r=await api({acao:'entrar',k:K});
+    if(!r.ok)return r.erro==='acesso'?vSemLink(r.mensagem):vFalha(r.mensagem);
+    NOME=r.nome||'';RES=r.resultado||null;LEIT=r.leitura||LEIT;
+    S=Object.assign(blank(),r.estado||{});
+    S.done=S.done||{};S.aula=S.aula||{};S.form=S.form||{};S.mapa=Object.assign({pessoas:[],neg:{}},S.mapa||{});S.diag=Object.assign({answers:[],q:0,started:false},S.diag||{});
+    if(RES)S.done.diag=true;
+    $('#home').hidden=false;
+    // sempre abre na tela inicial, que mostra onde a pessoa parou
+    S.view={name:'home'};render();
+  }catch(e){vFalha('Não conseguimos abrir a sua jornada agora. Confira a sua conexão.')}
+}
+function vFalha(msg){app.innerHTML=`<p class="label">Jornada de entrada</p><h1>Não deu para abrir <em>agora</em></h1><div class="rule"></div><p class="muted">${esc(msg||'Tente de novo em instantes.')}</p><div class="row"><button class="btn btn-go" onclick="location.reload()">Tentar de novo</button></div>`}
+function vSemLink(msg){
+  $('#home').hidden=true;
+  app.innerHTML=`<p class="label">Jornada de entrada · Mentoria Liderium</p><h1>Abra pelo seu <em>link pessoal</em></h1><div class="rule"></div>
+  <p class="muted">${esc(msg||'A jornada abre pelo link que você recebeu ao entrar na mentoria. Neste aparelho ainda não há um link guardado.')}</p>
+  <div class="card"><label class="f"><span>Para receber o seu link de novo, escreva o e-mail usado na compra</span><input type="email" id="em" autocomplete="email" inputmode="email"></label>
+  <input type="text" id="site" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
+  <div class="row" style="margin-top:0"><button class="btn btn-go" id="pedir">Pedir o meu link</button></div><p class="small" id="pedido" style="margin:14px 0 0"></p></div>`;
+  $('#pedir').onclick=async()=>{
+    const em=$('#em').value.trim();if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)){$('#pedido').textContent='Confira o e-mail.';return}
+    $('#pedir').disabled=true;
+    try{await api({acao:'link',email:em,site:$('#site').value})}catch(e){}
+    $('#pedido').textContent='Pedido recebido. Se este e-mail estiver na mentoria, a equipe manda o seu link. Se demorar, chame no grupo.';
+  };
+}
+
+/* ───────── navegação ───────── */
+function go(name,id,extra){S.view=Object.assign({name,id},extra||{});save();render();window.scrollTo(0,0)}
+function step(id){return STEPS.find(s=>s.id===id)}
+function nextStep(){return STEPS.find(s=>!S.done[s.id])}
+function total(s){return s.min+(s.mapaMin||0)}
+function finish(id){S.done[id]=true;go('entre',id)}
+function render(){
+  clearInterval(poll);poll=null;
+  const v=S.view||{name:'home'};
+  (({home:vHome,entre:vEntre,pausa:vPausa,step:vStep,resultado:vResultado,mapa:vMapaInteiro})[v.name]||vHome)(v.id);
+}
+
+function vHome(){
+  const n=nextStep(), feitos=STEPS.filter(s=>S.done[s.id]).length, pct=Math.round(feitos/STEPS.length*100);
+  let h=`<p class="label">Sua jornada de entrada</p>
+  <h1>${feitos?`Bom ter você de volta, <em>${esc(NOME)}</em>`:`Boas-vindas à Liderium, <em>${esc(NOME)}</em>`}</h1>
+  <div class="rule"></div>
+  <p class="muted">Este é o seu caminho até a primeira sessão individual comigo. Faça no seu ritmo: tudo fica salvo e você continua de onde parou.</p>
+  <div class="bar"><i style="width:${pct}%"></i></div><p class="small">${feitos} de ${STEPS.length} passos concluídos</p>`;
+  if(n){h+=`<div class="card"><p class="label">Próximo passo</p><h2>${n.titulo}</h2><p class="muted">${n.desc}</p>
+    <span class="pill">cerca de ${total(n)} min</span>
+    <div class="row"><button class="btn btn-go" data-open="${n.id}">${feitos?'Continuar agora':'Começar agora'}</button></div></div>`}
+  else{h+=`<div class="card"><p class="label">Jornada concluída</p><h2>Tudo pronto para a sua sessão</h2><p class="muted">Seu formulário, o seu diagnóstico e o seu Mapa do ambiente já estão comigo.</p></div>`}
+  h+=`<div class="card"><ul class="steps">`+STEPS.map((s,i)=>{
+    const d=S.done[s.id], now=n&&n.id===s.id, cls=d?'done':now?'now':'locked';
+    let link='';
+    if(d&&s.id==='diag')link=`<button class="link" data-go="resultado">ver resultado</button>`;
+    else if(d&&s.mapa)link=`<button class="link" data-go="mapa">ver mapa</button>`;
+    else if(d&&s.tipo!=='agenda')link=`<button class="link" data-open="${s.id}">rever</button>`;
+    else if(now)link=`<button class="link" data-open="${s.id}">abrir</button>`;
+    return `<li class="${cls}"><span class="num">${d?'✓':i+1}</span><span class="t"><b>${s.titulo}</b><span>${total(s)} min${s.mapa?' · aula e Mapa do ambiente':''}</span></span>${link}</li>`}).join('')+`</ul></div>`;
+  app.innerHTML=h;
+}
+function vEntre(id){
+  const s=step(id)||STEPS[0], n=nextStep();
+  let h=`<p class="label">Passo concluído</p><h1>Você concluiu: <em>${s.titulo.replace(/^Aula( [\d.]+)? · /,'')}</em></h1><div class="rule"></div>`;
+  if(n){h+=`<div class="card"><p class="label">O próximo passo</p><h2>${n.titulo}</h2><p class="muted">${n.desc}</p>
+   <p>Deve levar <b>cerca de ${total(n)} minutos</b>${n.mapa?` (${n.min} de aula e ${n.mapaMin} no seu Mapa do ambiente)`:''}. Quer fazer agora?</p>
+   <div class="row"><button class="btn btn-go" data-open="${n.id}">Fazer agora</button><button class="btn btn-ghost" data-go="pausa">Continuo depois</button></div></div>`}
+  else{h+=`<div class="card"><h2>Sua jornada de entrada está completa</h2><p class="muted">Seu pedido de sessão foi registrado. A equipe chama você no grupo para combinar o horário.</p><div class="row"><button class="btn btn-ghost" data-go="home">Ver a minha jornada</button></div></div>`}
+  app.innerHTML=h;
+}
+function vPausa(){
+  const n=nextStep();
+  app.innerHTML=`<p class="label">Progresso salvo</p><h1>Tudo certo, <em>até a próxima</em></h1><div class="rule"></div>
+  <p class="muted">Seu progresso está salvo. Para continuar, abra o seu link pessoal de novo: a jornada volta exatamente neste ponto.</p>
+  ${n?`<p class="note">Quando voltar, o próximo passo é <b>${n.titulo}</b>, cerca de ${total(n)} minutos.</p>`:''}
+  <div class="row"><button class="btn btn-ghost" data-go="home">Ver a minha jornada</button></div>`;
+}
+function vStep(id){
+  const s=step(id); if(!s)return vHome();
+  const i=STEPS.indexOf(s), antes=STEPS.slice(0,i).find(x=>!S.done[x.id]);
+  if(antes&&!S.done[s.id])return go('step',antes.id);                      // não pula passo
+  ({form:sForm,aula:sAula,diag:sDiag,agenda:sAgenda})[s.tipo](s);
+}
+function head(s,extra){return `<p class="label">Passo ${STEPS.indexOf(s)+1} de ${STEPS.length} · cerca de ${extra||s.min} min</p><h1>${s.titulo}</h1><div class="rule"></div>`}
+
+/* ───────── formulário ───────── */
+function sForm(s){
+  const f=S.form;
+  app.innerHTML=head(s)+`<p class="muted">Preciso de algumas informações suas para te conhecer melhor. Adicione o máximo de detalhes que puder: assim consigo entender o seu contexto e montar o melhor plano para o seu desenvolvimento. As respostas são salvas enquanto você escreve.</p>
+  <div class="card">`+FORM.map(([k,q,t,x])=>{
+    if(t==='text')return `<label class="f"><span>${q}</span><input type="text" data-f="${k}" value="${esc(f[k])}" placeholder="${esc(x||'')}"></label>`;
+    if(t==='area')return `<label class="f"><span>${q}</span>${x?`<small>${x}</small>`:''}<textarea data-f="${k}">${esc(f[k])}</textarea></label>`;
+    if(t==='select')return `<label class="f"><span>${q}</span><select data-f="${k}"><option value="">escolha</option>${x.map(o=>`<option ${f[k]===o?'selected':''}>${esc(o)}</option>`).join('')}</select></label>`;
+    return `<div class="f" style="margin:0 0 18px"><span class="q">${q}</span><div class="checks">`+x.map(o=>`<label><input type="checkbox" data-fc="${k}" value="${esc(o)}" ${(f[k]||[]).includes(o)?'checked':''}> <span>${esc(o)}</span></label>`).join('')+`</div></div>`;
+  }).join('')+`</div><p class="erro" id="ferro" hidden></p><div class="row"><button class="btn btn-go" data-form="${s.id}">Enviar o formulário</button><button class="btn btn-ghost" data-go="pausa">Continuo depois</button></div>`;
+}
+function formOk(){const f=S.form;return ['cidade','sobre'].every(k=>String(f[k]||'').trim().length>1)}
+
+/* ───────── aulas e Mapa ───────── */
+function sAula(s){
+  const viu=S.aula[s.id]||S.done[s.id];
+  const sub=s.mapa?`<div class="sub"><span class="on"></span><span class="${viu?'on':''}"></span></div>`:'';
+  if(!s.mapa||!viu){
+    app.innerHTML=head(s,total(s))+sub+`<div class="card"><p class="label">${s.mapa?'Parte 1 de 2 · ':''}Aula na área de alunos</p><h2>Assista à aula (${s.min} min)</h2>
+    <p class="muted">${s.desc} A aula abre na área de alunos, em outra aba. Se ela pedir login, entre com o e-mail e a senha da área de alunos. Quando terminar, volte para esta página.</p>
+    <div class="row"><a class="btn btn-go" href="${AREA+AULAS[s.id]}" target="_blank" rel="noopener">Abrir a aula</a>
+    <button class="btn btn-ghost" data-viu="${s.id}">Finalizei a aula</button></div></div>
+    ${s.mapa?`<p class="small">Depois da aula: ${MAPA_TXT[s.mapa].t.toLowerCase()} (cerca de ${s.mapaMin} min).</p>`:''}`;
+    return;
+  }
+  const m=MAPA_TXT[s.mapa];
+  app.innerHTML=head(s,total(s))+sub+`<p class="label">Parte 2 de 2 · Seu Mapa do ambiente</p><h2>${m.t}</h2><p class="muted">${m.p}</p>`+mapaBloco(s.mapa)+
+  `<div class="row"><button class="btn btn-go" data-finish="${s.id}">${s.mapa==='revisao'?'Concluir o meu Mapa':'Salvar e seguir'}</button><button class="btn btn-ghost" data-xls>Exportar em .xls</button><button class="btn btn-ghost" data-go="pausa">Continuo depois</button></div>`;
+}
+function sel(i,k,opts,v){return `<select data-m="${i}" data-k="${k}"><option value="">escolha</option>`+opts.map(o=>`<option ${v===o?'selected':''}>${o}</option>`).join('')+`</select>`}
+function mapaBloco(b){
+  const P=S.mapa.pessoas, N=S.mapa.neg;
+  if(b==='jogadores'){
+    if(!P.length){P.push({},{},{})}
+    return `<p class="note">Use só o primeiro nome ou as iniciais de cada pessoa.</p><div class="card"><div class="tbl"><table><tr><th>Nome</th><th>Cargo</th><th>Classe</th><th></th></tr>`+
+    P.map((p,i)=>`<tr><td><input type="text" data-m="${i}" data-k="nome" value="${esc(p.nome)}" placeholder="primeiro nome"></td><td><input type="text" data-m="${i}" data-k="cargo" value="${esc(p.cargo)}"></td><td>${sel(i,'classe',CLASSES,p.classe)}</td><td><button class="x" data-del="${i}" aria-label="Remover linha">×</button></td></tr>`).join('')+
+    `</table></div><button class="btn btn-ghost" data-add>Adicionar pessoa</button></div>`;
+  }
+  const G=P.map((p,i)=>[p,i]).filter(([p])=>p.nome);
+  if(b!=='negociacao'&&b!=='revisao'&&!G.length)return `<p class="note">Seu mapa ainda não tem ninguém. <button class="link" data-go="step" data-id="a21" data-refazer="a21">Voltar para listar os jogadores</button></p>`;
+  const quem=(p)=>`<td class="ro"><b style="color:var(--white)">${esc(p.nome)}</b><br><span class="small">${esc(p.classe||'')}</span></td>`;
+  if(b==='relacao')return `<div class="card"><div class="tbl"><table><tr><th>Pessoa</th><th>Grau de relação</th><th>Estágio de relação</th></tr>`+G.map(([p,i])=>`<tr>${quem(p)}<td>${sel(i,'grau',GRAUS,p.grau)}</td><td>${sel(i,'estagio',ESTAGIOS,p.estagio)}</td></tr>`).join('')+`</table></div></div>`;
+  if(b==='autoridade')return `<div class="card"><div class="tbl"><table><tr><th>Pessoa</th><th>Nível de autoridade</th></tr>`+G.map(([p,i])=>`<tr>${quem(p)}<td>${sel(i,'autoridade',AUTORIDADE,p.autoridade)}</td></tr>`).join('')+`</table></div></div>`;
+  if(b==='percepcao')return `<div class="card"><div class="tbl"><table><tr><th>Pessoa</th><th>Percepção de performance</th><th>Credibilidade</th><th>Plano de ação</th></tr>`+G.map(([p,i])=>`<tr>${quem(p)}<td>${sel(i,'perf',ESCALA,p.perf)}</td><td>${sel(i,'cred',ESCALA,p.cred)}</td><td><textarea data-m="${i}" data-k="plano" style="min-width:180px;min-height:70px">${esc(p.plano)}</textarea></td></tr>`).join('')+`</table></div></div>`;
+  if(b==='negociacao')return `<div class="card">`+[['sit','Descreva em formato de texto a situação de maneira geral'],['T','T · Tema'],['P','P · Pessoa'],['I','I · Interesses reais'],['A','A · Alternativas'],['F','F · Fechamento']].map(([k,q])=>`<label class="f"><span>${q}</span><textarea data-n="${k}">${esc(N[k])}</textarea></label>`).join('')+`</div>`;
+  return mapaTabela();
+}
+function mapaTabela(){
+  const G=S.mapa.pessoas.filter(p=>p.nome), N=S.mapa.neg;
+  const c=v=>`<td class="ro">${esc(v||'·')}</td>`;
+  return `<div class="card"><div class="tbl"><table style="min-width:900px"><tr><th>Nome</th><th>Cargo</th><th>Classe</th><th>Grau</th><th>Estágio</th><th>Autoridade</th><th>Performance</th><th>Credibilidade</th><th>Plano de ação</th></tr>`+
+  (G.length?G.map(p=>`<tr>${c(p.nome)}${c(p.cargo)}${c(p.classe)}${c(p.grau)}${c(p.estagio)}${c(p.autoridade)}${c(p.perf)}${c(p.cred)}${c(p.plano)}</tr>`).join(''):`<tr><td class="ro" colspan="9">Nenhuma pessoa no mapa ainda.</td></tr>`)+
+  `</table></div></div>`+(N.sit||N.T?`<div class="card"><p class="label">Negociação · exemplo real</p><p class="muted">${esc(N.sit)}</p>`+['T','P','I','A','F'].map(k=>`<p><b style="color:var(--blue)">${k}</b> ${esc(N[k]||'·')}</p>`).join('')+`</div>`:'');
+}
+function vMapaInteiro(){
+  app.innerHTML=`<p class="label">Mapa do ambiente</p><h1>O seu <em>tabuleiro</em> até aqui</h1><div class="rule"></div>`+mapaTabela()+
+  `<div class="row"><button class="btn btn-ghost" data-xls>Exportar em .xls</button><button class="btn btn-ghost" data-go="home">Voltar à jornada</button></div>`;
+}
+function exportarXls(){
+  const G=S.mapa.pessoas.filter(p=>p.nome), N=S.mapa.neg, td=v=>`<td>${esc(v||'')}</td>`;
+  const html=`<html><head><meta charset="utf-8"></head><body><table border="1"><tr><th colspan="9">Mapa do ambiente · Mentoria Liderium</th></tr>
+  <tr><th>Nome</th><th>Cargo</th><th>Classe de stakeholder</th><th>Grau de relação</th><th>Estágio de relação</th><th>Nível de autoridade</th><th>Percepção performance</th><th>Nível de credibilidade</th><th>Plano de ação</th></tr>`+
+  G.map(p=>`<tr>${td(p.nome)}${td(p.cargo)}${td(p.classe)}${td(p.grau)}${td(p.estagio)}${td(p.autoridade)}${td(p.perf)}${td(p.cred)}${td(p.plano)}</tr>`).join('')+
+  `<tr></tr><tr><th colspan="9">Negociação · exemplo real</th></tr><tr><th>Situação</th><th>T</th><th>P</th><th>I</th><th>A</th><th>F</th></tr><tr>${td(N.sit)}${td(N.T)}${td(N.P)}${td(N.I)}${td(N.A)}${td(N.F)}</tr></table></body></html>`;
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob(['﻿'+html],{type:'application/vnd.ms-excel'}));
+  a.download='mapa-do-ambiente.xls';document.body.appendChild(a);a.click();a.remove();
+}
+
+/* ───────── diagnóstico ───────── */
+function sDiag(s){
+  const D=S.diag;
+  if(S.done.diag&&RES)return go('resultado');
+  if(!D.started){
+    app.innerHTML=head(s)+`<p class="muted">São 21 situações reais do dia a dia de quem lidera. Em cada uma, escolha a alternativa mais próxima do que você faria de verdade, não do que acha certo. Quanto mais honesta a resposta, mais útil o resultado.</p>
+    <p class="note">Ao final você vê, na hora, o seu perfil nos 7 princípios. Este diagnóstico é seu e é feito uma vez.</p>
+    <div class="row"><button class="btn btn-go" data-diag="start">Começar o diagnóstico</button><button class="btn btn-ghost" data-go="pausa">Continuo depois</button></div>`;
+    return;
+  }
+  if(D.q>=PERG.length){
+    const falta=PERG.length-D.answers.filter(Boolean).length, primeira=D.answers.findIndex((a,i)=>i<PERG.length&&!a), vazia=primeira<0?D.answers.length:primeira;
+    app.innerHTML=head(s)+`<div class="card"><h2>${falta?`Faltam ${falta} respostas`:'Respostas completas'}</h2><p class="muted">${falta?'Responda as que ficaram em branco para ver o resultado.':'Ao confirmar, o seu resultado é gerado e o diagnóstico fica fechado.'}</p><p class="erro" id="derro" hidden></p>
+    <div class="row">${falta?`<button class="btn btn-go" data-diag="ir" data-q="${vazia}">Responder o que falta</button>`:`<button class="btn btn-go" data-diag="fim" id="bfim">Ver o meu resultado</button>`}<button class="btn btn-ghost" data-diag="back">Rever respostas</button></div></div>`;
+    return;
+  }
+  const q=PERG[D.q], a=D.answers[D.q];
+  app.innerHTML=`<p class="label">Situação ${D.q+1} de ${PERG.length}</p><div class="bar"><i style="width:${Math.round(D.q/PERG.length*100)}%"></i></div>
+  <h2 style="margin:18px 0 18px;font-weight:600;line-height:1.4">${esc(q.t)}</h2>`+
+  q.a.map(al=>`<button class="alt ${a===al[0]?'sel':''}" data-alt="${al[0]}"><b>${al[0]}</b><span>${esc(al[1])}</span></button>`).join('')+
+  `<div class="row">${D.q>0?'<button class="btn btn-ghost" data-diag="back">Voltar</button>':''}${a?'<button class="btn btn-ghost" data-diag="next">Avançar</button>':''}<button class="btn btn-ghost" data-go="pausa">Continuo depois</button></div>`;
+}
+const CLASSE_NOME={maestria:'Mentalidade 100% alinhada',bem:'Mentalidade bem alinhada',parcial:'Mentalidade parcialmente alinhada',pouco:'Mentalidade pouco alinhada',muito:'Mentalidade muito diferente'};
+const CLASSE_DOTS={maestria:5,bem:4,parcial:3,pouco:2,muito:1};
+const fmt=s=>esc(s).replace(/\{primeiro_nome\}/g,esc(NOME)).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
+const PP=a=>a.map(x=>`<p>${fmt(x)}</p>`).join('');
+function blocoLeitura(){
+  if(LEIT.situacao==='pronta'&&LEIT.texto){
+    const L=LEIT.texto;
+    let h=`<div class="card leitura"><p class="label">Leitura aprofundada</p>${PP([L.abertura.reconhecimento,L.abertura.oportunidades])}</div>`;
+    Object.keys(PRINC).forEach(id=>{const x=L.principios[id];h+=`<div class="card leitura"><h2>${PRINC[id]}</h2><div class="rule"></div>${PP([x.diagnostico,x.consequencia,x.direcao])}</div>`});
+    return h+`<div class="card leitura"><p class="label">Síntese</p><h2>O padrão por trás dos números</h2><div class="rule"></div>${PP([L.sintese.retrato,L.sintese.nucleo,L.sintese.engrenagem,L.sintese.movimento])}</div>
+    <div class="card leitura"><p class="label">Plano de trabalho</p>${PP(L.plano)}</div><div class="card leitura">${PP(L.encerramento)}</div>`;
+  }
+  if(LEIT.situacao==='pendente')return `<div class="card"><p class="label">Leitura aprofundada</p><h2><span class="pulso"></span>Sua leitura está sendo escrita</h2><p class="muted">Leva cerca de dois minutos. Você pode esperar aqui ou seguir a jornada: ela fica guardada neste resultado.</p></div>`;
+  return `<div class="card"><p class="label">Leitura aprofundada</p><p class="muted" style="margin:0">A leitura aprofundada do seu diagnóstico é o próximo material que você recebe.</p></div>`;
+}
+function vResultado(){
+  if(!RES)return vHome();
+  const por={};RES.principios.forEach(p=>{por[p.id]=p});
+  app.innerHTML=`<p class="label">Seu diagnóstico de mentalidade</p><h1>${esc(NOME)}, este é o seu <em>perfil nos 7 princípios</em></h1><div class="rule"></div>
+  <p class="muted">Do princípio mais presente em você hoje ao que mais pede desenvolvimento.</p>
+  <div class="card">`+RES.ordem.map(k=>{const p=por[k];return `<div class="prin"><div class="h"><h3>${PRINC[k]}</h3><span class="pill">${CLASSE_NOME[p.classe]}${p.exagero?' · tendência ao exagero':''}</span></div>
+   <div class="dots">${[1,2,3,4,5].map(n=>`<i class="${n<=CLASSE_DOTS[p.classe]?'on':''}"></i>`).join('')}</div><p>${DESC[p.classe+(p.exagero?'-exagero':'')]}</p></div>`}).join('')+`</div>
+  <div id="leit">${blocoLeitura()}</div>
+  <p class="small">O resultado fica guardado aqui na sua jornada.</p>
+  <div class="row"><button class="btn btn-go" data-go="${S.view.from==='fim'?'entre':'home'}" data-id="diag">${S.view.from==='fim'?'Seguir':'Voltar à jornada'}</button></div>`;
+  if(LEIT.situacao==='pendente'){
+    let n=0;
+    poll=setInterval(async()=>{
+      if(++n>60){clearInterval(poll);return}
+      try{const r=await api({acao:'leitura',k:K});if(r.ok&&r.leitura.situacao!=='pendente'){LEIT=r.leitura;clearInterval(poll);const el=$('#leit');if(el)el.innerHTML=blocoLeitura()}}catch(e){}
+    },8000);
+  }
+}
+function sAgenda(s){
+  app.innerHTML=head(s)+`<p class="muted">Seu formulário, o seu diagnóstico e o seu Mapa do ambiente já estão comigo. Falta só marcar a nossa primeira sessão individual.</p>
+  <div class="card"><h2>Peça a sua sessão</h2><p class="muted">Ao confirmar, a equipe recebe o aviso de que você concluiu a jornada e chama você no grupo para combinar o horário.</p>
+  <div class="row"><button class="btn btn-go" data-finish="${s.id}">Concluí, quero marcar a minha sessão</button></div></div>`;
+}
+
+/* ───────── eventos ───────── */
+app.addEventListener('click',async e=>{
+  const t=e.target.closest('[data-open],[data-go],[data-finish],[data-viu],[data-add],[data-del],[data-xls],[data-alt],[data-diag],[data-form]');
+  if(!t)return;const d=t.dataset;
+  if(d.refazer){S.done[d.refazer]=false;S.aula[d.refazer]=true}
+  if(d.open)return go('step',d.open);
+  if(d.go)return go(d.go,d.id);
+  if(d.form){if(!formOk()){const el=$('#ferro');el.hidden=false;el.textContent='Preencha pelo menos a cidade e o "Me conta mais sobre você".';return}return finish(d.form)}
+  if(d.finish)return finish(d.finish);
+  if(d.viu){S.aula[d.viu]=true;const s=step(d.viu);if(!s.mapa)return finish(s.id);save();render();window.scrollTo(0,0);return}
+  if('add' in d){S.mapa.pessoas.push({});save();return render()}
+  if(d.del){S.mapa.pessoas.splice(+d.del,1);save();return render()}
+  if('xls' in d)return exportarXls();
+  const D=S.diag;
+  if(d.alt){const q=D.q;D.answers[q]=d.alt;save();render();setTimeout(()=>{if(S.view.name==='step'&&S.view.id==='diag'&&D.q===q){D.q++;save();render();window.scrollTo(0,0)}},280);return}
+  if(d.diag){
+    if(d.diag==='start'){D.started=true;D.q=Math.max(0,D.answers.findIndex((a,i)=>!a)<0?D.answers.length:D.answers.findIndex(a=>!a));if(D.q>=PERG.length)D.q=0}
+    if(d.diag==='back'){D.q=Math.max(0,Math.min(D.q,PERG.length)-1)}
+    if(d.diag==='next'){D.q=Math.min(PERG.length,D.q+1)}
+    if(d.diag==='ir'){D.q=Math.max(0,Math.min(PERG.length-1,+d.q||0))}
+    if(d.diag==='fim'){
+      const b=$('#bfim');b.disabled=true;b.textContent='Gerando o seu resultado';
+      try{
+        const r=await api({acao:'diag_fim',k:K,respostas:D.answers.slice(0,PERG.length)});
+        if(!r.ok){const el=$('#derro');el.hidden=false;el.textContent=r.mensagem||'Não deu certo. Tente de novo.';b.disabled=false;b.textContent='Ver o meu resultado';return}
+        RES=r.resultado;LEIT=r.leitura||LEIT;S.done.diag=true;return go('resultado',undefined,{from:'fim'});
+      }catch(x){const el=$('#derro');el.hidden=false;el.textContent='Sem conexão. Suas respostas estão guardadas: tente de novo.';b.disabled=false;b.textContent='Ver o meu resultado';return}
+    }
+    save();render();window.scrollTo(0,0)}
+});
+app.addEventListener('input',e=>{
+  const d=e.target.dataset;
+  if(d.f)S.form[d.f]=e.target.value;
+  if(d.fc)S.form[d.fc]=[...app.querySelectorAll(`[data-fc="${d.fc}"]:checked`)].map(x=>x.value);
+  if(d.m!=null&&d.k){(S.mapa.pessoas[+d.m]=S.mapa.pessoas[+d.m]||{})[d.k]=e.target.value}
+  if(d.n)S.mapa.neg[d.n]=e.target.value;
+  if(d.f||d.fc||d.k||d.n)save();
+});
+$('#home').addEventListener('click',()=>go('home'));
+iniciar();
+</script>
+</body>
+</html>
