@@ -1,0 +1,1021 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Proposta · Everton</title>
+<meta name="description" content="Proposta preparada por Yury Garcia para Everton. Válida até 26/11/2026, 23h59.">
+<meta property="og:type" content="website"><meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Proposta para Everton"><meta property="og:description" content="Proposta preparada por Yury Garcia para Everton. Válida até 26/11/2026, 23h59.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#383838; --cream:#F5EFE6; --ink:#383838; --ink-2:#464646; --paper:#F5EFE6; --paper-2:#EBE3D7; --white:#FFFDF9;
+  --mute:#6C645A; --mute-2:#B9B0A3; --line:#DDD3C5; --line-2:#606060;
+  --acc:#0D1F35; --acc-2:#0A1828; --acc-soft:#E2E4E7; --ok:#1E8E4E;
+  --ease:cubic-bezier(.23,1,.32,1);
+  --pad:clamp(20px,5vw,40px); --max:1040px; --sec:clamp(64px,10vw,120px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#171513;--paper-2:#201D1A;--white:#1D1A17;--ink:#F3ECE1;--ink-2:#E4DBCD;--mute:#A39A8D;--line:#37322C;--acc-soft:#3A2418}}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--paper);color:var(--ink);font:400 clamp(16px,1.1vw + 13px,19px)/1.65 Inter,system-ui,-apple-system,"Segoe UI",sans-serif;padding-bottom:84px;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:var(--max);margin:0 auto;padding-inline:var(--pad)}
+section{padding-block:var(--sec)}
+h1,h2,h3{font-weight:800;letter-spacing:-.02em;line-height:1.08}
+h1{font-size:clamp(2.1rem,7.4vw,4.2rem);letter-spacing:-.035em;font-weight:900}
+h2{font-size:clamp(1.7rem,5vw,2.9rem);margin-bottom:.5em}
+h3{font-size:clamp(1.25rem,3.4vw,1.7rem)}
+em.hl{font-style:normal;color:var(--acc)}
+.lead{font-size:clamp(1.05rem,2.4vw,1.3rem);color:var(--mute);max-width:36em}
+.eyebrow{font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);margin-bottom:14px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:0 28px;border-radius:999px;background:var(--acc);color:#fff;font-weight:800;font-size:1.05rem;text-decoration:none;border:0;cursor:pointer;transition:transform .2s var(--ease),background .2s}
+.btn:hover{background:var(--acc-2);transform:translateY(-2px)}
+.btn:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
+.btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--line)}
+.btn.ghost:hover{border-color:var(--ink);background:transparent}
+
+/* HERO */
+.hero{padding-block:clamp(36px,7vw,80px) clamp(48px,8vw,96px)}
+.hero p.lead{margin-top:22px}
+.hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.fluxo{margin-top:clamp(36px,6vw,64px);border:1px solid var(--line);border-radius:22px;background:var(--white);padding:clamp(16px,3vw,28px);display:grid;grid-template-columns:1fr;gap:18px}
+.fluxo .col h4{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin-bottom:10px;font-weight:700}
+.pontos{display:grid;grid-template-columns:repeat(12,1fr);gap:7px}
+.pontos i{aspect-ratio:1;border-radius:50%;background:var(--line);display:block}
+.pontos.vivos i{animation:acende 5.4s infinite var(--ease)}
+@keyframes acende{0%,14%{background:var(--line);transform:scale(1)}30%{background:var(--acc);transform:scale(1.25)}62%{background:var(--acc);transform:scale(1)}86%,100%{background:var(--line);transform:scale(1)}}
+.fluxo .seta{display:none}
+.fluxo .res{display:flex;flex-direction:column;gap:8px;justify-content:center}
+.fluxo .res span{display:block;padding:10px 14px;border-radius:12px;background:var(--acc-soft);font-weight:700;font-size:.95rem;animation:sobe 5.4s infinite var(--ease);opacity:.35}
+.fluxo .res span:nth-child(2){animation-delay:.5s}.fluxo .res span:nth-child(3){animation-delay:1s}
+@keyframes sobe{0%,20%{opacity:.25;transform:translateY(6px)}40%,70%{opacity:1;transform:none}100%{opacity:.25;transform:translateY(6px)}}
+@media (min-width:760px){.fluxo{grid-template-columns:1.3fr auto 1.3fr;align-items:center}.fluxo .seta{display:block;font-size:2rem;color:var(--acc)}}
+.nota-fluxo{font-size:.82rem;color:var(--mute);margin-top:10px}
+
+/* OUVI */
+.ouvi .grid{display:grid;gap:14px;margin-top:28px}
+.card-o{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:22px 22px 24px}
+.card-o strong{display:block;font-size:1.15rem;margin-bottom:6px;letter-spacing:-.01em}
+.card-o p{color:var(--mute);font-size:.98rem}
+@media (min-width:760px){.ouvi .grid{grid-template-columns:1fr 1fr}}
+
+/* CENARIO */
+.cenario{background:var(--night);color:var(--cream)}
+.cenario h2{color:var(--cream)}
+.cenario .lead{color:var(--mute-2)}
+.cenas{display:grid;gap:18px;margin-top:30px}
+.cena{border-left:3px solid var(--acc);padding:4px 0 4px 18px;color:var(--mute-2)}
+.cena b{color:var(--cream);display:block;font-size:1.15rem;margin-bottom:4px}
+.rot{margin-top:26px;font-size:.84rem;color:var(--mute-2);border-top:1px solid var(--line-2);padding-top:14px}
+@media (min-width:760px){.cenas{grid-template-columns:repeat(3,1fr)}}
+
+/* ENTREGAS */
+.ent{display:grid;gap:22px;margin-top:34px}
+.ent-card{background:var(--white);border:1px solid var(--line);border-radius:24px;overflow:hidden}
+.ent-card .foto{aspect-ratio:3/2;overflow:hidden;background:var(--paper-2)}
+.ent-card .foto img{width:100%;height:100%;object-fit:cover}
+.ent-card .corpo{padding:clamp(20px,4vw,34px)}
+.num{display:inline-flex;width:34px;height:34px;align-items:center;justify-content:center;border-radius:50%;background:var(--acc);color:#fff;font-weight:800;font-size:.95rem;margin-bottom:12px}
+.preco{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:6px 0 4px}
+.preco b{font-size:1.5rem;letter-spacing:-.02em}
+.preco span{font-size:.82rem;color:var(--mute)}
+.muda{margin:14px 0 4px;padding:14px 16px;background:var(--acc-soft);border-radius:14px;font-weight:600;font-size:.98rem}
+.ent-card ul{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:10px}
+.ent-card li{position:relative;padding-left:26px;color:var(--ink-2);font-size:.98rem}
+.ent-card li::before{content:"";position:absolute;left:2px;top:.55em;width:10px;height:10px;border-radius:50%;background:var(--acc)}
+.ent-card li small{display:block;color:var(--mute);font-size:.86rem;margin-top:2px}
+details.temas{margin-top:16px;border-top:1px solid var(--line);padding-top:14px}
+details.temas summary{cursor:pointer;font-weight:700;list-style:none}
+details.temas summary::after{content:" +";color:var(--acc)}
+details.temas[open] summary::after{content:" −"}
+details.temas ol{margin:12px 0 0;padding-left:1.2em;display:grid;gap:6px;color:var(--ink-2);font-size:.96rem}
+@media (min-width:860px){.ent-card{display:grid;grid-template-columns:.9fr 1.1fr}.ent-card .foto{aspect-ratio:auto;height:100%}.ent-card:nth-child(even){grid-template-columns:1.1fr .9fr}.ent-card:nth-child(even) .foto{order:2}}
+
+/* INVESTIMENTO */
+.invest{background:var(--night);color:var(--cream)}
+.invest h2{color:var(--cream)}
+.tab{margin-top:28px;border:1px solid var(--line-2);border-radius:22px;overflow:hidden}
+.lin{display:flex;justify-content:space-between;gap:14px;padding:16px 20px;border-bottom:1px solid var(--line-2);font-size:1rem}
+.lin span:last-child{font-weight:700;white-space:nowrap}
+.lin.sub{color:var(--mute-2)}
+.lin.desc{background:rgba(13,31,53,.12);color:#929AA4;font-weight:700}
+.lin.tot{border:0;background:var(--acc);color:#fff;font-size:1.25rem;font-weight:900;padding:22px 20px}
+.parc{margin-top:22px;display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.parc big{font-size:clamp(2.2rem,8vw,3.6rem);font-weight:900;letter-spacing:-.03em;line-height:1}
+.parc p{color:var(--mute-2);max-width:28em}
+.invest .nota{margin-top:20px;font-size:.88rem;color:var(--mute-2)}
+
+/* CONTA */
+.conta .box{margin-top:26px;background:var(--white);border:1px solid var(--line);border-radius:24px;padding:clamp(20px,4vw,34px);display:grid;gap:18px}
+.conta label{display:block;font-weight:700;font-size:.95rem;margin-bottom:6px}
+.conta input{width:100%;min-height:56px;border-radius:14px;border:2px solid var(--line);background:var(--paper);color:var(--ink);padding:0 16px;font:700 1.15rem Inter,sans-serif}
+.conta .campos{display:grid;gap:16px}
+.out{background:var(--acc-soft);border-radius:18px;padding:20px;display:grid;gap:12px}
+.out div{display:flex;justify-content:space-between;gap:12px;font-size:1rem}
+.out b{font-size:1.2rem}
+.out .vazio{color:var(--mute);font-size:.98rem}
+.conta small{color:var(--mute);font-size:.84rem}
+@media (min-width:760px){.conta .box{grid-template-columns:1fr 1fr;align-items:start}.conta .campos{grid-template-columns:1fr}}
+
+/* GARANTIA */
+.garantia .caixa{border:2px solid var(--acc);border-radius:26px;padding:clamp(24px,5vw,48px);background:var(--white)}
+.garantia .big{font-size:clamp(1.5rem,5vw,2.4rem);font-weight:900;letter-spacing:-.025em;line-height:1.15}
+.garantia ul{margin:22px 0 0;padding:0;list-style:none;display:grid;gap:10px}
+.garantia li{padding-left:28px;position:relative;color:var(--ink-2)}
+.garantia li::before{content:"✓";position:absolute;left:0;color:var(--ok);font-weight:900}
+
+/* QUEM */
+.quem .duas{display:grid;gap:16px;margin-top:26px}
+.quem .col{border:1px solid var(--line);border-radius:20px;padding:22px;background:var(--white)}
+.quem h3{margin-bottom:12px;font-size:1.2rem}
+.quem ul{list-style:none;padding:0;display:grid;gap:9px;font-size:.98rem}
+.quem li{padding-left:22px;position:relative}
+.quem li::before{content:"→";position:absolute;left:0;color:var(--acc);font-weight:800}
+@media (min-width:760px){.quem .duas{grid-template-columns:1fr 1fr}}
+
+/* SOBRE */
+.sobre .faixa{display:grid;gap:12px;margin-top:22px}
+.sobre .item{border-left:3px solid var(--acc);padding-left:16px}
+.sobre .item b{display:block}
+.sobre p.fim{margin-top:22px;color:var(--mute);font-size:.98rem}
+
+/* FINAL */
+.final{text-align:left;padding-bottom:calc(var(--sec) + 20px)}
+.final .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+
+/* BARRA FIXA */
+.barra{position:fixed;left:0;right:0;bottom:0;z-index:20;padding:10px var(--pad) calc(10px + env(safe-area-inset-bottom));background:var(--paper);border-top:1px solid var(--line);display:flex;gap:12px;align-items:center;justify-content:space-between;transform:translateY(110%);transition:transform .35s var(--ease)}
+.barra.on{transform:none}
+.barra span{font-size:.86rem;color:var(--mute);line-height:1.3}
+.barra b{display:block;color:var(--ink);font-size:.98rem}
+.barra .btn{min-height:48px;padding:0 20px;font-size:.98rem;white-space:nowrap}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.pontos i:nth-child(3n){background:var(--acc)}.fluxo .res span{opacity:1}}
+/* ===== visual v2 ===== */
+.prog{position:fixed;top:0;left:0;height:3px;width:0;background:var(--acc);z-index:50;transition:width .1s linear}
+html.js .rv{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:var(--rd,0s)}
+html.js .rv.in{opacity:1;transform:none}
+.hero{background:var(--night);color:var(--cream);position:relative;overflow:hidden;padding-block:clamp(40px,8vw,92px) clamp(52px,8vw,96px)}
+.hero::before{content:"";position:absolute;right:-20vmax;top:-18vmax;width:72vmax;height:72vmax;background:radial-gradient(closest-side,rgba(13,31,53,.30),transparent 70%);pointer-events:none}
+.hero::after{content:"";position:absolute;inset:0;opacity:.07;pointer-events:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+.hgrid{position:relative;z-index:1;display:grid;gap:clamp(36px,6vw,64px);align-items:center}
+.hero h1{color:var(--cream)}
+.hero .lead{color:#CFC6B8}
+.hero .btn.ghost{color:var(--cream);border-color:#747474}
+.hero .btn.ghost:hover{border-color:var(--cream)}
+@media (min-width:900px){.hgrid{grid-template-columns:1.15fr .85fr}}
+.hvis{display:flex;flex-direction:column;align-items:center;gap:12px}
+.phone{width:min(310px,100%);background:#EFE7DA;border:9px solid #222222;border-radius:36px;box-shadow:0 40px 80px -20px rgba(0,0,0,.7),0 0 0 1px #3a342e;overflow:hidden;color:#383838}
+.ph-top{display:flex;align-items:center;gap:10px;padding:12px 14px;background:#fff;border-bottom:1px solid #E3DACB}
+.ph-top .av{width:36px;height:36px;border-radius:50%;background:var(--acc);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.8rem}
+.ph-top b{display:block;font-size:.92rem;line-height:1.1}
+.ph-top small{font-size:.72rem;color:#1E8E4E}
+.ph-body{padding:14px 12px 16px;min-height:372px;display:flex;flex-direction:column;gap:9px}
+.m{max-width:84%;margin:0;padding:9px 12px;border-radius:14px;font-size:.84rem;line-height:1.4;opacity:0;transform:translateY(8px) scale(.97);transition:opacity .45s var(--ease),transform .45s var(--ease)}
+.m.le{align-self:flex-start;background:#fff;border-bottom-left-radius:4px}
+.m.ri{align-self:flex-end;background:#E2E4E7;border-bottom-right-radius:4px}
+.ficha{margin-top:4px;padding:11px 13px;border-radius:14px;background:#383838;color:#F5EFE6;display:grid;gap:3px;opacity:0;transform:translateY(8px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.ficha span{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:#0D1F35;font-weight:700}
+.ficha b{font-size:.88rem}
+.ficha em{font-style:normal;font-size:.78rem;color:#7BE0A5;font-weight:700}
+.m.show,.ficha.show{opacity:1;transform:none}
+.ph-nota{font-size:.78rem;color:#9C9387}
+.trust{background:var(--white);border-bottom:1px solid var(--line)}
+.tg{display:grid;grid-template-columns:1fr 1fr}
+.tg div{padding:18px 14px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.tg div:nth-child(2n){border-right:0}
+.tg b{display:block;font-size:.92rem;letter-spacing:-.01em}
+.tg span{font-size:.78rem;color:var(--mute);line-height:1.35;display:block;margin-top:2px}
+@media (min-width:760px){.tg{grid-template-columns:repeat(4,1fr)}.tg div{border-bottom:0;padding:22px 20px}.tg div:nth-child(2n){border-right:1px solid var(--line)}.tg div:last-child{border-right:0}}
+.ent-card .foto img{transition:transform .9s var(--ease)}
+.ent-card:hover .foto img{transform:scale(1.045)}
+.ent-card:hover{box-shadow:0 24px 60px -28px rgba(56,56,56,.35)}
+.card-o:hover{border-color:var(--acc)}
+.jornada{background:var(--paper-2)}
+.trilha{list-style:none;padding:0;margin:34px 0 0;position:relative;display:grid;gap:26px}
+.trilha::before{content:"";position:absolute;left:15px;top:6px;bottom:6px;width:2px;background:var(--line)}
+.trilha li{position:relative;padding-left:56px}
+.trilha li::before{content:"";position:absolute;left:6px;top:4px;width:20px;height:20px;border-radius:50%;background:var(--paper-2);border:3px solid var(--line);transition:background .5s,border-color .5s,box-shadow .5s}
+.trilha li.in::before{background:var(--acc);border-color:var(--acc);box-shadow:0 0 0 6px rgba(13,31,53,.18)}
+.trilha b{display:block;font-size:1.15rem;letter-spacing:-.01em}
+.trilha p{color:var(--mute);font-size:.98rem;margin-top:2px;max-width:34em}
+@media (min-width:900px){.trilha{grid-template-columns:repeat(5,1fr);gap:18px}.trilha::before{left:0;right:0;top:15px;bottom:auto;width:auto;height:2px}.trilha li{padding:44px 0 0}.trilha li::before{left:0;top:6px}}
+.eco{margin-top:30px;display:grid;gap:12px}
+.eb{display:grid;grid-template-columns:64px 1fr auto;gap:12px;align-items:center;font-size:.9rem;color:var(--mute-2)}
+.trk{height:14px;border-radius:99px;background:#4E4E4E;overflow:hidden}
+.trk i{display:block;height:100%;width:0;border-radius:99px;background:#6C645A;transition:width 1.4s var(--ease)}
+.eb.pk .trk i{background:var(--acc)}
+.eb b{color:var(--cream);white-space:nowrap}
+.eco.in .trk i{width:var(--w)}
+.eco p{color:#929AA4;font-weight:700;font-size:.95rem}
+.invest .tab{box-shadow:0 30px 80px -40px rgba(13,31,53,.5)}
+.garantia .caixa{position:relative;overflow:hidden}
+.garantia .caixa::after{content:"";position:absolute;right:-60px;top:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(closest-side,rgba(13,31,53,.18),transparent);pointer-events:none}
+@media (prefers-reduced-motion:reduce){html.js .rv{opacity:1;transform:none}.m,.ficha{opacity:1;transform:none}.trk i{width:var(--w)}.trilha li::before{background:var(--acc);border-color:var(--acc)}}
+
+/* ===== v3: abertura longa, calculadora com payback ===== */
+.hero h1.longo{font-size:clamp(1.65rem,5.4vw,3rem);line-height:1.14;letter-spacing:-.025em;max-width:22em}
+.conta .out .resp{display:block;background:var(--ink);color:var(--cream);border-radius:14px;padding:16px 18px;margin-top:4px}
+.conta .out .resp span{display:block;font-size:.85rem;color:var(--mute-2);margin-bottom:4px}
+.conta .out .resp b{font-size:clamp(1.5rem,5vw,2rem);letter-spacing:-.02em;color:#fff;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px}
+.conta .out .resp b small{font-size:.9rem;font-weight:600;color:#929AA4;letter-spacing:0}
+.conta .out .rodape{font-size:.88rem;color:var(--mute);margin:0}
+.pay{margin-top:22px;background:var(--white);border:1px solid var(--line);border-radius:24px;padding:clamp(18px,4vw,30px)}
+.pay-t{font-weight:700;font-size:.95rem;margin-bottom:16px}
+.pay-g{position:relative;height:210px;display:grid;grid-template-columns:repeat(6,1fr);gap:clamp(6px,2vw,14px);align-items:end;padding-bottom:42px;border-bottom:2px solid var(--line)}
+.pay-b{position:relative;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center}
+.pay-b i{display:block;width:100%;max-width:64px;height:var(--h);background:var(--mute-2);border-radius:10px 10px 0 0;transition:height 1.1s var(--ease)}
+.pay-b.ok i{background:var(--acc)}
+.pay-b em{position:absolute;bottom:calc(var(--h,0%) + 4px);font-style:normal;font-size:.7rem;font-weight:700;color:var(--ink-2);white-space:nowrap}
+.pay-b span{position:absolute;bottom:-34px;font-size:.78rem;color:var(--mute)}
+.pay-l{position:absolute;left:0;right:0;border-top:2px dashed var(--acc-2);z-index:2;pointer-events:none}
+.pay-l span{position:absolute;right:0;top:-24px;font-size:.74rem;font-weight:700;color:var(--acc-2);background:var(--white);padding:0 6px;border-radius:6px}
+@media (max-width:520px){.pay-b em{font-size:.6rem}}
+.semequipe{margin-top:22px;border-left:4px solid var(--acc);background:var(--acc-soft);border-radius:0 18px 18px 0;padding:20px 22px}
+.semequipe b{display:block;font-size:1.15rem;margin-bottom:4px}
+.semequipe p{font-size:.98rem;color:var(--ink-2)}
+
+.conta .out b{white-space:nowrap}.conta .out div:not(.resp){align-items:baseline}.pay-b em{font-size:.78rem}@media (max-width:520px){.pay-b em{font-size:.7rem}}
+.pay-l{bottom:calc(42px + (100% - 42px)*var(--k))}
+
+/* ===== proposta-pagina: componentes do layout ===== */
+[hidden]{display:none!important}
+button.btn{font-family:inherit}
+.btn.grande{min-height:64px;padding:0 38px;font-size:1.2rem}
+
+/* personalização + validade */
+.sel{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 20px}
+.chip{padding:7px 13px;border-radius:99px;border:1px solid #747474;font-size:.8rem;font-weight:700;color:#CFC6B8;line-height:1.3}
+.chip b{color:#fff}
+.chip.val{border-color:var(--acc)}
+.venceu{display:none;background:#B3261E;color:#fff;padding:14px var(--pad);text-align:center;font-weight:700}
+body.vencida .venceu{display:block}
+
+/* diagramas animados */
+.ent-card .foto.diag,.diag{background:#383838;aspect-ratio:3/2;display:block;position:relative}
+@media (min-width:860px){.ent-card .foto.diag{height:auto;align-self:center;margin:18px;border-radius:18px;overflow:hidden}}
+.diag svg{width:100%;height:100%;display:block}
+.diag text{font-family:Inter,system-ui,sans-serif;font-weight:700;fill:#F5EFE6}
+.diag .mut{fill:#B9B0A3;font-weight:600}
+.diag .nd{fill:#464646;stroke:#747474;stroke-width:2;animation:ndOn 7s infinite;animation-delay:var(--d,0s)}
+.diag .nd.dm{stroke-linejoin:round}
+@keyframes ndOn{0%,4%{fill:#464646;stroke:#747474}8%,22%{fill:var(--acc);stroke:var(--acc)}30%,100%{fill:#464646;stroke:#747474}}
+.diag .ar{stroke:#7A7166;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.diag .tile{fill:var(--acc);opacity:.14;animation:tileOn 7s infinite;animation-delay:var(--d,0s)}
+@keyframes tileOn{0%{opacity:.14}6%,70%{opacity:1}90%,100%{opacity:.14}}
+.diag .bar{transform-box:fill-box;transform-origin:bottom;animation:grow 7s infinite var(--ease);animation-delay:var(--d,0s)}
+.diag .barfill{fill:var(--acc)}
+@keyframes grow{0%{transform:scaleY(0)}14%,78%{transform:scaleY(1)}92%,100%{transform:scaleY(0)}}
+.diag .trend{fill:none;stroke:#F5EFE6;stroke-width:3;stroke-dasharray:640;stroke-dashoffset:640;stroke-linecap:round;stroke-linejoin:round;animation:draw 7s infinite}
+@keyframes draw{0%,10%{stroke-dashoffset:640}40%,78%{stroke-dashoffset:0}92%,100%{stroke-dashoffset:640}}
+.diag .cap{fill:#4E4E4E;animation:capOn 7s infinite;animation-delay:var(--d,0s)}
+@keyframes capOn{0%,4%{fill:#4E4E4E}12%,76%{fill:var(--acc)}92%,100%{fill:#4E4E4E}}
+@media (prefers-reduced-motion:reduce){.diag *{animation:none!important}.diag .tile{opacity:1}.diag .bar{transform:none}.diag .trend{stroke-dashoffset:0}.diag .cap{fill:var(--acc)}}
+
+/* garantia colada no preço */
+.invest + .garantia{padding-top:clamp(40px,6vw,72px)}
+.garantia .caixa small{display:block;margin-top:18px;color:var(--mute);font-size:.88rem}
+
+/* o que acontece depois do clique */
+.depois .passos{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:14px;counter-reset:p}
+.depois .passo{counter-increment:p;position:relative;border:1px solid var(--line);border-radius:20px;background:var(--white);padding:20px 22px 22px 72px}
+.depois .passo::before{content:counter(p);position:absolute;left:20px;top:18px;width:36px;height:36px;border-radius:50%;background:var(--acc);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center}
+.depois .passo b{display:block;font-size:1.12rem;letter-spacing:-.01em}
+.depois .passo p{color:var(--mute);font-size:.96rem;margin-top:3px}
+@media (min-width:900px){.depois .passos{grid-template-columns:repeat(4,1fr)}.depois .passo{padding:70px 20px 22px}.depois .passo::before{left:20px;top:20px}}
+
+/* palavras que eu uso */
+.gloss{margin-top:26px;border:1px solid var(--line);border-radius:18px;background:var(--white);padding:4px 20px}
+.gloss summary{cursor:pointer;font-weight:700;padding:14px 0;list-style:none}
+.gloss summary::after{content:" +";color:var(--acc)}
+.gloss[open] summary::after{content:" −"}
+.gloss dl{display:grid;gap:12px;margin:0 0 16px}
+.gloss dt{font-weight:800}
+.gloss dd{margin:0;color:var(--mute);font-size:.96rem}
+
+/* clientes que já atendo (mesmo bloco da página de contrato) */
+.clientes .ig-lista{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px;margin-top:26px}
+.clientes .ig{display:flex;flex-direction:column;gap:10px;border:1px solid var(--line);border-radius:18px;padding:16px;color:var(--ink);text-decoration:none;background:var(--white)}
+.clientes .ig:hover{border-color:var(--acc)}
+.ig-topo{display:flex;align-items:center;gap:10px}
+.ig-av{width:48px;height:48px;border-radius:50%;object-fit:cover;flex:none}
+.ig-user{font-size:.95rem;font-weight:700}
+.ig-num{color:var(--mute);font-size:.8rem}
+.ig-bio{font-size:.85rem;line-height:1.5;color:var(--mute);display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.ig-grade{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
+.ig-grade img{width:100%;aspect-ratio:1;object-fit:cover;display:block}
+.ig-ver{color:var(--acc);font-size:.85rem;font-weight:700}
+.clientes .aviso{margin-top:18px;color:var(--mute);font-size:.9rem;max-width:44em}
+
+/* quem sou eu com foto */
+.sobre-grid{display:grid;gap:26px;margin-top:22px;align-items:center}
+.sobre-grid .faixa{margin-top:0}
+.eu{margin:0;border-radius:24px;overflow:hidden;aspect-ratio:4/5;max-height:560px;background:var(--paper-2)}
+.eu img{width:100%;height:100%;object-fit:cover}
+@media (min-width:760px){.sobre-grid{grid-template-columns:.78fr 1.22fr;gap:40px}}
+.final .peq{margin-top:14px;font-size:.88rem;color:var(--mute);max-width:36em}
+
+/* modal de dados do contrato */
+.modal{border:0;border-radius:26px;padding:0;width:min(580px,calc(100vw - 24px));max-height:calc(100dvh - 24px);background:var(--white);color:var(--ink);box-shadow:0 40px 120px -20px rgba(0,0,0,.6);overflow:auto}
+.modal::backdrop{background:rgba(56,56,56,.72);backdrop-filter:blur(3px)}
+.modal form{padding:clamp(22px,5vw,36px);display:grid;gap:14px}
+.modal h3{font-size:clamp(1.4rem,5vw,1.8rem)}
+.modal .sub{color:var(--mute);font-size:.96rem;margin-top:-6px}
+.modal label{display:block;font-weight:700;font-size:.9rem;margin-bottom:5px}
+.modal input{width:100%;min-height:52px;border-radius:14px;border:2px solid var(--line);background:var(--paper);color:var(--ink);padding:0 14px;font:600 1rem Inter,sans-serif}
+.modal input:focus-visible{outline:3px solid var(--acc);outline-offset:2px;border-color:var(--acc)}
+.modal input[aria-invalid="true"]{border-color:#B3261E}
+.modal .duas2{display:grid;gap:14px}
+@media (min-width:520px){.modal .duas2{grid-template-columns:1fr 1fr}}
+.modal .erro{color:#B3261E;font-weight:700;font-size:.92rem;min-height:1.2em}
+.modal .lgpd{font-size:.8rem;color:var(--mute)}
+.modal .fechar{position:absolute;right:14px;top:12px;width:40px;height:40px;border-radius:50%;border:0;background:var(--paper-2);color:var(--ink);font-size:1.3rem;cursor:pointer}
+.modal .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+
+/* barra fixa: um botão só */
+.barra .btn{white-space:nowrap}
+
+/* dois mundos (antes das entregas) e bloco "Em contrato" (depois da garantia) */
+.dmundos{display:grid;gap:14px;margin:0 0 clamp(28px,5vw,48px)}
+@media (min-width:760px){.dmundos{grid-template-columns:1fr 1fr}}
+.dmx{border:1px solid var(--line);border-radius:18px;padding:22px 24px;background:var(--white)}
+.dmx h3{margin:0 0 10px;font-size:1.05rem}
+.dmx ul{margin:0;padding-left:1.1em;display:grid;gap:8px;color:var(--ink-2)}
+.dmx.dois{border-color:var(--acc);box-shadow:inset 4px 0 0 var(--acc)}
+.emc{margin-top:22px;border:1px dashed var(--line);border-radius:18px;padding:22px 24px;background:var(--white)}
+.emc h3{margin:8px 0 10px}
+.emc ul{margin:12px 0 0;padding-left:1.1em;display:grid;gap:8px;color:var(--ink-2)}
+
+/* ===== layout v3: dossiê vivo ===== */
+:root{--paper:#F6F5F1;--paper-2:#ECEAE3;--white:#FFFFFF;--line:#D9D6CC;--mute:#5E5A52;--ink:#2D2D2D;--ink-2:#4E4E4E;
+  --acc-base:#0D1F35;--serif:'Newsreader',Georgia,'Times New Roman',serif;--mono:'JetBrains Mono',ui-monospace,Consolas,monospace;--rail:268px}
+html{color-scheme:light}
+.v3 section{padding-block:0}
+.v3 h1,.v3 h2,.v3 h3{font-family:var(--serif);font-weight:500;letter-spacing:-.018em;line-height:1.08}
+.v3 h1{font-size:clamp(2.2rem,5.4vw,4.4rem);letter-spacing:-.025em;font-weight:500}
+.v3 h2{font-size:clamp(1.9rem,4.2vw,3rem);margin-bottom:.4em}
+.v3 h3{font-size:clamp(1.35rem,2.6vw,1.8rem)}
+.v3 em.hl{font-style:italic;color:var(--acc)}
+.v3 .btn{border-radius:8px;letter-spacing:.01em;min-height:52px;padding:0 24px}
+.v3 .btn.grande{min-height:60px}
+.v3 .btn.ghost{border-width:1.5px}
+.v3 .lead{max-width:38em}
+.tag{display:inline-block;font:500 .72rem var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--acc)}
+
+/* capa */
+.capa{position:relative;background:var(--night);color:var(--cream);overflow:hidden;min-height:100svh}
+.capa::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(ellipse at 72% 38%,#000 0,transparent 72%);mask-image:radial-gradient(ellipse at 72% 38%,#000 0,transparent 72%)}
+.capa-art{position:absolute;right:-14vw;top:50%;width:min(88vw,760px);aspect-ratio:1;transform:translateY(-50%);fill:none;stroke:var(--acc);stroke-width:1;opacity:.34;pointer-events:none}
+.capa-art .dash{stroke-dasharray:3 11;transform-origin:center;animation:gira 80s linear infinite}
+.capa-art .dash2{stroke-dasharray:1 16;transform-origin:center;animation:gira 120s linear infinite reverse}
+@keyframes gira{to{transform:rotate(360deg)}}
+.capa-foto{position:absolute;right:0;top:0;bottom:0;width:100%;opacity:.4}
+.capa-foto img{width:100%;height:100%;object-fit:cover;filter:grayscale(.2) contrast(1.06)}
+.capa-foto::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(56,56,56,.15) 0%,rgba(56,56,56,.95) 78%)}
+.capa .wrap{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:space-between;gap:36px;min-height:100svh;padding-block:clamp(22px,4vw,40px)}
+.meta{display:grid;grid-template-columns:auto 1fr;gap:3px 20px;font:500 .7rem/1.7 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--mute-2);max-width:30em}
+.meta dt{color:#8C857A}
+.meta dd{margin:0;color:var(--cream)}
+.capa-txt{max-width:44rem}
+.capa h1{color:var(--cream);font-size:clamp(2rem,3.7vw,3.3rem);line-height:1.1}
+.capa .wrap{max-width:none;padding-inline:clamp(22px,6vw,104px)}
+.capa .sub{margin-top:22px;font-size:clamp(1.02rem,2vw,1.25rem);color:#CFC6B8;max-width:34em}
+.cue{align-self:flex-start;font:500 .78rem var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--cream);text-decoration:none;border-bottom:1px solid var(--acc);padding-bottom:3px}
+@media (min-width:900px){
+  .capa-foto{width:46%;opacity:1}
+  .capa-foto::after{background:linear-gradient(90deg,var(--night) 0%,rgba(56,56,56,0) 48%),linear-gradient(0deg,rgba(56,56,56,.55),rgba(56,56,56,0) 40%)}
+  .capa-txt{max-width:min(46rem,56%)}
+  .capa-art{right:-6vw}
+}
+
+/* documento: menu lateral + conteúdo */
+.doc{display:block}
+.rail{display:none}
+@media (min-width:1100px){
+  .doc{display:grid;grid-template-columns:var(--rail) minmax(0,1fr)}
+  .rail{display:flex;flex-direction:column;justify-content:space-between;gap:22px;position:sticky;top:0;height:100svh;padding:34px 22px 28px;background:var(--paper-2);border-right:1px solid var(--line)}
+  .rid{font:500 .7rem var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+  .rcli{font-family:var(--serif);font-size:1.45rem;line-height:1.15;margin-top:6px}
+  .rail nav ol{list-style:none;padding:0;margin:0;display:grid;gap:2px}
+  .rail nav a{display:grid;grid-template-columns:30px 1fr;align-items:baseline;padding:9px 10px;border-radius:8px;color:var(--mute);font-weight:600;font-size:.92rem;text-decoration:none;transition:background .2s,color .2s}
+  .rail nav a span{font:500 .7rem var(--mono)}
+  .rail nav a.on{background:var(--white);color:var(--ink);box-shadow:inset 3px 0 0 var(--acc)}
+  .rail nav a:hover{color:var(--ink)}
+  .rval{font:500 .72rem/1.6 var(--mono);color:var(--mute);margin-bottom:12px}
+  .rval b{color:var(--ink);font-weight:500}
+  .rail .btn{width:100%}
+  .barra{display:none}
+}
+.main{min-width:0}
+.band{border-top:1px solid var(--line)}
+.band .sec{max-width:980px;margin:0 auto;padding:clamp(56px,8vw,104px) var(--pad)}
+.sh{display:flex;align-items:baseline;gap:16px;margin-bottom:22px}
+.sh .n{font:500 .85rem var(--mono);color:var(--acc);letter-spacing:.1em}
+.sh .l{font:500 .72rem var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+.sub3{margin:56px 0 0}
+.rot3{margin-top:22px;font-size:.84rem;color:var(--mute);border-top:1px solid var(--line);padding-top:14px}
+
+/* 01 resumo */
+.qs{display:grid;margin-top:26px}
+.q{padding:26px 0;border-top:1px solid var(--line)}
+.q blockquote{margin:0 0 8px;font-family:var(--serif);font-size:clamp(1.35rem,2.8vw,1.95rem);line-height:1.2;letter-spacing:-.012em}
+.q p{color:var(--mute);max-width:42em;font-size:.98rem}
+@media (min-width:760px){.qs{grid-template-columns:1fr 1fr;column-gap:44px}}
+.ad{display:grid;margin-top:40px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--white)}
+.ad>div{padding:clamp(20px,3vw,30px)}
+.ad .antes{background:var(--paper-2)}
+.ad h3{margin:8px 0 8px}
+.ad p{color:var(--mute);font-size:.98rem}
+.ad ul{list-style:none;padding:0;margin:12px 0 0;display:grid;gap:9px}
+.ad li{position:relative;padding-left:26px;font-weight:600}
+.ad li::before{content:"→";position:absolute;left:0;color:var(--acc)}
+@media (min-width:760px){.ad{grid-template-columns:1fr 1.2fr}}
+.cn{display:grid;gap:22px;margin-top:24px}
+.cn>div{border-top:2px solid var(--ink);padding-top:14px}
+.cn-n{display:block;font:500 .72rem var(--mono);color:var(--acc);letter-spacing:.1em;margin-bottom:6px}
+.cn b{display:block;font-family:var(--serif);font-size:1.3rem;font-weight:500;line-height:1.15;margin-bottom:6px}
+.cn p{color:var(--mute);font-size:.96rem}
+@media (min-width:760px){.cn{grid-template-columns:repeat(3,1fr);gap:28px}}
+
+/* 02 plano */
+.mods{margin-top:34px}
+.mod{display:grid;gap:22px;padding:38px 0;border-top:1px solid var(--line)}
+.mnum{font:500 .75rem var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--acc)}
+.mod h3{margin:6px 0 10px}
+.muda3{color:var(--ink-2);margin-bottom:6px}
+.mfig{border-radius:14px;overflow:hidden;aspect-ratio:3/2}
+@media (min-width:900px){.mod{grid-template-columns:1fr 1fr;gap:48px;align-items:center}.mod:nth-child(even) .mfig{order:-1}}
+details.escopo{margin-top:14px;border-top:1px solid var(--line);padding-top:6px}
+details.escopo summary{cursor:pointer;font-weight:700;list-style:none;min-height:44px;display:flex;align-items:center;font-size:.95rem}
+details.escopo summary::after{content:"+";margin-left:auto;font:500 1.2rem var(--mono);color:var(--acc)}
+details.escopo[open] summary::after{content:"−"}
+details.escopo ul,details.escopo ol{list-style:none;padding:0;margin:4px 0 8px;display:grid;gap:10px}
+details.escopo li{position:relative;padding-left:22px;font-size:.96rem;color:var(--ink-2)}
+details.escopo li::before{content:"";position:absolute;left:0;top:.72em;width:10px;height:2px;background:var(--acc)}
+.v3 .gloss{margin-top:34px;border-radius:12px}
+
+/* 03 percurso */
+.curva{margin:30px 0 0;background:var(--white);border:1px solid var(--line);border-radius:14px;padding:clamp(14px,3vw,24px)}
+.curva svg{width:100%;height:auto;display:block}
+.curva .base{stroke:var(--line);stroke-width:2;fill:none}
+.curva .linha{fill:none;stroke:var(--acc);stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1000;stroke-dashoffset:1000;transition:stroke-dashoffset 2.6s var(--ease)}
+.curva.in .linha{stroke-dashoffset:0}
+.curva .pt{opacity:0;transition:opacity .5s ease;transition-delay:var(--d,0s)}
+.curva.in .pt{opacity:1}
+.curva .pt circle{fill:var(--white);stroke:var(--ink);stroke-width:2}
+.curva .pt circle.meta{fill:var(--acc);stroke:var(--acc)}
+.curva .pt text{font:600 14px var(--mono);fill:var(--ink)}
+.curva .pt circle.meta + text{fill:#fff}
+.curva .alvo{font:600 15px var(--mono);fill:var(--mute)}
+.curva figcaption{margin-top:8px;font-size:.8rem;color:var(--mute)}
+.fases{list-style:none;padding:0;margin:26px 0 0}
+.fase{display:grid;grid-template-columns:78px 1fr;gap:16px;padding:20px 0;border-top:1px solid var(--line)}
+.fase .f{font:500 .72rem var(--mono);letter-spacing:.08em;color:var(--acc);padding-top:6px}
+.fase b{display:block;font-family:var(--serif);font-size:1.35rem;font-weight:500;line-height:1.15}
+.fase p{color:var(--mute);margin-top:4px;max-width:40em}
+
+/* 04 investimento */
+.inv{background:var(--night);color:var(--cream);border-top:0}
+.inv h2{color:var(--cream)}
+.tab3{margin-top:26px;border-top:1px solid var(--line-2)}
+.tab3 .r{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:14px 0;border-bottom:1px solid var(--line-2);color:var(--mute-2)}
+.tab3 .r b{font:500 .95rem var(--mono);color:var(--cream);white-space:nowrap}
+.tab3 .r.d b,.tab3 .r.d{color:#929AA4}
+.price3{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 18px;margin-top:34px}
+.price3 .tag{flex-basis:100%;margin-bottom:14px}
+.price3 strong{font-family:var(--serif);font-weight:500;font-size:clamp(3.4rem,11vw,6.4rem);line-height:1.1;letter-spacing:-.03em;color:var(--cream)}
+.price3 small{font:500 .85rem var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--mute-2)}
+.alt3{margin-top:12px;color:var(--mute-2);max-width:40em}
+.alt3 b{color:var(--cream)}
+.nota3{margin-top:14px;font-size:.88rem;color:var(--mute-2)}
+.gar{margin-top:44px;background:var(--white);color:var(--ink);border-radius:14px;padding:clamp(22px,4vw,40px);--acc:var(--acc-base);--acc-2:var(--acc-base)}
+.gar .big{font-family:var(--serif);font-size:clamp(1.5rem,3.6vw,2.4rem);line-height:1.15;letter-spacing:-.015em;margin-top:10px}
+.gar ul{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:10px}
+.gar li{position:relative;padding-left:28px;color:var(--ink-2)}
+.gar li::before{content:"✓";position:absolute;left:0;color:var(--ok);font-weight:900}
+.conta-band{background:var(--paper)}
+.eyebrow3{font:500 .72rem var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--acc);margin-bottom:8px}
+.calc3{display:grid;gap:24px;margin-top:22px}
+@media (min-width:760px){.calc3{grid-template-columns:1fr 1fr;align-items:start}}
+.calc3 .campos{display:grid;gap:18px}
+.calc3 label{display:flex;justify-content:space-between;gap:12px;font-weight:700;font-size:.95rem;margin-bottom:8px}
+.calc3 output{font:600 1.05rem var(--mono);color:var(--acc)}
+.calc3 input{width:100%;min-height:54px;border-radius:10px;border:1.5px solid var(--line);background:var(--white);color:var(--ink);padding:0 16px;font:700 1.15rem Inter,sans-serif}
+.calc3 input[type=range]{padding:0;min-height:34px;accent-color:var(--acc);background:none;border:0}
+.calc3 small{color:var(--mute);font-size:.84rem}
+.v3 .conta .out{border-radius:14px}
+.v3 .pay{border-radius:14px}
+
+/* 05, 06 */
+.v3 .clientes{margin-top:72px}
+.band{scroll-margin-top:58px}
+.v3 .depois .passos{margin-top:26px}
+.v3 .depois .passo,.v3 .quem .col,.v3 .clientes .ig{border-radius:12px}
+.v3 .quem{margin-top:22px}
+.v3 .sobre-grid{margin-top:22px}
+.v3 .eu{border-radius:14px}
+
+/* 07 aceite */
+.fim3{background:var(--night);color:var(--cream)}
+.fim3 h2{color:var(--cream)}
+.fim3 .lead{color:#CFC6B8}
+.sum{margin:28px 0;border:1px solid var(--line-2);border-radius:12px;overflow:hidden}
+.sum>div{display:grid;grid-template-columns:130px 1fr;gap:14px;padding:14px 18px;border-bottom:1px solid var(--line-2)}
+.sum>div:last-child{border-bottom:0}
+.sum dt{font:500 .72rem var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--mute-2);padding-top:3px}
+.sum dd{margin:0;font-weight:600}
+.fim3 .cta{display:flex;flex-wrap:wrap;gap:12px}
+.fim3 .btn.ghost{color:var(--cream);border-color:#747474}
+.fim3 .peq{margin-top:16px;font-size:.88rem;color:var(--mute-2)}
+.fim3 .peq a{color:var(--cream)}
+
+/* barra superior (celular) e barra inferior */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:center;gap:12px;padding:calc(10px + env(safe-area-inset-top,0px)) var(--pad) 10px;background:rgba(246,245,241,.94);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);transform:translateY(-110%);transition:transform .3s var(--ease)}
+.topbar.on{transform:none}
+.tb-n{font:500 .75rem var(--mono);color:var(--acc)}
+.tb-l{font-weight:700;font-size:.92rem}
+.tb-v{margin-left:auto;font:500 .68rem var(--mono);color:var(--mute);text-align:right}
+@media (min-width:1100px){.topbar{display:none}}
+.bp-preco{display:none}
+body.viu-preco .bp-preco{display:inline}
+
+@media (prefers-reduced-motion:reduce){.capa-art .dash,.capa-art .dash2{animation:none}.curva .linha{stroke-dashoffset:0;transition:none}.curva .pt{opacity:1;transition:none}}
+.perfis .ig-bio{-webkit-line-clamp:6}
+
+/* A estrutura (bloco padrão no início de 02 · O plano) */
+.estr{margin:0 0 56px}
+.estr .etag{display:inline-block;font:600 .74rem var(--mono);letter-spacing:.14em;color:var(--acc);border:1px solid var(--acc);border-radius:999px;padding:5px 12px}
+.estr>h3{margin:16px 0 10px}
+.egrid{display:grid;gap:14px;margin-top:22px}
+@media (min-width:760px){.egrid{grid-template-columns:1fr 1fr}}
+.epil{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:20px 22px}
+.epil .epn{font:500 .78rem var(--mono);color:var(--acc)}
+.epil h4{margin:6px 0 8px;font-size:1.05rem}
+.epil p{margin:0;font-size:.95rem;color:var(--mute)}
+.enota{margin-top:20px;font-size:.88rem;color:var(--mute)}
+@media (min-width:760px){.estr .ad{grid-template-columns:1fr 1fr}}
+
+.capa,.inv,.fim3,.diag{--acc:#9EA5AE;--acc-2:#9EA5AE}
+.btn:not(.ghost){color:#FFFFFF}
+.capa .btn:not(.ghost),.inv .btn:not(.ghost),.fim3 .btn:not(.ghost){color:#141210}
+.rail .btn,.barra .btn{color:#FFFFFF}
+.sobre-grid{grid-template-columns:1fr!important}
+
+/* === marca: início === */
+/* Proposta (página dossiê) na identidade visual do Yury.
+   Dono das regras: escritorio/marca/IDENTIDADE-VISUAL.md (§2, §3, §5 e tokens do §7).
+   Uso: escritorio/scripts/proposta-na-marca.py injeta este arquivo por cima do CSS do gerador do kit.
+   O kit (ferabot-kit/) não é editado. */
+:root,:root:not([data-theme="light"]){
+  --navy:#0d1f35; --navy-d:#091520; --navy-l:#132b45;
+  --card:rgba(19,43,69,.66); --line-m:rgba(74,179,232,.2);
+  --blue:#4ab3e8; --hl:#1162cf;
+  --green:#25d366;
+  --text:#e4eaf0; --text-m:#a3b3c4; --text-d:#7d92a8;
+  --font:'Plus Jakarta Sans',system-ui,-apple-system,sans-serif;
+  --r-sm:8px; --r-md:12px; --r-lg:16px; --r-pill:999px;
+
+  /* variáveis do modelo do kit, apontadas para a marca */
+  --night:var(--navy-d); --cream:#fff; --ink:var(--text); --ink-2:var(--text);
+  --paper:var(--navy); --paper-2:var(--navy-l); --white:var(--card);
+  --mute:var(--text-m); --mute-2:var(--text-m); --line:var(--line-m); --line-2:var(--line-m);
+  --acc:var(--blue); --acc-2:var(--blue); --acc-soft:rgba(74,179,232,.12); --acc-base:var(--blue);
+  --serif:var(--font); --mono:var(--font);
+}
+.capa,.inv,.fim3,.diag{--acc:var(--blue);--acc-2:var(--blue)}
+
+body,.v3{background:var(--navy);color:var(--text);font-family:var(--font);font-weight:400;line-height:1.65}
+.v3 h1,.v3 h2,.v3 h3{font-family:var(--font);color:#fff;letter-spacing:-.015em;line-height:1.12}
+.v3 h1{font-weight:800}
+.v3 h2{font-weight:700}
+.v3 h3{font-weight:700}
+.v3 h1 .hl,.v3 h2 .hl{color:var(--blue);font-style:normal;background:none}
+.v3 p,.v3 li,.v3 dd{color:var(--text)}
+.v3 .lead,.capa .sub,.fim3 .lead,.muda3,.fase p,.passo p,.peq,.alt3,.nota3{color:var(--text-m)}
+.alt3 b{color:#fff}
+
+/* seções: fundo alternado em vez de papel claro */
+.capa{background:var(--navy-d)}
+.band{background:var(--navy);border-color:var(--line-m)}
+.band:nth-of-type(even){background:var(--navy-l)}
+.inv,.fim3{background:var(--navy-d)}
+
+/* rótulos: caixa alta, azul */
+.meta dt,.sh .n,.sh .l,.tag,.mnum,.fase .f,.rid,.tb-n,.sum dt,.cue{font-family:var(--font);font-weight:700;color:var(--blue);letter-spacing:.14em;text-transform:uppercase}
+.meta dd,.sum dd{font-family:var(--font);color:var(--text);letter-spacing:.04em}
+.capa .cue{color:var(--text-m)}
+.capa-art *{stroke:rgba(74,179,232,.16)}
+
+/* falas do lead */
+.q{border-color:var(--line-m)}
+.q blockquote{font-family:var(--font);font-weight:400;color:#fff;line-height:1.35;letter-spacing:-.005em}
+
+/* cards: transparência e borda fina, sem sombra */
+.ad>div,.dmx,.mod,.passo,.quem .col,.sobre .item,.gloss,.escopo,.sum,.emc,.gar,.curva{background:var(--card);border-color:var(--line-m);box-shadow:none}
+.ad .depois3,.dmx.dois{border-color:rgba(74,179,232,.45)}
+.fase b,.cn b,.rcli{font-family:var(--font);font-weight:700;color:#fff}
+.sobre .item b{color:#fff}
+a{color:var(--blue)}
+
+/* numeração e marcadores sobre azul levam texto navy */
+.depois .passo::before,.num{background:var(--blue);color:var(--navy);font-weight:800}
+
+/* percurso */
+.curva .base{stroke:var(--line-m)}
+.curva .linha{stroke:var(--blue)}
+.curva circle{fill:var(--navy-l);stroke:var(--blue)}
+.curva circle.meta{fill:var(--blue)}
+.curva text{fill:#fff;font-family:var(--font)}
+.curva .pt circle.meta + text{fill:var(--navy)}
+.curva .alvo,.curva figcaption{fill:var(--text-d);color:var(--text-d)}
+
+/* diagramas das entregas */
+.diag,.ent-card .foto.diag{background:var(--navy-d);border-radius:var(--r-md)}
+.diag text{font-family:var(--font);fill:#fff}
+.diag .mut{fill:var(--text-m)}
+.diag .nd{fill:var(--navy-l);stroke:rgba(74,179,232,.35);animation-name:ndOnMarca}
+@keyframes ndOnMarca{0%,4%{fill:#132b45;stroke:rgba(74,179,232,.35)}8%,22%{fill:#1b5f8a;stroke:#4ab3e8}30%,100%{fill:#132b45;stroke:rgba(74,179,232,.35)}}
+.diag .ar{stroke:var(--text-d)}
+.diag .trend{stroke:#fff}
+.diag .cap{fill:var(--navy-l);animation-name:capOnMarca}
+@keyframes capOnMarca{0%,4%{fill:#132b45}12%,76%{fill:#4ab3e8}92%,100%{fill:#132b45}}
+
+/* preço: o verde aparece uma vez como linha de decisão */
+.price3 strong{font-family:var(--font);font-weight:800;color:var(--green);letter-spacing:-.02em}
+.price3 small{color:var(--text-m)}
+
+/* botão de ação: pílula verde com texto navy, peso 700 */
+.btn,.btn:not(.ghost),.rail .btn,.barra .btn,.capa .btn:not(.ghost),.inv .btn:not(.ghost),.fim3 .btn:not(.ghost){background:var(--green);color:var(--navy);font-family:var(--font);font-weight:700;border-radius:var(--r-pill);box-shadow:none}
+.btn:hover{background:var(--green);filter:brightness(1.06)}
+
+/* barras fixas e menu lateral */
+.topbar,.barra{background:var(--navy-d);border-color:var(--line-m);color:var(--text)}
+.barra b,.tb-l{color:#fff}
+.barra span{color:var(--text-m)}
+.tb-v,[data-restam]{font-family:var(--font);color:var(--text-d)}
+.rail{background:var(--navy-d);border-color:var(--line-m)}
+.rail nav a{color:var(--text-m)}
+.rail nav a span{color:var(--text-d);font-family:var(--font)}
+.rail nav a.on,.rail nav a:hover{color:#fff}
+.rval{color:var(--text-d)}
+.prog{background:var(--blue)}
+summary{color:#fff}
+
+/* investimento com âncora: valor por etapa, valor cheio e pacote com a parcela em destaque */
+.ancora{background:var(--card);border:1px solid var(--line-m);border-radius:var(--r-lg);padding:24px;margin:0 0 20px}
+.ancora .etapas{list-style:none;margin:14px 0 0;padding:0}
+.ancora .etapas li{display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px solid var(--line-m);color:var(--text-m);font-size:.95rem}
+.ancora .etapas li::before{content:none}
+.ancora .etapas b{color:var(--text);font-weight:600;white-space:nowrap}
+.ancora .cheio{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 16px;margin:16px 0 0;color:var(--text-m)}
+.ancora .cheio b{color:#fff;font-weight:700;font-size:1.35rem;white-space:nowrap}
+.ancora .cheio small{flex-basis:100%;text-align:right;color:var(--text-d);font-size:.82rem}
+.price3 strong{white-space:nowrap}
+
+/* aceite: parcela do pacote em verde e o "ou" antes do valor cheio */
+.sum dd .verde{color:var(--green);font-weight:800;font-size:1.15em}
+.sum .ou dt{color:var(--text-m);letter-spacing:.14em}
+
+/* resumo: "Hoje" em cima e "Com o plano montado" embaixo, em qualquer tela */
+.ad{grid-template-columns:1fr !important}
+.ad .antes{border-bottom:1px solid var(--line-m)}
+.ad li{font-weight:400;color:var(--text)}
+/* frentes: só o nome aparece; o sinal de + mostra que abre */
+.frentes{display:grid;gap:10px;margin-top:16px}
+.frente{border:1px solid var(--line-m);border-radius:var(--r-md);background:rgba(9,21,32,.35)}
+.frente[open]{border-color:rgba(74,179,232,.5)}
+.frente summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:56px;padding:10px 14px 10px 18px;color:#fff;font-weight:700;font-size:1.05rem}
+.frente summary::-webkit-details-marker{display:none}
+/* sinal de abrir: bolinha azul com o "+" desenhado em barras (letra "+" não centraliza na fonte) */
+.frente>summary::after,details.escopo>summary::after,details.caixa>summary::after{content:"";flex:none;border-radius:50%;margin-left:auto;
+  background:linear-gradient(var(--navy),var(--navy)) center/50% 12% no-repeat,linear-gradient(var(--navy),var(--navy)) center/12% 50% no-repeat,var(--blue)}
+.frente[open]>summary::after,details.escopo[open]>summary::after,details.caixa[open]>summary::after{content:"";background:linear-gradient(var(--navy),var(--navy)) center/50% 12% no-repeat,var(--blue)}
+.frente summary::after{width:34px;height:34px}
+details.escopo summary::after{width:24px;height:24px}
+.frente p{margin:0;padding:0 18px 16px;color:var(--text);line-height:1.6}
+.toque{margin:12px 0 0;font-size:.82rem;color:var(--text-d)}
+/* abertura do plano: texto em páginas, com seta e contador */
+.abre{max-width:40em;margin:0 0 48px;background:var(--card);border:1px solid var(--line-m);border-radius:var(--r-lg);padding:clamp(20px,3vw,32px)}
+.abre p{font-size:1.08rem;line-height:1.7;color:var(--text);margin:0 0 18px}
+.abre .folha:first-child p:first-child{font-size:1.25rem;color:#fff;font-weight:600;line-height:1.5}
+.abre .vira{display:flex;align-items:center;justify-content:flex-end;gap:12px;margin-top:8px;padding-top:16px;border-top:1px solid var(--line-m)}
+.abre .vira-n{color:var(--text-m);font-weight:700;letter-spacing:.08em;font-size:.9rem;margin-right:auto}
+.abre button{font-family:var(--font);font-weight:700;font-size:.95rem;min-height:44px;border-radius:var(--r-pill);cursor:pointer;border:1px solid var(--blue)}
+.abre .vira-v{width:44px;background:transparent;color:var(--blue)}
+.abre .vira-p{padding:0 18px;background:var(--blue);color:var(--navy)}
+.abre button:disabled{opacity:.35;cursor:default}
+.abre{scroll-margin-top:72px}
+/* caixa de ferramentas: bolinha de abrir logo depois do texto do item; a lista abre embaixo */
+details.caixa{display:inline}
+details.caixa summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;vertical-align:middle;margin-left:6px;color:var(--blue);font-weight:700;font-size:.92rem}
+details.caixa summary::-webkit-details-marker{display:none}
+details.caixa summary::after{width:22px;height:22px;margin-left:0}
+details.caixa ul{margin:10px 0 4px;padding:12px 14px;border:1px solid var(--line-m);border-radius:var(--r-md);background:rgba(9,21,32,.35);display:grid;gap:8px}
+/* percurso: detalhe da fase abre embaixo da linha; dinâmica da mentoria em quadros */
+.fase p details.caixa ul li{color:var(--text)}
+.dina{display:grid;gap:12px;margin-top:16px}
+@media (min-width:760px){.dina{grid-template-columns:1fr 1fr}}
+.dina .item{background:var(--card);border:1px solid var(--line-m);border-radius:var(--r-md);padding:18px 20px}
+.dina .item b{display:block;color:var(--blue);font-weight:700;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px}
+.dina .item p{margin:0;color:var(--text);line-height:1.6}
+/* faixa fixa de baixo: só depois que o lead chega a "Próximos passos" */
+.barra:not(.libera){transform:translateY(120%) !important;pointer-events:none}
+.dina .item p details.caixa ul li{color:var(--text)}
+
+/* linha do tempo do programa (Mentoria Liderium, 23/11/2026): rótulo à esquerda, faixa à direita */
+.ldt{--lw:118px;margin:18px 0 26px;padding:18px 16px 14px;border:1px solid var(--line-m);border-radius:var(--r-lg);background:var(--card)}
+.ldt .ms,.ldt .fx{display:grid;grid-template-columns:var(--lw) 1fr;gap:10px;align-items:center}
+.ldt .ms{border-bottom:1px solid var(--line-m);padding-bottom:6px;font-size:.7rem;color:var(--text-d);letter-spacing:.04em;text-transform:uppercase}
+.ldt .ms b{font-weight:700}
+.ldt .ms .tr{display:grid;grid-template-columns:repeat(6,1fr);height:auto;background:none}
+.ldt .ms .tr span{border-left:1px solid var(--line-m);padding-left:4px}
+.ldt .fx{margin-top:12px}
+.ldt .fx>b{font-size:.76rem;font-weight:700;color:var(--text-m);line-height:1.25}
+.ldt .tr{position:relative;height:24px;background:rgba(74,179,232,.06);border-radius:var(--r-pill)}
+.ldt .tr i{position:absolute;top:50%;transform:translate(-50%,-50%);font-style:normal}
+.ldt .mk{width:22px;height:22px;border-radius:50%;background:var(--blue);color:var(--navy);font-weight:800;font-size:.72rem;display:flex;align-items:center;justify-content:center}
+.ldt .pt{width:8px;height:8px;border-radius:50%;background:var(--blue)}
+.ldt .tr .br{transform:translateY(-50%);height:6px;border-radius:var(--r-pill);background:var(--blue)}
+.ldt .lg{list-style:none;padding:0;margin:16px 0 0;display:grid;gap:6px;font-size:.85rem;color:var(--text-m)}
+.ldt .lg li{display:flex;gap:8px;align-items:center}
+.ldt .lg li i{font-style:normal;flex:0 0 auto;width:22px;height:22px;border-radius:50%;background:var(--blue);color:var(--navy);font-weight:800;font-size:.72rem;display:flex;align-items:center;justify-content:center}
+@media (min-width:760px){.ldt{--lw:210px}.ldt .fx>b{font-size:.85rem}.ldt .lg{grid-template-columns:1fr 1fr}}
+
+/* pagamento direto da proposta (chave "pagamento" do ajustes.json): aviso no aceite ao voltar pago ou se der erro */
+.pagar-aviso{max-width:520px;margin:18px auto 0;color:var(--text-m);font-size:.95rem;text-align:left}
+.pagar-aviso:empty{display:none}
+.pagar-aviso a{color:var(--blue)}
+.pagar-aviso.pago{border:1px solid var(--green);border-radius:var(--r-lg);background:var(--card);padding:20px}
+.pagar-aviso.pago b{display:block;color:#fff;font-size:1.1rem;margin-bottom:6px}
+
+/* === marca: fim === */
+</style>
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body class="v3">
+<div class="prog" id="prog"></div>
+
+<div class="topbar" id="topbar" role="status"><span class="tb-n" id="tbn">01</span><span class="tb-l" id="tbl">Resumo</span><span class="tb-v" data-restam></span></div>
+
+<header class="capa" id="topo">
+  <svg class="capa-art" viewBox="0 0 600 600" aria-hidden="true">
+    <circle cx="300" cy="300" r="120"/><circle cx="300" cy="300" r="200"/><circle class="dash" cx="300" cy="300" r="280"/>
+    <circle class="dash2" cx="300" cy="300" r="360"/>
+    <path d="M300 20 V580 M20 300 H580"/>
+  </svg>
+  <div class="wrap">
+    <dl class="meta">
+      <dt>Proposta nº</dt><dd>EV-261123</dd>
+      <dt>Preparada para</dt><dd>Everton</dd>
+      
+      <dt>Preparada por</dt><dd>Yury Garcia</dd>
+      <dt>Emitida em</dt><dd>23/11/2026</dd>
+      <dt>Válida até</dt><dd>26/11/2026, 23h59 · <span data-restam></span></dd>
+    </dl>
+    <div class="capa-txt">
+      <h1>Everton, este é o plano para fazer a diretoria e o mercado enxergarem <span class="hl">o preparo que você já tem</span>.</h1>
+      <p class="sub">Montado a partir do que você me contou. A gente faz junto, uma parte de cada vez.</p>
+    </div>
+    <a class="cue" href="#s1">Role para ler a proposta ↓</a>
+  </div>
+</header>
+
+<div class="doc"><aside class="rail" aria-label="Seções da proposta">
+  <div>
+    <p class="rid">Proposta nº EV-261123</p>
+    <p class="rcli">Everton</p>
+  </div>
+  <nav><ol><li><a href="#s1"><span>01</span>Resumo</a></li><li><a href="#s2"><span>02</span>O plano</a></li><li><a href="#s3"><span>03</span>O percurso</a></li><li><a href="#investimento"><span>04</span>Próximos passos</a></li><li><a href="#s5"><span>05</span>Como começamos</a></li><li><a href="#s6"><span>06</span>Quem assina</a></li><li><a href="#aceite"><span>07</span>Aceite</a></li></ol></nav>
+  <div class="rbot">
+    <p class="rval">Válida até 26/11/2026, 23h59<br><b data-restam></b></p>
+    <a class="btn js-pagar" href="#aceite" rel="noopener">Vamos começar</a>
+  </div>
+</aside><main class="main"><section class="band" id="s1" data-sec data-n="01" data-l="Resumo"><div class="sec"><div class="sh"><span class="n">01</span><span class="l">Resumo</span></div><h2>O que você me contou.</h2>
+    <p class="lead">São as suas palavras, do jeito que você falou. Foi a partir delas que eu montei o plano.</p>
+    <div class="qs"><div class="q"><blockquote>“A minha expectativa é um salto corporativo, com certeza.”</blockquote></div><div class="q"><blockquote>“Tenho me questionado qual é o momento certo de tentar, de fato, fazer uma alavancagem no meu perfil.”</blockquote></div><div class="q"><blockquote>“Realizei alguns resultados importantes aqui e acabei não conseguindo ter essa visibilidade.”</blockquote></div><div class="q"><blockquote>“Eu não consigo medir se quem está do outro lado realmente me vê como eu acredito que me veja.”</blockquote></div><div class="q"><blockquote>“Como é que eu vou estar preparado para poder levantar a mão em algum momento?”</blockquote></div></div>
+    <div class="ad rv">
+      <div class="antes"><span class="tag">Hoje</span><ul><li>16 anos de gestão em supply chain, 7 na empresa atual, hoje com três áreas na mão: compras, importação e planejamento</li><li>Uma operação com a China construída de dentro: três anos e meio morando lá, um escritório aberto do zero e um time local de 15 pessoas</li><li>Resultados financeiros expressivos: importados de pouco mais de 10% para mais de 40% do faturamento e saldo credor de ICMS convertido em caixa</li></ul></div>
+      <div class="depois3"><span class="tag">Com o plano montado</span><h3>O seu salto corporativo, com você no comando do caminho.</h3><div class="frentes"><details class="frente"><summary><span>Posicionamento executivo</span></summary><p>Transformar a sua narrativa de entregas na imagem de um líder de negócio, que pensa a empresa inteira.</p></details><details class="frente"><summary><span>Construção de capital político</span></summary><p>Aumentar a sua credibilidade percebida com a diretoria, a presidência e o fundo, para ser reconhecido como potencial diretor.</p></details><details class="frente"><summary><span>Navegação do ambiente político</span></summary><p>Ler o jogo de influência da empresa, saber quem decide o quê e se mover antes de as decisões acontecerem.</p></details><details class="frente"><summary><span>Posicionamento para o mercado</span></summary><p>Uma narrativa forte de carreira, que favorece a chegada de boas oportunidades para cadeiras mais seniores.</p></details></div><p class="toque">Toque em cada frente para abrir.</p></div>
+    </div></div></section>
+<section class="band" id="s2" data-sec data-n="02" data-l="O plano"><div class="sec"><div class="sh"><span class="n">02</span><span class="l">O plano</span></div><div class="abre rv"><div class="folha"><p>Everton, a parte mais difícil você já fez. Abriu uma operação na China do zero, levou os importados de pouco mais de 10% para mais de 40% do faturamento do negócio e transformou compras em resultado financeiro. Isso é trajetória de quem dirige negócio.</p><p>Nos próximos quatro meses, a gente posiciona a sua bagagem dentro da empresa e a sua trajetória no mercado.</p><p>Dentro, o objetivo não é que a diretoria e o fundo reconheçam você simplesmente como um gestor que entrega bons resultados, e sim como um líder estratégico, que tem profundidade técnica, navega bem com outras lideranças seniores e consegue influenciar decisões complexas de negócio.</p></div><div class="folha" hidden><p>No mercado, queremos maximizar o impacto percebido de tudo o que você já fez. É menos sobre contar as suas entregas e mais sobre envelopar tudo isso a partir de uma perspectiva que posicione você como alguém realmente mais sênior.</p><p>Você sai com o ferramental e o acompanhamento para construir o seu próprio campo de influência e atrair as oportunidades alinhadas com o seu objetivo de carreira: chegar à diretoria, dentro da empresa ou no mercado. Com ou sem venda da empresa, em cenário favorável ou não, você constrói de maneira sistêmica um ambiente que atrai as oportunidades certas, a partir de posicionamento executivo, leitura de cenário e influência.</p></div><div class="vira"><button type="button" class="vira-v" aria-label="Página anterior" disabled>←</button><span class="vira-n" aria-live="polite">1/2</span><button type="button" class="vira-p" aria-label="Próxima página">Continuar lendo <b>→</b></button></div></div><script>(function(){var a=document.querySelector('.abre');if(!a)return;var f=a.querySelectorAll('.folha'),i=0,
+v=a.querySelector('.vira-v'),p=a.querySelector('.vira-p'),n=a.querySelector('.vira-n');
+function ir(k){i=Math.max(0,Math.min(f.length-1,k));f.forEach(function(x,j){x.hidden=j!==i});n.textContent=(i+1)+'/'+f.length;
+v.disabled=i===0;p.disabled=i===f.length-1;p.firstChild.textContent=i===f.length-1?'Fim ':'Continuar lendo ';}
+function vai(k){ir(k);a.scrollIntoView({block:'start',behavior:'smooth'});}
+v.addEventListener('click',function(){vai(i-1)});p.addEventListener('click',function(){vai(i+1)});})();</script><h2>Cinco pilares, desenhados para o seu momento.</h2>
+    <p class="lead">Você domina a gestão há muito tempo. O programa trabalha a outra metade da liderança, a articulação: como a diretoria, o fundo e o mercado leem o que você fez.</p>
+    <div class="mods">
+      <article class="mod rv">
+        <div class="mtxt">
+          <div class="mh"><span class="mnum">Pilar 01</span></div>
+          <h3>Mentalidade: entender os vieses de mentalidade que podem estar limitando você</h3>
+          <p class="muda3">Antes de executar qualquer atividade, toda pessoa passa por uma sequência de pensamentos, uma maneira de interpretar o ambiente antes mesmo de reagir a ele. O objetivo deste pilar é entender como você interpreta o ambiente, avaliar possíveis gaps e corrigir a rota. Mentalidade ajustada é metade do caminho.</p>
+          <details class="escopo"><summary>O que está incluso</summary><ul><li><strong>Material</strong> com os 7 princípios da Liderança Estratégica.</li><li><strong>Diagnóstico de mentalidade</strong> com relatório e pontuação.</li><li><strong>Sessão de aprofundamento</strong> com avaliação dos resultados e plano de ação específico.</li></ul></details>
+          
+        </div>
+        <div class="mfig diag"><svg viewBox="0 0 600 400" role="img" aria-label="Diagrama: do material com os 7 princípios ao diagnóstico com relatório e ao plano de ação"><defs><marker id="a1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#7A7166" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></marker></defs><rect class="nd" style="--d:0s" x="24" y="44" width="164" height="112" rx="16"/><text text-anchor="middle" font-size="24" fill="#fff"><tspan x="106.0" y="94">Material</tspan><tspan x="106.0" y="122">7 princípios</tspan></text><path class="ar" d="M190 100 L214 100" marker-end="url(#a1)"/><rect class="nd" style="--d:1s" x="218" y="44" width="164" height="112" rx="16"/><text text-anchor="middle" font-size="22" fill="#fff"><tspan x="300.0" y="95">Diagnóstico</tspan><tspan x="300.0" y="121">e relatório</tspan></text><path class="ar" d="M384 100 L408 100" marker-end="url(#a1)"/><rect class="nd" style="--d:2s" x="412" y="44" width="164" height="112" rx="16"/><text text-anchor="middle" font-size="24" fill="#fff"><tspan x="494.0" y="94">Plano</tspan><tspan x="494.0" y="122">de ação</tspan></text><text x="300" y="232" text-anchor="middle" font-size="22" class="mut">7 princípios da Liderança Estratégica</text><rect class="cap" style="--d:0.0s" x="41" y="262" width="56" height="40" rx="8"/><rect class="cap" style="--d:0.3s" x="107" y="262" width="56" height="40" rx="8"/><rect class="cap" style="--d:0.6s" x="173" y="262" width="56" height="40" rx="8"/><rect class="cap" style="--d:0.9s" x="239" y="262" width="56" height="40" rx="8"/><rect class="cap" style="--d:1.2s" x="305" y="262" width="56" height="40" rx="8"/><rect class="cap" style="--d:1.5s" x="371" y="262" width="56" height="40" rx="8"/><rect class="cap" style="--d:1.8s" x="437" y="262" width="56" height="40" rx="8"/><text x="300" y="352" text-anchor="middle" font-size="22" class="mut">sua pontuação</text></svg></div>
+      </article>
+      <article class="mod rv">
+        <div class="mtxt">
+          <div class="mh"><span class="mnum">Pilar 02</span></div>
+          <h3>Posicionamento: medir como você é visto e agir onde importa</h3>
+          <p class="muda3">Você me disse que não consegue medir se quem está do outro lado vê você como você acredita. Aqui a suposição acaba. Você passa a saber, pessoa por pessoa, como diretoria, presidência e fundo percebem você, e age exatamente onde existe distância.</p>
+          <details class="escopo"><summary>O que está incluso</summary><ul><li><strong>2 sessões com foco em posicionamento</strong> com a caixa de ferramentas ajustada para você <details class="caixa"><summary aria-label="Abrir a caixa de ferramentas"></summary><ul><li>Paradigma do capital político</li><li>Construção de relacionamento e alianças</li><li>Pirâmide da autoridade</li><li>Performance, percepção e credibilidade</li><li>Negociação como ferramenta de posicionamento</li></ul></details></li><li><strong>Mapa do ambiente</strong> as pessoas que pesam na sua carreira e o nível de credibilidade com cada uma.</li><li><strong>Implementação prática</strong> com base no seu cenário real.</li></ul></details>
+          
+        </div>
+        <div class="mfig diag"><svg viewBox="0 0 600 400" role="img" aria-label="Diagrama: das 2 sessões de posicionamento ao mapa do ambiente e à prática no seu cenário, com as 5 ferramentas"><defs><marker id="a2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#7A7166" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></marker></defs><rect class="nd" style="--d:0s" x="24" y="44" width="164" height="112" rx="16"/><text text-anchor="middle" font-size="24" fill="#fff"><tspan x="106.0" y="94">2 sessões</tspan><tspan x="106.0" y="122">focadas</tspan></text><path class="ar" d="M190 100 L214 100" marker-end="url(#a2)"/><rect class="nd" style="--d:1s" x="218" y="44" width="164" height="112" rx="16"/><text text-anchor="middle" font-size="22" fill="#fff"><tspan x="300.0" y="95">Mapa do</tspan><tspan x="300.0" y="121">ambiente</tspan></text><path class="ar" d="M384 100 L408 100" marker-end="url(#a2)"/><rect class="nd" style="--d:2s" x="412" y="44" width="164" height="112" rx="16"/><text text-anchor="middle" font-size="24" fill="#fff"><tspan x="494.0" y="94">Prática no</tspan><tspan x="494.0" y="122">seu cenário</tspan></text><text x="300" y="232" text-anchor="middle" font-size="22" class="mut">Caixa de ferramentas</text><rect class="cap" style="--d:0.0s" x="41" y="262" width="56" height="40" rx="8"/><rect class="cap" style="--d:0.3s" x="107" y="262" width="56" height="40" rx="8"/><rect class="cap" style="--d:0.6s" x="173" y="262" width="56" height="40" rx="8"/><rect class="cap" style="--d:0.9s" x="239" y="262" width="56" height="40" rx="8"/><rect class="cap" style="--d:1.2s" x="305" y="262" width="56" height="40" rx="8"/><text x="300" y="352" text-anchor="middle" font-size="22" class="mut">5 ferramentas</text></svg></div>
+      </article>
+      <article class="mod rv">
+        <div class="mtxt">
+          <div class="mh"><span class="mnum">Pilar 03</span></div>
+          <h3>Análise de cenário político: agir antes que o cenário aja sobre você</h3>
+          <p class="muda3">Organizações são organismos vivos, e as decisões não acontecem só pela lógica técnica. A sua empresa foi comprada por um fundo, uma nova venda pode chegar e as movimentações estão paradas: é nesse tipo de transição que as cadeiras mudam de dono. O objetivo deste pilar é ler os interesses, as alianças e o timing desse cenário e definir o seu movimento antes de ele acontecer. Analisar cenário é agir antes que o cenário aja sobre você.</p>
+          <details class="escopo"><summary>O que está incluso</summary><ul><li><strong>Sessões com foco em análise de cenário</strong> com a caixa de ferramentas ajustada para você <details class="caixa"><summary aria-label="Abrir a caixa de ferramentas"></summary><ul><li>Tríade do cenário político: sistemas, atores e timing</li><li>Dinâmica formal e dinâmica oculta</li><li>Diagnóstico de tensões, fragilidades, desdobramentos e oportunidades</li></ul></details></li><li><strong>Leitura do cenário</strong> da venda da empresa.</li><li><strong>Implementação prática</strong> com base no seu cenário real.</li></ul></details>
+          
+        </div>
+        <div class="mfig diag"><svg viewBox="0 0 600 400" role="img" aria-label="Diagrama: a tríade do cenário político, sistemas, atores e timing, até o seu movimento"><defs><marker id="a3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#7A7166" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></marker></defs><rect class="nd" style="--d:0s" x="24" y="44" width="164" height="112" rx="16"/><text text-anchor="middle" font-size="24" fill="#fff"><tspan x="106.0" y="94">Sistemas</tspan><tspan x="106.0" y="122">e contexto</tspan></text><path class="ar" d="M190 100 L214 100" marker-end="url(#a3)"/><rect class="nd" style="--d:1s" x="218" y="44" width="164" height="112" rx="16"/><text text-anchor="middle" font-size="22" fill="#fff"><tspan x="300.0" y="95">Atores</tspan><tspan x="300.0" y="121">e alianças</tspan></text><path class="ar" d="M384 100 L408 100" marker-end="url(#a3)"/><rect class="nd" style="--d:2s" x="412" y="44" width="164" height="112" rx="16"/><text text-anchor="middle" font-size="24" fill="#fff"><tspan x="494.0" y="94">Timing</tspan><tspan x="494.0" y="122">e janelas</tspan></text><text x="300" y="232" text-anchor="middle" font-size="22" class="mut">Tríade do cenário político</text><rect class="cap" style="--d:0.0s" x="41" y="262" width="56" height="40" rx="8"/><rect class="cap" style="--d:0.3s" x="107" y="262" width="56" height="40" rx="8"/><rect class="cap" style="--d:0.6s" x="173" y="262" width="56" height="40" rx="8"/><text x="300" y="352" text-anchor="middle" font-size="22" class="mut">seu movimento</text></svg></div>
+      </article>
+      <article class="mod rv">
+        <div class="mtxt">
+          <div class="mh"><span class="mnum">Pilar 04</span></div>
+          <h3>Construção de narrativa: definir como você quer ser reconhecido</h3>
+          <p class="muda3">Se eu fosse um consultor contratado pela sua empresa durante as suas férias e perguntasse sobre você, o que as pessoas diriam? Provavelmente cada uma diria uma coisa, com base na percepção dela. O pilar de construção de narrativa é sobre definir a maneira como você quer ser reconhecido de forma sistêmica e implementar ações para que as pessoas reconheçam você cada vez mais assim, sem precisar se vender nem falar de si. As pessoas passam a falar de você de maneira mais uniforme e alinhada com o que você quer transmitir.</p>
+          <details class="escopo"><summary>O que está incluso</summary><ul><li><strong>Sessões com foco em narrativa</strong> com a caixa de ferramentas ajustada para você <details class="caixa"><summary aria-label="Abrir a caixa de ferramentas"></summary><ul><li>Comunicação executiva e as 4 perguntas de todo decisor</li><li>Narrativa dos fatos: contexto, ação, impacto, significado e próximos passos</li><li>Narrativa pessoal: competências-chave e arquétipos de identidade estratégica</li></ul></details></li><li><strong>Os seus resultados</strong> reescritos em linguagem de negócio.</li><li><strong>Implementação prática</strong> com base no seu cenário real.</li></ul></details>
+          
+        </div>
+        <div class="mfig diag"><svg viewBox="0 0 600 400" role="img" aria-label="Diagrama: da narrativa dos fatos à narrativa pessoal e à prática no seu cenário"><defs><marker id="a4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#7A7166" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></marker></defs><rect class="nd" style="--d:0s" x="24" y="44" width="164" height="112" rx="16"/><text text-anchor="middle" font-size="24" fill="#fff"><tspan x="106.0" y="94">Narrativa</tspan><tspan x="106.0" y="122">dos fatos</tspan></text><path class="ar" d="M190 100 L214 100" marker-end="url(#a4)"/><rect class="nd" style="--d:1s" x="218" y="44" width="164" height="112" rx="16"/><text text-anchor="middle" font-size="22" fill="#fff"><tspan x="300.0" y="95">Narrativa</tspan><tspan x="300.0" y="121">pessoal</tspan></text><path class="ar" d="M384 100 L408 100" marker-end="url(#a4)"/><rect class="nd" style="--d:2s" x="412" y="44" width="164" height="112" rx="16"/><text text-anchor="middle" font-size="24" fill="#fff"><tspan x="494.0" y="94">Prática no</tspan><tspan x="494.0" y="122">seu cenário</tspan></text><text x="300" y="232" text-anchor="middle" font-size="22" class="mut">Caixa de ferramentas</text><rect class="cap" style="--d:0.0s" x="41" y="262" width="56" height="40" rx="8"/><rect class="cap" style="--d:0.3s" x="107" y="262" width="56" height="40" rx="8"/><rect class="cap" style="--d:0.6s" x="173" y="262" width="56" height="40" rx="8"/><text x="300" y="352" text-anchor="middle" font-size="22" class="mut">3 ferramentas</text></svg></div>
+      </article>
+      <article class="mod rv">
+        <div class="mtxt">
+          <div class="mh"><span class="mnum">Pilar 05</span></div>
+          <h3>Posicionamento para o mercado: não se trata do que você fez, se trata de como o mercado lê e interpreta o que você fez</h3>
+          <p class="muda3">No mercado, o seu posicionamento público pode diminuir ou expandir o peso de tudo o que você fez. Construir uma narrativa pública sobre a sua experiência e as suas entregas fortalece a imagem de liderança sênior e aproxima você de vagas mais seniores. O objetivo deste pilar é ensinar a lógica do posicionamento público estratégico e apoiar você na implementação.</p>
+          <details class="escopo"><summary>O que está incluso</summary><ul><li><strong>Sessões com foco em mercado</strong> com a caixa de ferramentas definida com você, a partir do seu objetivo <details class="caixa"><summary aria-label="Abrir a caixa de ferramentas"></summary><ul><li>Estruturação de posicionamento público</li><li>Networking como ferramenta de alavancagem</li><li>Ambiência como ferramenta de posicionamento</li><li>Conteúdos estratégicos como ferramenta de alcance</li><li>Opcional <details class="caixa"><summary aria-label="Abrir Opcional"></summary><ul><li>Elementos-chave do currículo</li><li>Elementos-chave do LinkedIn</li><li>Leitura de contexto de empresa e de vaga</li><li>Preparação de entrevistas para vagas mais seniores</li><li>Modelo de atração de vagas melhores</li></ul></details></li></ul></details></li><li><strong>Implementação prática</strong> nos seus materiais e nas suas conversas reais.</li></ul></details>
+          
+        </div>
+        <div class="mfig diag"><svg viewBox="0 0 600 400" role="img" aria-label="Diagrama: do posicionamento público ao networking e ambiência e aos conteúdos estratégicos"><defs><marker id="a5" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#7A7166" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></marker></defs><rect class="nd" style="--d:0s" x="24" y="44" width="164" height="112" rx="16"/><text text-anchor="middle" font-size="24" fill="#fff"><tspan x="106.0" y="94">Posição</tspan><tspan x="106.0" y="122">pública</tspan></text><path class="ar" d="M190 100 L214 100" marker-end="url(#a5)"/><rect class="nd" style="--d:1s" x="218" y="44" width="164" height="112" rx="16"/><text text-anchor="middle" font-size="22" fill="#fff"><tspan x="300.0" y="95">Networking</tspan><tspan x="300.0" y="121">e ambiência</tspan></text><path class="ar" d="M384 100 L408 100" marker-end="url(#a5)"/><rect class="nd" style="--d:2s" x="412" y="44" width="164" height="112" rx="16"/><text text-anchor="middle" font-size="24" fill="#fff"><tspan x="494.0" y="94">Conteúdos</tspan><tspan x="494.0" y="122">estratégicos</tspan></text><text x="300" y="232" text-anchor="middle" font-size="22" class="mut">Caixa de ferramentas</text><rect class="cap" style="--d:0.0s" x="41" y="262" width="56" height="40" rx="8"/><rect class="cap" style="--d:0.3s" x="107" y="262" width="56" height="40" rx="8"/><rect class="cap" style="--d:0.6s" x="173" y="262" width="56" height="40" rx="8"/><rect class="cap" style="--d:0.9s" x="239" y="262" width="56" height="40" rx="8"/><text x="300" y="352" text-anchor="middle" font-size="22" class="mut">4 ferramentas</text></svg></div>
+      </article>
+    </div>
+    <details class="gloss"><summary>Palavras que eu uso aqui, em português claro</summary><dl><dt>Articulação</dt><dd>O domínio do ambiente: como você influencia quem decide e como os seus resultados são lidos.</dd><dt>Capital político</dt><dd>O saldo de confiança e credibilidade que você tem com as pessoas que decidem.</dd><dt>Termômetro</dt><dd>O começo de cada sessão: o que aconteceu na quinzena e o que precisa de ajuda agora.</dd><dt>Caixa de ferramentas</dt><dd>O material que eu preparo para cada sessão, com a tarefa para você aplicar.</dd></dl></details></div></section>
+<section class="band" id="s3" data-sec data-n="03" data-l="O percurso"><div class="sec"><div class="sh"><span class="n">03</span><span class="l">O percurso</span></div><h2>Oito sessões, quatro meses.</h2>
+    <p class="lead">Os cinco pilares, na ordem em que cada um destrava o seguinte. Se o seu cenário mudar no caminho, a gente troca a ordem.</p>
+    <figure class="curva rv" aria-label="Curva do percurso até o objetivo">
+      <svg viewBox="0 0 600 220" role="img" aria-label="5 fases em sequência até o objetivo combinado">
+        <path class="base" d="M30 200 H570"/>
+        <path class="linha" d="M30 185 L138 155 L246 125 L354 95 L462 65 L570 35"/>
+        <g class="pt" style="--d:0.00s"><circle cx="30" cy="185" r="15" class=""/><text x="30" y="190" text-anchor="middle">1</text></g><g class="pt" style="--d:0.35s"><circle cx="138" cy="155" r="15" class=""/><text x="138" y="160" text-anchor="middle">2</text></g><g class="pt" style="--d:0.70s"><circle cx="246" cy="125" r="15" class=""/><text x="246" y="130" text-anchor="middle">3</text></g><g class="pt" style="--d:1.05s"><circle cx="354" cy="95" r="15" class=""/><text x="354" y="100" text-anchor="middle">4</text></g><g class="pt" style="--d:1.40s"><circle cx="462" cy="65" r="15" class=""/><text x="462" y="70" text-anchor="middle">5</text></g><g class="pt" style="--d:1.75s"><circle cx="570" cy="35" r="17" class="meta"/><text x="570" y="40" text-anchor="middle">★</text></g>
+        <text class="alvo" x="570" y="16" text-anchor="end">Objetivo combinado</text>
+      </svg>
+      <figcaption>Ilustração do percurso, sem datas nem projeção de resultado.</figcaption>
+    </figure>
+    <ol class="fases"><li class="fase rv"><span class="f">FASE 01</span><div><b>Mentalidade · sessão 1</b><p>Você faz o diagnóstico e a gente abre o relatório juntos. <details class="caixa"><summary aria-label="Abrir a fase"></summary><ul><li>Você responde o diagnóstico de mentalidade antes da sessão</li><li>Na sessão, lemos a pontuação e os 7 princípios</li><li>Você sai com o plano de ação</li></ul></details></p></div></li><li class="fase rv"><span class="f">FASE 02</span><div><b>Posicionamento · sessões 2 e 3</b><p>O mapa do ambiente e o seu capital político com quem decide. <details class="caixa"><summary aria-label="Abrir a fase"></summary><ul><li>Montamos o mapa do ambiente, pessoa por pessoa</li><li>Você aplica as ferramentas nas interações reais</li><li>Você sai com a ação para cada relação</li></ul></details></p></div></li><li class="fase rv"><span class="f">FASE 03</span><div><b>Análise de cenário político · sessão 4</b><p>A leitura da venda da empresa e o seu movimento. <details class="caixa"><summary aria-label="Abrir a fase"></summary><ul><li>Lemos sistemas, atores e timing do seu cenário</li><li>Fazemos o diagnóstico de tensões e oportunidades</li><li>Você sai com o movimento definido para cada cenário</li></ul></details></p></div></li><li class="fase rv"><span class="f">FASE 04</span><div><b>Construção de narrativa · sessões 5 e 6</b><p>Como você quer ser reconhecido, e as ações para isso. <details class="caixa"><summary aria-label="Abrir a fase"></summary><ul><li>Definimos a narrativa que você quer</li><li>Reescrevemos os seus resultados em linguagem de negócio</li><li>Você sai com as ações para ela se espalhar</li></ul></details></p></div></li><li class="fase rv"><span class="f">FASE 05</span><div><b>Posicionamento para o mercado · sessões 7 e 8</b><p>A sua trajetória lida pelo mercado no nível certo. <details class="caixa"><summary aria-label="Abrir a fase"></summary><ul><li>Estruturamos o seu posicionamento público</li><li>Ativamos networking, ambiência e conteúdo</li><li>Fechamos juntando tudo num sistema que segue gerando oportunidades</li></ul></details></p></div></li></ol><h3 class="sub3">A dinâmica da mentoria:</h3><div class="dina rv"><div class="item"><b>Periodicidade</b><p>Encontros quinzenais de 1h <details class="caixa"><summary aria-label="Abrir Periodicidade"></summary><ul><li>Ao longo de 4 meses, são 8 sessões.</li><li>O objetivo é que você tenha tempo suficiente comigo em cenários diversos e, ao mesmo tempo, flexibilidade suficiente para a mentoria não pesar na sua rotina.</li></ul></details></p></div><div class="item"><b>Dentro da sessão</b><p>Três tempos em toda sessão <details class="caixa"><summary aria-label="Abrir Dentro da sessão"></summary><ul><li>O termômetro, com o que aconteceu na quinzena.</li><li>O módulo, com a caixa de ferramentas do pilar.</li><li>A atividade, para você implementar na vida real até a sessão seguinte.</li></ul></details></p></div><div class="item"><b>Entre as sessões</b><p>WhatsApp direto comigo <details class="caixa"><summary aria-label="Abrir Entre as sessões"></summary><ul><li>Para mandar o resultado das atividades.</li><li>Para compartilhar situações do dia a dia.</li><li>Para pegar direcionamentos específicos.</li></ul></details></p></div><div class="item"><b>Flexibilidade</b><p>Ajustamos ao longo do programa <details class="caixa"><summary aria-label="Abrir Flexibilidade"></summary><ul><li>Na estrutura: as caixas de ferramentas se ajustam à medida que o seu cenário muda.</li><li>No calendário: as datas das sessões podem mudar.</li></ul></details></p></div></div></div></section>
+<section class="band inv" id="investimento" data-sec data-n="04" data-l="Próximos passos"><div class="sec"><div class="sh"><span class="n">04</span><span class="l">Próximos passos</span></div><h2>Próximos passos - investimento</h2>
+    
+    <div class="ancora rv"><span class="tag">Valor por etapa</span>
+      <ul class="etapas"><li><span>Fase 01 · Mentalidade</span><b>R$ 2.470</b></li><li><span>Fase 02 · Posicionamento</span><b>R$ 3.500</b></li><li><span>Fase 03 · Análise de cenário político</span><b>R$ 2.500</b></li><li><span>Fase 04 · Construção de narrativa</span><b>R$ 3.500</b></li><li><span>Fase 05 · Posicionamento para o mercado</span><b>R$ 3.500</b></li></ul>
+      <p class="cheio"><span>Investimento</span><b>R$ 15.470</b><small>ou 12× R$ 1.550 · válido até 03/12/2026</small></p></div>
+    <div class="price3 rv"><span class="tag">Pacote completo · fechando até 26/11/2026</span>
+      <strong>12× 1.197</strong><small>ou 11.900 à vista</small></div>
+    <p class="alt3">Fechando até 26/11 você economiza <b>4.236</b>. Pagando à vista, economiza mais <b>2.464</b>.</p>
+    
+    
+    </div></section>
+<section class="band" id="s5" data-sec data-n="05" data-l="Como começamos"><div class="sec"><div class="sh"><span class="n">05</span><span class="l">Como começamos</span></div><h2>O que acontece quando você clica em “Vamos começar”.</h2>
+    <p class="lead">Nada de surpresa. Você sabe cada passo antes de decidir.</p>
+    <div class="depois"><ol class="passos"><li class="passo"><b>Segunda, 23/11, às 19h30, a gente conversa</b><p>Passo pela proposta com você e tiro as suas dúvidas.</p></li><li class="passo"><b>Você clica em “Vamos começar”</b><p>Abre o pagamento, já com os seus dados, e você escolhe Pix ou cartão em até 12×.</p></li><li class="passo"><b>A gente marca a primeira sessão</b><p>Começamos pelo diagnóstico profundo.</p></li></ol></div>
+    <h3 class="sub3">Quem faz o quê.</h3>
+    <div class="quem"><div class="duas">
+      <div class="col"><h3>Eu faço</h3><ul><li>Preparo uma ferramenta específica para cada sessão</li><li>Leio o cenário com você, de executivo para executivo</li><li>Respondo no WhatsApp entre as sessões</li><li>Ajusto o programa quando o seu cenário mudar</li></ul></div>
+      <div class="col"><h3>Você faz</h3><ul><li>Aplicar a tarefa da quinzena no dia a dia, com as pessoas reais</li><li>Me contar pelo WhatsApp o que funcionou e o que travou</li><li>Trazer o que acontecer na empresa e no mercado</li></ul></div>
+    </div></div></div></section>
+<section class="band" id="s6" data-sec data-n="06" data-l="Quem assina"><div class="sec"><div class="sh"><span class="n">06</span><span class="l">Quem assina</span></div><h2>Eu sou Yury Garcia.</h2>
+    <div class="sobre"><div class="sobre-grid"><div><div class="faixa"><div class="item"><b>Atuo com posicionamento de carreira para líderes que já entregam e querem ocupar espaços maiores.</b>Meu trabalho aqui: Mentoria Individual.</div><div class="item"><b>Mais de 12 anos em liderança corporativa e mais de 1.000 pessoas lideradas.</b></div><div class="item"><b>Passei por Riachuelo, Uber e 99. Fui Chief of Staff Global da 99 e da DiDi, no dia a dia com a liderança chinesa do grupo.</b></div><div class="item"><b>Participei de painéis de promoção e vi de dentro como essas decisões são tomadas.</b></div><div class="item"><b>Me acompanhe no Instagram.</b><a href="https://instagram.com/oyurygarcia" target="_blank" rel="noopener">@oyurygarcia</a></div><div class="item"><b>Conheça mais do meu trabalho.</b><a href="https://oyurygarcia.com.br" target="_blank" rel="noopener">https://oyurygarcia.com.br</a></div></div></div></div></div></div></section>
+<section class="band fim3 final" id="aceite" data-sec data-n="07" data-l="Aceite">
+  <div class="sec">
+    <div class="sh"><span class="n">07</span><span class="l">Aceite</span></div>
+    <h2>Faz sentido para o seu momento?</h2>
+    <p class="lead">Se sim, clica em “Vamos começar” e a gente dá o primeiro passo juntos.</p>
+    <dl class="sum"><div><dt>Proposta nº</dt><dd>EV-261123</dd></div><div><dt>Cliente</dt><dd>Everton</dd></div><div><dt>Pacote</dt><dd>Mentalidade · Posicionamento · Análise de cenário político · Construção de narrativa · Posicionamento para o mercado</dd></div><div><dt>Investimento</dt><dd><b class="verde">12× 1.197</b> ou 11.900 à vista</dd></div><div><dt>Validade</dt><dd>26/11/2026, 23h59</dd></div><div class="ou"><dt>ou</dt><dd></dd></div><div><dt>Valor cheio</dt><dd>12× R$ 1.550 ou R$ 15.470 à vista</dd></div><div><dt>Validade do valor cheio</dt><dd>03/12/2026, 23h59</dd></div></dl>
+    <div class="cta"><a class="btn grande js-pagar" href="#aceite" rel="noopener">Vamos começar</a></div><div class="pagar-aviso" id="pagar" role="status"></div>
+    <p class="peq">Proposta válida até 26/11/2026, 23h59 (<span data-restam></span>). Prefere conversar antes? <a href="https://wa.me/5511999106121?text=Ol%C3%A1%2C%20li%20a%20proposta%20e%20tenho%20uma%20d%C3%BAvida." data-wa>Me chama no WhatsApp</a>.</p>
+  </div>
+</section></main></div>
+
+<div class="barra" id="barra"><span><b>Proposta Everton</b>Mentoria Individual</span><a class="btn js-pagar" href="#aceite" rel="noopener">Vamos começar</a></div>
+<script>window.PROPOSTA={"valida_ate": "2026-11-26T23:59:59-03:00", "wa": "5511999106121"};</script>
+<script>
+/* proposta-pagina: comportamento da página. A configuração vem de window.PROPOSTA (escrita pelo gerar_proposta.py). */
+(function () {
+  var P = window.PROPOSTA || {};
+  var R = function (n) { return 'R$ ' + Math.round(n).toLocaleString('pt-BR'); };
+  var $ = function (id) { return document.getElementById(id); };
+  var reduz = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  /* ---- validade de 3 dias ---- */
+  var fim = new Date(P.valida_ate).getTime();
+  function restam() {
+    var ms = fim - Date.now();
+    if (ms <= 0) return null;
+    var min = Math.floor(ms / 60000), d = Math.floor(min / 1440), h = Math.floor((min % 1440) / 60), m = min % 60;
+    if (d > 0) return 'faltam ' + d + (d > 1 ? ' dias' : ' dia') + ' e ' + h + ' h';
+    if (h > 0) return 'faltam ' + h + ' h e ' + m + ' min';
+    return 'faltam ' + m + ' min';
+  }
+  var vencida = false;
+  function atualizaValidade() {
+    var r = restam();
+    document.querySelectorAll('[data-restam]').forEach(function (e) { e.textContent = r || 'proposta vencida'; });
+    if (!r && !vencida) {
+      vencida = true;
+      document.body.classList.add('vencida');
+      document.querySelectorAll('.js-comecar').forEach(function (b) {
+        if (P.wa) {
+          b.textContent = 'Pedir uma nova proposta';
+          b.setAttribute('href', 'https://wa.me/' + P.wa + '?text=' + encodeURIComponent('Olá, a proposta venceu e quero reabrir.'));
+        } else {
+          b.textContent = 'Proposta vencida';
+          b.removeAttribute('href');
+        }
+      });
+    }
+  }
+  atualizaValidade(); setInterval(atualizaValidade, 60000);
+
+  /* ---- barra fixa e progresso ---- */
+  var barra = $('barra'), prog = $('prog');
+  function onScroll() {
+    barra.classList.toggle('on', window.scrollY > window.innerHeight * 0.7);
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    prog.style.width = (h > 0 ? window.scrollY / h * 100 : 0) + '%';
+  }
+  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  /* ---- revelar ao rolar e contador do preço ---- */
+  var alvos = document.querySelectorAll('.q,.passo,.quem .col,.sobre .item,.fase,.gar');
+  alvos.forEach(function (el, i) { el.classList.add('rv'); el.style.setProperty('--rd', ((i % 4) * 0.08) + 's'); });
+  function contar(el) {
+    var alvo = +el.dataset.count, t0 = null;
+    function f(ts) { if (!t0) t0 = ts; var k = Math.min(1, (ts - t0) / 1300), e = 1 - Math.pow(1 - k, 3); el.textContent = R(alvo * e); if (k < 1) requestAnimationFrame(f); else el.textContent = R(alvo); }
+    requestAnimationFrame(f);
+  }
+  var todos = document.querySelectorAll('.rv');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          var c = e.target.querySelector && e.target.querySelector('[data-count]');
+          if (c && !reduz) contar(c);
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.14, rootMargin: '0px 0px -6% 0px' });
+    todos.forEach(function (el) { io.observe(el); });
+  } else { todos.forEach(function (el) { el.classList.add('in'); }); }
+
+  /* ---- menu lateral e barra superior ---- */
+  var secs = [].slice.call(document.querySelectorAll('[data-sec]'));
+  var links = [].slice.call(document.querySelectorAll('.rail nav a'));
+  var tb = $('topbar'), tbn = $('tbn'), tbl = $('tbl');
+  var capa = document.querySelector('.capa');
+  function atualiza() {
+    var y = window.innerHeight * 0.35, atual = null;
+    secs.forEach(function (s) { if (s.getBoundingClientRect().top <= y) atual = s; });
+    links.forEach(function (a) {
+      var on = !!atual && a.getAttribute('href') === '#' + atual.id;
+      a.classList.toggle('on', on);
+      if (on) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+    });
+    if (tb && capa) {
+      tb.classList.toggle('on', capa.getBoundingClientRect().bottom < 60);
+      if (atual) { tbn.textContent = atual.dataset.n; tbl.textContent = atual.dataset.l; }
+    }
+  }
+  window.addEventListener('scroll', atualiza, { passive: true }); atualiza();
+})();
+
+</script>
+<script>(function(){var s=document.getElementById('investimento'),b=document.getElementById('barra');if(!s||!b)return;function v(){b.classList.toggle('libera',s.getBoundingClientRect().top<window.innerHeight*0.85)}window.addEventListener('scroll',v,{passive:true});window.addEventListener('resize',v);v();})();</script>
+<script>(function(){var C={"api": "https://script.google.com/macros/s/AKfycbx1idC-0vKEd-8RQB1rPREyPbxD-1AsbGxyU0SiH5fVBJwtdZrRnf86FZVACTET472jZQ/exec", "oferta": "teste-ev-261123", "wa": "5511999106121"},av=document.getElementById('pagar'),indo=false;
+var of=/[?&]teste=1/.test(location.search)?'teste':C.oferta;
+var waTxt='https://wa.me/'+C.wa+'?text='+encodeURIComponent('Olá, li a proposta e quero começar.');
+var bs=document.querySelectorAll('.js-pagar');
+if(/[?&]pago=1/.test(location.search)&&av){av.classList.add('pago');av.innerHTML='<b>Pagamento recebido</b>O seu acesso à área de alunos chega no seu e-mail em poucos minutos. Se não aparecer, olhe também no spam e em promoções. Em seguida a gente fala com você no WhatsApp para marcar o seu onboarding.';setTimeout(function(){av.scrollIntoView({block:'center'});},400);}
+function fim(m){indo=false;bs.forEach(function(b){b.textContent='Vamos começar';});if(av){av.innerHTML=m;av.scrollIntoView({block:'center'});}}
+bs.forEach(function(b){b.addEventListener('click',function(ev){ev.preventDefault();if(indo)return;indo=true;
+bs.forEach(function(x){x.textContent='Abrindo o pagamento...';});
+fetch(C.api,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({oferta:of})})
+.then(function(r){return r.json();}).then(function(r){
+if(r&&r.ok&&r.url){location.href=r.url;}
+else if(r&&r.erro==='prazo'){fim('O prazo desta proposta terminou. <a href="'+waTxt+'">Me chama no WhatsApp</a> que a gente vê com você.');}
+else{fim('Não consegui abrir o pagamento agora. Tente de novo em instantes ou <a href="'+waTxt+'">me chama no WhatsApp</a>.');}
+}).catch(function(){fim('Não consegui abrir o pagamento agora. Tente de novo em instantes ou <a href="'+waTxt+'">me chama no WhatsApp</a>.');});});});
+})();</script>
+</body>
+</html>
