@@ -728,6 +728,32 @@ details.caixa ul{margin:10px 0 4px;padding:12px 14px;border:1px solid var(--line
 .barra:not(.libera){transform:translateY(120%) !important;pointer-events:none}
 .dina .item p details.caixa ul li{color:var(--text)}
 
+/* linha do tempo do programa (Mentoria Liderium, 23/11/2026): rótulo à esquerda, faixa à direita */
+.ldt{--lw:118px;margin:18px 0 26px;padding:18px 16px 14px;border:1px solid var(--line-m);border-radius:var(--r-lg);background:var(--card)}
+.ldt .ms,.ldt .fx{display:grid;grid-template-columns:var(--lw) 1fr;gap:10px;align-items:center}
+.ldt .ms{border-bottom:1px solid var(--line-m);padding-bottom:6px;font-size:.7rem;color:var(--text-d);letter-spacing:.04em;text-transform:uppercase}
+.ldt .ms b{font-weight:700}
+.ldt .ms .tr{display:grid;grid-template-columns:repeat(6,1fr);height:auto;background:none}
+.ldt .ms .tr span{border-left:1px solid var(--line-m);padding-left:4px}
+.ldt .fx{margin-top:12px}
+.ldt .fx>b{font-size:.76rem;font-weight:700;color:var(--text-m);line-height:1.25}
+.ldt .tr{position:relative;height:24px;background:rgba(74,179,232,.06);border-radius:var(--r-pill)}
+.ldt .tr i{position:absolute;top:50%;transform:translate(-50%,-50%);font-style:normal}
+.ldt .mk{width:22px;height:22px;border-radius:50%;background:var(--blue);color:var(--navy);font-weight:800;font-size:.72rem;display:flex;align-items:center;justify-content:center}
+.ldt .pt{width:8px;height:8px;border-radius:50%;background:var(--blue)}
+.ldt .tr .br{transform:translateY(-50%);height:6px;border-radius:var(--r-pill);background:var(--blue)}
+.ldt .lg{list-style:none;padding:0;margin:16px 0 0;display:grid;gap:6px;font-size:.85rem;color:var(--text-m)}
+.ldt .lg li{display:flex;gap:8px;align-items:center}
+.ldt .lg li i{font-style:normal;flex:0 0 auto;width:22px;height:22px;border-radius:50%;background:var(--blue);color:var(--navy);font-weight:800;font-size:.72rem;display:flex;align-items:center;justify-content:center}
+@media (min-width:760px){.ldt{--lw:210px}.ldt .fx>b{font-size:.85rem}.ldt .lg{grid-template-columns:1fr 1fr}}
+
+/* pagamento direto da proposta (chave "pagamento" do ajustes.json): aviso no aceite ao voltar pago ou se der erro */
+.pagar-aviso{max-width:520px;margin:18px auto 0;color:var(--text-m);font-size:.95rem;text-align:left}
+.pagar-aviso:empty{display:none}
+.pagar-aviso a{color:var(--blue)}
+.pagar-aviso.pago{border:1px solid var(--green);border-radius:var(--r-lg);background:var(--card);padding:20px}
+.pagar-aviso.pago b{display:block;color:#fff;font-size:1.1rem;margin-bottom:6px}
+
 /* === marca: fim === */
 </style>
 <script>document.documentElement.classList.add('js')</script>
@@ -768,7 +794,7 @@ details.caixa ul{margin:10px 0 4px;padding:12px 14px;border:1px solid var(--line
   <nav><ol><li><a href="#s1"><span>01</span>Resumo</a></li><li><a href="#s2"><span>02</span>O plano</a></li><li><a href="#s3"><span>03</span>O percurso</a></li><li><a href="#investimento"><span>04</span>Próximos passos</a></li><li><a href="#s5"><span>05</span>Como começamos</a></li><li><a href="#s6"><span>06</span>Quem assina</a></li><li><a href="#aceite"><span>07</span>Aceite</a></li></ol></nav>
   <div class="rbot">
     <p class="rval">Válida até 26/11/2026, 23h59<br><b data-restam></b></p>
-    <a class="btn js-comecar" href="https://wa.me/5511999106121?text=Ol%C3%A1%2C%20vi%20a%20proposta%20e%20quero%20come%C3%A7ar." rel="noopener">Vamos começar</a>
+    <a class="btn js-pagar" href="#aceite" rel="noopener">Vamos começar</a>
   </div>
 </aside><main class="main"><section class="band" id="s1" data-sec data-n="01" data-l="Resumo"><div class="sec"><div class="sh"><span class="n">01</span><span class="l">Resumo</span></div><h2>O que você me contou.</h2>
     <p class="lead">São as suas palavras, do jeito que você falou. Foi a partir delas que eu montei o plano.</p>
@@ -862,7 +888,7 @@ v.addEventListener('click',function(){vai(i-1)});p.addEventListener('click',func
     </div></section>
 <section class="band" id="s5" data-sec data-n="05" data-l="Como começamos"><div class="sec"><div class="sh"><span class="n">05</span><span class="l">Como começamos</span></div><h2>O que acontece quando você clica em “Vamos começar”.</h2>
     <p class="lead">Nada de surpresa. Você sabe cada passo antes de decidir.</p>
-    <div class="depois"><ol class="passos"><li class="passo"><b>Segunda, 23/11, às 19h30, a gente conversa</b><p>Passo pela proposta com você e tiro as suas dúvidas.</p></li><li class="passo"><b>Você clica em “Vamos começar”</b><p>Abre uma conversa comigo no WhatsApp e a gente acerta a forma de pagamento.</p></li><li class="passo"><b>A gente marca a primeira sessão</b><p>Começamos pelo diagnóstico profundo.</p></li></ol></div>
+    <div class="depois"><ol class="passos"><li class="passo"><b>Segunda, 23/11, às 19h30, a gente conversa</b><p>Passo pela proposta com você e tiro as suas dúvidas.</p></li><li class="passo"><b>Você clica em “Vamos começar”</b><p>Abre o pagamento, já com os seus dados, e você escolhe Pix ou cartão em até 12×.</p></li><li class="passo"><b>A gente marca a primeira sessão</b><p>Começamos pelo diagnóstico profundo.</p></li></ol></div>
     <h3 class="sub3">Quem faz o quê.</h3>
     <div class="quem"><div class="duas">
       <div class="col"><h3>Eu faço</h3><ul><li>Preparo uma ferramenta específica para cada sessão</li><li>Leio o cenário com você, de executivo para executivo</li><li>Respondo no WhatsApp entre as sessões</li><li>Ajusto o programa quando o seu cenário mudar</li></ul></div>
@@ -876,12 +902,12 @@ v.addEventListener('click',function(){vai(i-1)});p.addEventListener('click',func
     <h2>Faz sentido para o seu momento?</h2>
     <p class="lead">Se sim, clica em “Vamos começar” e a gente dá o primeiro passo juntos.</p>
     <dl class="sum"><div><dt>Proposta nº</dt><dd>EV-261123</dd></div><div><dt>Cliente</dt><dd>Everton</dd></div><div><dt>Pacote</dt><dd>Mentalidade · Posicionamento · Análise de cenário político · Construção de narrativa · Posicionamento para o mercado</dd></div><div><dt>Investimento</dt><dd><b class="verde">12× 1.197</b> ou 11.900 à vista</dd></div><div><dt>Validade</dt><dd>26/11/2026, 23h59</dd></div><div class="ou"><dt>ou</dt><dd></dd></div><div><dt>Valor cheio</dt><dd>12× R$ 1.550 ou R$ 15.470 à vista</dd></div><div><dt>Validade do valor cheio</dt><dd>03/12/2026, 23h59</dd></div></dl>
-    <div class="cta"><a class="btn grande js-comecar" href="https://wa.me/5511999106121?text=Ol%C3%A1%2C%20vi%20a%20proposta%20e%20quero%20come%C3%A7ar." rel="noopener">Vamos começar</a></div>
+    <div class="cta"><a class="btn grande js-pagar" href="#aceite" rel="noopener">Vamos começar</a></div><div class="pagar-aviso" id="pagar" role="status"></div>
     <p class="peq">Proposta válida até 26/11/2026, 23h59 (<span data-restam></span>). Prefere conversar antes? <a href="https://wa.me/5511999106121?text=Ol%C3%A1%2C%20li%20a%20proposta%20e%20tenho%20uma%20d%C3%BAvida." data-wa>Me chama no WhatsApp</a>.</p>
   </div>
 </section></main></div>
 
-<div class="barra" id="barra"><span><b>Proposta Everton</b>Mentoria Individual</span><a class="btn js-comecar" href="https://wa.me/5511999106121?text=Ol%C3%A1%2C%20vi%20a%20proposta%20e%20quero%20come%C3%A7ar." rel="noopener">Vamos começar</a></div>
+<div class="barra" id="barra"><span><b>Proposta Everton</b>Mentoria Individual</span><a class="btn js-pagar" href="#aceite" rel="noopener">Vamos começar</a></div>
 <script>window.PROPOSTA={"valida_ate": "2026-11-26T23:59:59-03:00", "wa": "5511999106121"};</script>
 <script>
 /* proposta-pagina: comportamento da página. A configuração vem de window.PROPOSTA (escrita pelo gerar_proposta.py). */
@@ -976,5 +1002,20 @@ v.addEventListener('click',function(){vai(i-1)});p.addEventListener('click',func
 
 </script>
 <script>(function(){var s=document.getElementById('investimento'),b=document.getElementById('barra');if(!s||!b)return;function v(){b.classList.toggle('libera',s.getBoundingClientRect().top<window.innerHeight*0.85)}window.addEventListener('scroll',v,{passive:true});window.addEventListener('resize',v);v();})();</script>
+<script>(function(){var C={"api": "https://script.google.com/macros/s/AKfycbx1idC-0vKEd-8RQB1rPREyPbxD-1AsbGxyU0SiH5fVBJwtdZrRnf86FZVACTET472jZQ/exec", "oferta": "ev-261123", "wa": "5511999106121"},av=document.getElementById('pagar'),indo=false;
+var of=/[?&]teste=1/.test(location.search)?'teste':C.oferta;
+var waTxt='https://wa.me/'+C.wa+'?text='+encodeURIComponent('Olá, li a proposta e quero começar.');
+var bs=document.querySelectorAll('.js-pagar');
+if(/[?&]pago=1/.test(location.search)&&av){av.classList.add('pago');av.innerHTML='<b>Pagamento recebido</b>O seu acesso à área de alunos chega no seu e-mail em poucos minutos. Se não aparecer, olhe também no spam e em promoções. Em seguida a gente fala com você no WhatsApp para marcar o seu onboarding.';setTimeout(function(){av.scrollIntoView({block:'center'});},400);}
+function fim(m){indo=false;bs.forEach(function(b){b.textContent='Vamos começar';});if(av){av.innerHTML=m;av.scrollIntoView({block:'center'});}}
+bs.forEach(function(b){b.addEventListener('click',function(ev){ev.preventDefault();if(indo)return;indo=true;
+bs.forEach(function(x){x.textContent='Abrindo o pagamento...';});
+fetch(C.api,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({oferta:of})})
+.then(function(r){return r.json();}).then(function(r){
+if(r&&r.ok&&r.url){location.href=r.url;}
+else if(r&&r.erro==='prazo'){fim('O prazo desta proposta terminou. <a href="'+waTxt+'">Me chama no WhatsApp</a> que a gente vê com você.');}
+else{fim('Não consegui abrir o pagamento agora. Tente de novo em instantes ou <a href="'+waTxt+'">me chama no WhatsApp</a>.');}
+}).catch(function(){fim('Não consegui abrir o pagamento agora. Tente de novo em instantes ou <a href="'+waTxt+'">me chama no WhatsApp</a>.');});});});
+})();</script>
 </body>
 </html>
